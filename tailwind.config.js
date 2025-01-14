@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#1E88E5', // আপনি এখানে আপনার কাস্টম রঙটি সেট করেছেন
+      },
+    },
   },
   plugins: [
     require('daisyui'),
