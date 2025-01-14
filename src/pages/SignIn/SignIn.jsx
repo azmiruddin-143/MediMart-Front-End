@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoogleAccount from '../../components/Shared/GoogleAccount';
 
 const SignIn = () => {
     const { loginUser } = useContext(AuthContext);
@@ -73,6 +74,7 @@ const SignIn = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <GoogleAccount></GoogleAccount>
                         <Link to={'/signup'}>
                             <h1>SignUp</h1>
                         </Link>

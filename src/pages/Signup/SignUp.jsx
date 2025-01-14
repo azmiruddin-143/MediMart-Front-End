@@ -7,6 +7,8 @@ import { imageUpload } from '../../api/utilis';
 import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoogleAccount from '../../components/Shared/GoogleAccount';
+import axios from 'axios';
 // import axios from 'axios';
 
 
@@ -22,28 +24,32 @@ const SignUp = () => {
             const image = photoURL
             const password = data.password
             const role = data.role
-            console.log(role);
-
-               console.log(name,email,image,password);
-            // const userInfo = {
-            //     name: data.name,
-            //     email: data.email,
-            //     image: photoURL,
-            // };
 
             registerUser(email, password)
                 .then((result) => {
                     console.log(result.user);
                     myProfileUpdate({ displayName: name, photoURL: image })
                         .then(() => {
+                            const userInfo = {
+                                userName: name,
+                                userEmail: email,
+                                userphoto: photoURL,
+                                userRole: role
+                            };
+
+                            axios.post('http://localhost:5000/users',userInfo)
+                            .then(res =>{
+                                console.log(res.data);
+                            })
+                            .catch((error) =>{
+                                console.log(error.message);
+                            })
 
                             setuser({ ...result.user, displayName: name, photoURL: image })
-
                             toast.success("Registration successful!", {
                                 autoClose: 3000,
                             });
                             reset()
-
                         })
                         .catch((error) => {
                             toast.error(`Registration failed: ${error.message}`, {
@@ -134,6 +140,7 @@ const SignUp = () => {
                             <button className="btn btn-primary">SignUp</button>
                         </div>
                     </form>
+                    <GoogleAccount></GoogleAccount>
                     <Link to={'/signin'} ><h1>Signin</h1></Link>
                     {/* <GoogleAccount></GoogleAccount> */}
                 </div>
