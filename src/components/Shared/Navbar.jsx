@@ -265,7 +265,7 @@ const Navbar = () => {
                                                     className="menu menu-sm dropdown-content text-neutral bg-primary space-y-3 rounded-box z-[1] mt-3 w-52 p-2 shadow">
 
                                                     <NavLink
-                                                        to="/myfoods"
+                                                        to="/updateprofile"
                                                         className={({ isActive }) =>
                                                             isActive
                                                                 ? `${isBlurred ? "text-secondary font-bold border-b" : "text-secondary"}`

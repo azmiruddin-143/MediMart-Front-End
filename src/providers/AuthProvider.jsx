@@ -67,6 +67,7 @@ const AuthProvider = ({ children }) => {
         user,
         setuser,
         loader,
+        setLoader
     }
 
     return (

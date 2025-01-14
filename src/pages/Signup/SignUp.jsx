@@ -11,54 +11,56 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUp = () => {
-    const { register,reset, handleSubmit, formState: { errors }, } = useForm()
-    const { registerUser, myProfileUpdate,setuser  } = useContext(AuthContext)
+    const { register, reset, handleSubmit, formState: { errors }, } = useForm()
+    const { registerUser, myProfileUpdate, setuser } = useContext(AuthContext)
     const onSubmit = async (data) => {
         try {
             const photoURL = await imageUpload(data.image[0]); // Await ব্যবহার করুন
-          
-              const name = data.name
-              const email = data.email
-              const image = photoURL
-              const password = data.password
-           
-            //    console.log(name,email,image,password);
+
+            const name = data.name
+            const email = data.email
+            const image = photoURL
+            const password = data.password
+            const role = data.role
+            console.log(role);
+
+               console.log(name,email,image,password);
             // const userInfo = {
             //     name: data.name,
             //     email: data.email,
             //     image: photoURL,
             // };
 
-            registerUser(email,password)
-            .then((result) =>{
-                console.log(result.user);
-                myProfileUpdate({ displayName: name, photoURL: image })
-                .then(() => {
+            registerUser(email, password)
+                .then((result) => {
+                    console.log(result.user);
+                    myProfileUpdate({ displayName: name, photoURL: image })
+                        .then(() => {
 
-                    setuser({ ...result.user, displayName: name, photoURL: image })
+                            setuser({ ...result.user, displayName: name, photoURL: image })
 
-                    toast.success("Registration successful!", {
-                        autoClose: 3000,
-                    });
-                    reset()
-                  
+                            toast.success("Registration successful!", {
+                                autoClose: 3000,
+                            });
+                            reset()
+
+                        })
+                        .catch((error) => {
+                            toast.error(`Registration failed: ${error.message}`, {
+                                autoClose: 3000,
+                            });
+                            console.log('error kahico', error.message);
+                        })
+
+
                 })
                 .catch((error) => {
-                    toast.error(`Registration failed: ${error.message}`, {
-                        autoClose: 3000,
-                    });
-                    console.log('error kahico',error.message);
+                    console.log('error kahico', error.message);
                 })
 
 
-            })
-            .catch((error) =>{
-                console.log('error kahico',error.message);
-            })
 
-
-    
-///////////////////////errr/////////////////////////
+            ///////////////////////errr/////////////////////////
             // console.log(userInfo); 
         } catch (error) {
             console.error("Image upload failed:", error);
@@ -96,7 +98,7 @@ const SignUp = () => {
                                 Select Image:
                             </label>
                             <input
-                                 {...register("image", { required: true })}
+                                {...register("image", { required: true })}
                                 type='file'
                                 id='image'
                                 name='image'
@@ -117,6 +119,16 @@ const SignUp = () => {
                             {errors.password?.type === "maxLength" && (<p className='text-red-800 pt-3'>20 er besi hobe na</p>)}
                             {errors.password?.type === "pattern" && (<p className='text-red-800 pt-3'>A a 5 @ agula thakte hobe passeord er modde</p>)}
 
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">User Role</span>
+                            </label>
+                            <select className="select select-bordered w-full max-w-xs"  {...register("role", { required: true })}>
+                                <option disabled selected>Who chose role?</option>
+                                <option>User</option>
+                                <option>Seller</option>
+                            </select>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">SignUp</button>
