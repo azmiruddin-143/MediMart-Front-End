@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-// import { AuthContext } from '../Auth Provider/AuthProvider';
 
 
 const Navbar = () => {
@@ -14,23 +13,23 @@ const Navbar = () => {
     const { user, userLogout } = useContext(AuthContext);
     const [isBlurred, setIsBlurred] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     // Logout Handler
-    // const userLogoutHandler = () => {
-    //     userLogout()
-    //         .then(() => {
-    //             toast.success("Logout successful!", { autoClose: 3000 });
-    //             navigate("/");
-    //         })
-    //         .catch((error) => {
-    //             toast.error(`Logout failed: ${error.message}`, {
-    //                 autoClose: 3000,
-    //             });
+    const userLogoutHandler = () => {
+        userLogout()
+            .then(() => {
+                toast.success("Logout successful!", { autoClose: 3000 });
+                navigate("/");
+            })
+            .catch((error) => {
+                toast.error(`Logout failed: ${error.message}`, {
+                    autoClose: 3000,
+                });
 
-    //         });
+            });
 
-    // };
+    };
 
     // Scroll Listener for Blur Effect
     useEffect(() => {
@@ -258,7 +257,7 @@ const Navbar = () => {
                                     Logout
                                 </button>
                             ) : (
-                                <Link to="/login">
+                                <Link to="/signin">
                                     <button className={`${isBlurred && 'bg-[white] text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg'
 
                                         } bg-secondary text-black text-base font-semibold py-1 px-2 sm:text-lg sm:py-2 sm:px-6 rounded-lg`}>
@@ -280,13 +279,10 @@ const Navbar = () => {
                                                         referrerPolicy='no-referrer'
                                                         // alt="Tailwind CSS Navbar component"
                                                         src={user?.photoURL}
-                                                        data-tooltip-id="image-tooltip"
-                                                        data-tooltip-content="azmirkhan"
-                                                        style={{ cursor: "pointer" }}
 
                                                     />
 
-                                                    <Tooltip id="image-tooltip" place="top" style={{ backgroundColor: "#333" }} />
+                                                   
                                                 </div>
                                             </div>
                                             <ul
