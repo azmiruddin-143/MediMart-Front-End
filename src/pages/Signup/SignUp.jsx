@@ -6,6 +6,7 @@ import { imageUpload } from '../../api/utilis';
 // import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 
 
