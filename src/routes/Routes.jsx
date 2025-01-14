@@ -3,6 +3,9 @@ import MainLayout from "../layouts/MainLayout";
 import SignUp from "../pages/Signup/SignUp";
 import SignIn from "../pages/SignIn/SignIn";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
+import DashboardLayout from "../layouts/DashboardLayout";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AdminHomePage from "../pages/Dashboard/Admin/AdminHomePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,7 +14,7 @@ const router = createBrowserRouter([
     children : [
       {
         path :'/',
-        element : <h1>gbdfxb</h1>
+        element : <h1></h1>
       },
       {
         path:"/signup",
@@ -27,6 +30,24 @@ const router = createBrowserRouter([
       }
     ]
   },
+  
+  {
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "manageusers",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "adminhomepage",
+        element: <AdminHomePage></AdminHomePage>,
+      },
+    ]
+  }
+
 ]);
+
+
 
 export default router

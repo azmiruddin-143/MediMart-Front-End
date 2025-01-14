@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Home = () => {
+const UserDataRow = () => {
     return (
         <div>
-            <h1>home</h1>
+            
         </div>
     );
 };
 
-export default Home;
+export default UserDataRow;
