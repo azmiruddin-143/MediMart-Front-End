@@ -42,7 +42,7 @@ const Sidebar = () => {
 
                 {/* Navigation Links */}
                 <NavLink
-                    to="/dashboard/manageusers"
+                    to="/dashboard/adminhomepage"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
@@ -53,7 +53,7 @@ const Sidebar = () => {
                     Admin Homepage
                 </NavLink>
                 <NavLink
-                    to="/cxvb"
+                    to="/dashboard/manageusers"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
@@ -64,7 +64,7 @@ const Sidebar = () => {
                     Manage Users
                 </NavLink>
                 <NavLink
-                    to="/cxvb"
+                    to="/dashboard/managecategory"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
@@ -75,7 +75,7 @@ const Sidebar = () => {
                     Manage Category
                 </NavLink>
                 <NavLink
-                    to="/cxvb"
+                    to="/dashboard/paymentmanagement"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
@@ -86,7 +86,7 @@ const Sidebar = () => {
                     Payment management
                 </NavLink>
                 <NavLink
-                    to="/cxvb"
+                    to="/dashboard/salesreport"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
@@ -97,7 +97,7 @@ const Sidebar = () => {
                     Sales Report
                 </NavLink>
                 <NavLink
-                    to="/cxvb"
+                    to="/dashboard/managebanner"
                     className={({ isActive }) =>
                         isActive
                             ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"

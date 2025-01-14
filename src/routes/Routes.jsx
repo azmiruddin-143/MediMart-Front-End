@@ -6,6 +6,10 @@ import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AdminHomePage from "../pages/Dashboard/Admin/AdminHomePage";
+import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
+import SalesReport from "../pages/Dashboard/Admin/SalesReport";
+import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
+import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,12 +40,29 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
+        path: "adminhomepage",
+        element: <AdminHomePage></AdminHomePage>,
+      },
+      
+      {
         path: "manageusers",
         element: <ManageUsers></ManageUsers>,
       },
       {
-        path: "adminhomepage",
-        element: <AdminHomePage></AdminHomePage>,
+        path: "managecategory",
+        element: <ManageCategory></ManageCategory>,
+      },
+      {
+        path: "paymentmanagement",
+        element: <PaymentManagement></PaymentManagement>,
+      },
+      {
+        path: "salesreport",
+        element: <SalesReport></SalesReport>,
+      },
+      {
+        path: "managebanner",
+        element: <ManageBanner></ManageBanner>,
       },
     ]
   }
