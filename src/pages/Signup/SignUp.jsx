@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../../components/Shared/GoogleAccount';
 import axios from 'axios';
-// import axios from 'axios';
 
 
 const SignUp = () => {
