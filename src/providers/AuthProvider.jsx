@@ -1,12 +1,14 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.config';
+import axios from 'axios';
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loader, setLoader] = useState(true)
     const provider = new GoogleAuthProvider();
     // google user//
+    // medicin
 
     const googleRegister = () => {
         setLoader(true)
@@ -37,10 +39,24 @@ const AuthProvider = ({ children }) => {
     }
 
 
-
     useEffect(() => {
         const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
             setuser(currentUser)
+            if (currentUser) {
+                const userInfo = {
+                    email: currentUser?.email
+                }
+                axios.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem("access-token", res.data.token)
+                        }
+                    })
+
+            } else {
+                
+                localStorage.removeItem("access-token")
+            }
             setLoader(false)
 
         })
