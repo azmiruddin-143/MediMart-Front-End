@@ -10,6 +10,7 @@ import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
 import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
+import AskForAdvertisement from "../pages/Dashboard/Seller/askForAdvertisement";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "managebanner",
         element: <ManageBanner></ManageBanner>,
+      },
+      {
+        path: "askforadvertisement",
+        element: <AskForAdvertisement></AskForAdvertisement>
       },
     ]
   }

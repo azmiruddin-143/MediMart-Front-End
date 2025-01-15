@@ -28,9 +28,8 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-60 transition-transform transform ${
-                    isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
-                } lg:translate-x-0 md:static`}
+                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-60 transition-transform transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
+                    } lg:translate-x-0 md:static`}
             >
                 {/* Logo Section */}
                 <Link to={'/'}>
@@ -106,6 +105,20 @@ const Sidebar = () => {
                 >
                     <PiFlagBanner className="text-xl" />
                     Manage banner Advertise
+                </NavLink>
+
+                {/* seller */}
+
+                <NavLink
+                    to="/dashboard/askforadvertisement"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                    }
+                >
+                    <PiFlagBanner className="text-xl" />
+                    Ask For Advertisement
                 </NavLink>
 
                 {/* Divider */}
