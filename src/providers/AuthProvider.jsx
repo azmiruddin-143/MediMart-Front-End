@@ -41,21 +41,21 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
             setuser(currentUser)
-            // if (currentUser) {
-            //     const userInfo = {
-            //         email: currentUser?.email
-            //     }
-            //     axios.post('/jwt', userInfo)
-            //         .then(res => {
-            //             if (res.data.token) {
-            //                 localStorage.setItem("access-token", res.data.token)
-            //             }
-            //         })
+            if (currentUser) {
+                const userInfo = {
+                    email: currentUser?.email
+                }
+                axios.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem("access-token", res.data.token)
+                        }
+                    })
 
-            // } else {
+            } else {
                 
-            //     localStorage.removeItem("access-token")
-            // }
+                localStorage.removeItem("access-token")
+            }
             setLoader(false)
 
         })
