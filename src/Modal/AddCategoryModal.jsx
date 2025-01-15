@@ -9,7 +9,7 @@ import {
 import { Fragment } from 'react'
 import AddCategoryForm from '../Form/AddCategoryForm'
 
-const AddCategoryModal = ({ setIsEditModalOpen, isOpen }) => {
+const AddCategoryModal = ({ setIsEditModalOpen, isOpen,refetch }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -48,7 +48,7 @@ const AddCategoryModal = ({ setIsEditModalOpen, isOpen }) => {
                   Add Category
                 </DialogTitle>
                 <div className='mt-2 w-full'>
-                  <AddCategoryForm />
+                  <AddCategoryForm setIsEditModalOpen ={setIsEditModalOpen} refetch ={refetch} />
                 </div>
                 <hr className='mt-8 ' />
                 <div className='mt-2 '>

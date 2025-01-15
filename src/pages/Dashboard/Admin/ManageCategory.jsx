@@ -35,6 +35,7 @@ const ManageCategory = () => {
                     <AddCategoryModal
                         isOpen={isEditModalOpen}
                         setIsEditModalOpen={setIsEditModalOpen}
+                        refetch ={refetch}
                     />
                     {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
                 </div>
