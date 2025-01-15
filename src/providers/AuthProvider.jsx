@@ -72,7 +72,6 @@ const AuthProvider = ({ children }) => {
     }, [user])
 
 
-
     const authObjct = {
         registerUser,
         googleRegister,
