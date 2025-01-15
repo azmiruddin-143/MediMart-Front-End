@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ManageCategoryRow from '../../../components/Dashboard/TableRows/ManageCategoryRow';
 import AddCategoryModal from '../../../Modal/AddCategoryModal';
 import Advertisementrow from '../../../components/Dashboard/TableRows/advertisementrow';
+import AdvertisementModal from '../../../Modal/AdvertisementModal';
 const AskForAdvertisement = () => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: advertisement = [], isLoading, refetch } = useQuery({
@@ -33,7 +34,7 @@ const AskForAdvertisement = () => {
                     ></span>
                     <span className='relative'>Add Advertisement</span>
                 </span>
-                <AddCategoryModal
+                <AdvertisementModal
                     isOpen={isEditModalOpen}
                     setIsEditModalOpen={setIsEditModalOpen}
                     refetch ={refetch}

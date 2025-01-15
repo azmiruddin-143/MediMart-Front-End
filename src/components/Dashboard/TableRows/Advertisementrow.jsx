@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Advertisementrow = ({ advertisement, index, refetch }) => {
-    const {advertisementImage,advertisementDescription} = advertisement
+    const {advertisementImage,advertisementDescription,advertisementStatus} = advertisement
     return (
         <tbody>
             <tr className='text-neutral'>
@@ -16,7 +16,7 @@ const Advertisementrow = ({ advertisement, index, refetch }) => {
                 </th>
 
                 <td className='text-neutral'>{advertisementDescription}</td>
-                <td className='text-neutral'>Pending</td>
+                <td className='text-neutral'>{advertisementStatus}</td>
                
                
             </tr>
