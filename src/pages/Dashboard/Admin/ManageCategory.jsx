@@ -18,7 +18,7 @@ const ManageCategory = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto max-w-7xl mx-auto my-10">
+        <div className=" overflow-x-auto max-w-5xl mx-auto my-10 ">
             <div className='flex justify-between mb-8'>
                 <h1>(All Category {category.length})</h1>
                 <div>
@@ -40,11 +40,11 @@ const ManageCategory = () => {
                     {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
                 </div>
             </div>
-            <table className="table">
+            <table className="table ">
                 {
                     category.length > 0 &&
                     <thead>
-                        <tr className='text-lg text-center text-neutral'>
+                        <tr className='text-lg text-neutral'>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Modifide</th>

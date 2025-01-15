@@ -28,7 +28,7 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`fixed top-0 left-0 h-screen bg-gray-100 w-60 transition-transform transform ${
+                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-60 transition-transform transform ${
                     isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
                 } lg:translate-x-0 md:static`}
             >
