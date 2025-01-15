@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../../components/Shared/GoogleAccount';
 import axios from 'axios';
 
-
 const SignUp = () => {
     const { register, reset, handleSubmit, formState: { errors }, } = useForm()
     const { registerUser, myProfileUpdate, setuser } = useContext(AuthContext)
