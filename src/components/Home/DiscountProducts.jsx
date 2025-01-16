@@ -10,9 +10,9 @@ import axios from 'axios';
 import LoadingSpinner from '../Shared/LoadingSpinner';
 const DiscountProducts = () => {
     const { data: medicine = [], isLoading, } = useQuery({
-        queryKey: ['medicine'],
+        queryKey: ['medicine-percent'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/medicine');
+            const { data } = await axios.get('http://localhost:5000/medicine-percent');
             return data;
         }
     });
