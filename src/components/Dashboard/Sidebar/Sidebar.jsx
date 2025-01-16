@@ -6,6 +6,7 @@ import { FaUsers } from 'react-icons/fa';
 import { TbCategory, TbFileReport } from "react-icons/tb";
 import { MdLogout, MdPayment } from "react-icons/md";
 import { PiFlagBanner } from "react-icons/pi";
+import { BsEnvelopeOpenHeart } from 'react-icons/bs';
 
 const Sidebar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -119,6 +120,17 @@ const Sidebar = () => {
                 >
                     <PiFlagBanner className="text-xl" />
                     Ask For Advertisement
+                </NavLink>
+                <NavLink
+                    to="/dashboard/managemedicines"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                    }
+                >
+                    <BsEnvelopeOpenHeart className="text-xl" />
+                    Manage Medicines
                 </NavLink>
 
                 {/* Divider */}

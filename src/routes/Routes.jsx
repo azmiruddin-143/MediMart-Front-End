@@ -11,6 +11,7 @@ import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
 import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import AskForAdvertisement from "../pages/Dashboard/Seller/askForAdvertisement";
+import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "askforadvertisement",
         element: <AskForAdvertisement></AskForAdvertisement>
+      },
+      {
+        path: "managemedicines",
+        element: <ManageMedicines></ManageMedicines>
       },
     ]
   }
