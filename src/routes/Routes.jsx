@@ -13,6 +13,7 @@ import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import AskForAdvertisement from "../pages/Dashboard/Seller/askForAdvertisement";
 import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines";
 import Home from "../components/Home/Home";
+import Shop from "../pages/Shop/Shop";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path:"/updateprofile",
         element: <UpdateProfile></UpdateProfile>
+      },
+      {
+        path:"/shop",
+        element: <Shop></Shop>
       }
     ]
   },

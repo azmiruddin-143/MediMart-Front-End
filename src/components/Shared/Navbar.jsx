@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
     // old header//
@@ -170,7 +170,7 @@ const Navbar = () => {
                                 Home
                             </NavLink>
                             <NavLink
-                                to="/allfoods"
+                                to="/shop"
                                 className={({ isActive }) =>
                                     isActive
                                         ? `${isBlurred ? "text-secondary font-bold border-b border-secondary" : "text-secondary border-b border-secondary"}`
@@ -240,6 +240,10 @@ const Navbar = () => {
                                     </button>
                                 </Link>
                             )} */}
+                            <div className='relative'>
+                                <FaCartShopping className='text-3xl  text-black' />
+                                <h1 className=' font-bold bg-white text-primary px-2 rounded-full absolute -top-3 left-6'>0</h1>
+                            </div>
 
                             {
                                 user ?
