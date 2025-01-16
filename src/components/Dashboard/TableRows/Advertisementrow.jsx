@@ -7,7 +7,7 @@ const Advertisementrow = ({ advertisement, index, refetch }) => {
             <tr className='text-neutral'>
                 <th className='flex  text-neutral items-center gap-5'>
                     <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
+                        <div className="mask mask-squircle object-cover items-center h-12 w-12">
                             <img
                                 src={
                                     advertisementImage} />

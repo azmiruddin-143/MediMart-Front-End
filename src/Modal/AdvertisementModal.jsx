@@ -7,7 +7,6 @@ import {
   DialogTitle,
 } from '@headlessui/react'
 import { Fragment } from 'react'
-import AddCategoryForm from '../Form/AddCategoryForm'
 import AdvertisementForm from '../Form/AdvertisementForm'
 
 const AdvertisementModal = ({ setIsEditModalOpen, isOpen,refetch }) => {

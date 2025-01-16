@@ -12,6 +12,7 @@ import ManageBanner from "../pages/Dashboard/Admin/ManageBanner";
 import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import AskForAdvertisement from "../pages/Dashboard/Seller/askForAdvertisement";
 import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines";
+import Home from "../components/Home/Home";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children : [
       {
         path :'/',
-        element : <h1></h1>
+        element : <Home></Home>
       },
       {
         path:"/signup",

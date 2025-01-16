@@ -3,6 +3,7 @@ import UpdateCategoryModal from '../../../Modal/UpdateCategoryModal';
 import DeleteCategory from '../../../Modal/DeleteCategory';
 import axios from 'axios';
 import MedicineupdateModal from '../../../Modal/MedicineUpdateModal';
+import DeleteMedicine from '../../../Modal/DeleteMedicine';
 
 const ManageMedicineRow = ({ medicine, index, refetch }) => {
     const { medicineName,discountPercentage,perUnitPrice,medicineMassUnit,company,medicineImage,medicineCategory, genericName,shortDescription, _id } = medicine
@@ -15,8 +16,8 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
         setIsOpen(false)
       }
 
-       const categoryDelete = () =>{
-          axios.delete(`http://localhost:5000/category/${_id}`)
+       const madicineyDelete = () =>{
+          axios.delete(`http://localhost:5000/medicine/${_id}`)
           .then(res =>{
               console.log(res.data);
               refetch()
@@ -77,7 +78,7 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
                         ></span>
                         <span className='relative'>Delete</span>
                     </span>
-                    <DeleteCategory isOpen={isOpen} categoryDelete ={categoryDelete} closeModal={closeModal} />
+                    <DeleteMedicine isOpen={isOpen} madicineyDelete ={madicineyDelete}  closeModal={closeModal} />
                 </td>
             </tr>
         </tbody>
