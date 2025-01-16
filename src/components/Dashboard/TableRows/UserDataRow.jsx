@@ -3,40 +3,40 @@ import UpdateUserModal from '../../../Modal/UpdateUserModal';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const UserDataRow = ({ user, index,refetch }) => {
+import { GiClick } from "react-icons/gi";
+const UserDataRow = ({ user, index, refetch }) => {
     const { userName,
         userphoto, userEmail, userRole } = user
     const [isOpen, setIsOpen] = useState(false)
-  const updateRole =(selectRole) =>{
-    if(userRole === selectRole) return
-      axios.patch(`http://localhost:5000/users/role/${userEmail}`,{
-        userRole : selectRole
-      })
-      .then(res =>{
-         console.log(res.data);
-         refetch()
-         setIsOpen(false)
-         if(res.data.modifiedCount > 0) {
-            toast.success("user Role Change!", { autoClose: 3000 });
-         }
-         
-      })
-      .catch((err) =>{
-        toast.error(`user role error: ${err.message}`, {
-            autoClose: 3000,
-        });
-         setIsOpen(false)
-      })
-     
+    const updateRole = (selectRole) => {
+        if (userRole === selectRole) return
+        axios.patch(`http://localhost:5000/users/role/${userEmail}`, {
+            userRole: selectRole
+        })
+            .then(res => {
+                console.log(res.data);
+                refetch()
+                setIsOpen(false)
+                if (res.data.modifiedCount > 0) {
+                    toast.success("user Role Change!", { autoClose: 3000 });
+                }
 
-  }
+            })
+            .catch((err) => {
+                toast.error(`user role error: ${err.message}`, {
+                    autoClose: 3000,
+                });
+                setIsOpen(false)
+            })
+
+
+    }
 
 
     return (
         <tbody>
-            <tr className='text-center text-neutral'>
-                <th className='flex justify-center text-neutral items-center gap-5'>{index + 1}
+            <tr className='text-neutral'>
+                <th className='flex  text-neutral items-center gap-5'>{index + 1}
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -49,19 +49,24 @@ const UserDataRow = ({ user, index,refetch }) => {
                 <td className='text-neutral'>{userName}</td>
                 <td className='text-neutral'>{userEmail} </td>
                 <td className='text-neutral'> {userRole}</td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                <td className='px-2 text-end py-5 border-b  border-gray-200 bg-white text-sm'>
                     <span
                         onClick={() => setIsOpen(true)}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
                     >
+
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+                            className='absolute inset-0  bg-primary text-white rounded-full'
                         ></span>
-                        <span className='relative'>Update Role</span>
+                        <div className='flex items-center gap-0'>
+                            <span className='relative '>Update</span>
+                            <GiClick className=' relative text-lg' />
+                        </div>
+
                     </span>
                     {/* Modal */}
-                    <UpdateUserModal isOpen={isOpen} userRole ={userRole} updateRole ={updateRole}  setIsOpen={setIsOpen}  />
+                    <UpdateUserModal isOpen={isOpen} userRole={userRole} updateRole={updateRole} setIsOpen={setIsOpen} />
                 </td>
             </tr>
         </tbody>

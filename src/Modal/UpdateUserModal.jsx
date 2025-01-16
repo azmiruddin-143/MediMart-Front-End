@@ -13,7 +13,7 @@ import {
 } from '@headlessui/react'
 import { BsCheckLg } from 'react-icons/bs'
 import { AiOutlineDown } from 'react-icons/ai'
-const roles = ['user', 'seller', 'admin']
+const roles = ['User', 'Seller', 'Admin']
 
 const UpdateUserModal = ({ setIsOpen, isOpen, updateRole,userRole }) => {
   const [selected, setSelected] = useState(userRole)
@@ -110,13 +110,13 @@ const UpdateUserModal = ({ setIsOpen, isOpen, updateRole,userRole }) => {
                   <button
                     onClick={() => updateRole(selected)}
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
                   >
                     Update
                   </button>
                   <button
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-white'
                     onClick={() => setIsOpen(false)}
                   >
                     Cancel

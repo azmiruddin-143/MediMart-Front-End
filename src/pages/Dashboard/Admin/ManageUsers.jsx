@@ -17,16 +17,20 @@ const ManageUsers = () => {
     
     return (
         <div className=" overflow-x-auto max-w-7xl mx-auto my-10">
+            <div className='flex justify-between mb-8'>
+                <h1 className='text-xl' >( All Users <span className='text-primary' >{users.length}</span> )</h1>
+                
+            </div>
         <table className="table">
             {
                 users.length > 0 &&
                 <thead>
-                    <tr className='text-lg text-center text-neutral'>
+                    <tr className='text-lg  text-neutral'>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Status</th>
+                        <th className='text-end'>User Status</th>
 
                     </tr>
                 </thead>

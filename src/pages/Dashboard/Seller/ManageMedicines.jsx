@@ -18,7 +18,7 @@ const ManageMedicines = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto mx-auto my-10 ">
+        <div className=" overflow-x-auto max-w-7xl mx-auto my-10 ">
             <div className='flex justify-between mb-8'>
                 <h1>(All Category {medicine.length})</h1>
                 <div>
@@ -50,12 +50,12 @@ const ManageMedicines = () => {
                             <th>Modifide</th>
                             <th>Action</th>
                             <th>Image</th>
-                            <th>Name</th>
+                            {/* <th>Name</th>
                             <th>Modifide</th>
                             <th>Action</th>
                             <th>Action</th>
                             <th>Action</th>
-                            <th>Action</th>
+                            <th>Action</th> */}
                         </tr>
                     </thead>
 

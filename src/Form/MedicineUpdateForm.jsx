@@ -2,30 +2,33 @@ import { useForm } from "react-hook-form";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
 import axios from "axios";
+import { useState } from "react";
 
 const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
-    const { medicineName, discountPercentage, perUnitPrice, medicineMassUnit, company, medicineImage, medicineCategory, genericName, shortDescription, _id } = medicine
+    const { medicineName, discountPercentage, perUnitPrice, medicineMassUnit, company, medicineImage, medicineCategory, genericName, shortDescription, _id } = medicine;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imageName, setImageName] = useState(medicineImage ? medicineImage.split("/").pop().slice(0, 10) : ""); // Get the default image name
+
     const medicineUpdate = async (data) => {
-        const medicineImage = await imageUpload(data.medicineImage[0]);
+        const uploadedImage = selectedImage ? await imageUpload(selectedImage) : medicineImage;
         const medicineUpdate = {
             medicineName: data.medicineName,
             genericName: data.genericName,
             shortDescription: data.shortDescription,
-            medicineImage,
+            medicineImage: uploadedImage,
             medicineCategory: data.medicineCategory,
             company: data.company,
             medicineMassUnit: data.medicineMassUnit,
             perUnitPrice: parseFloat(data.perUnitPrice),
             discountPercentage: parseFloat(data.discountPercentage) || 0,
-
         };
         if (data.medicineCategory === "Select a category") {
-            return
+            return;
         }
         if (data.company === "Select a company") {
-            return
+            return;
         }
 
         // Reset form
@@ -36,16 +39,24 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
             .then(res => {
                 console.log(res.data);
                 refetch();
-                setIsEditModalOpen(false)
+                setIsEditModalOpen(false);
             })
             .catch((error) => {
                 console.log(error.message);
             });
     };
 
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImageName(file.name.slice(0, 10)); // Show first 10 characters of the file name
+        }
+    };
+
     return (
         <div className="w-full p-6 bg-gray-100 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold text-center mb-6">Add New Medicine</h2>
+            <h2 className="text-2xl font-semibold text-center mb-6">Update Medicine</h2>
             <form onSubmit={handleSubmit(medicineUpdate)} className="space-y-6">
                 {/* Medicine Name */}
                 <div>
@@ -99,19 +110,50 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                     <label htmlFor="medicineImage" className="block text-gray-600 mb-1">
                         Upload Medicine Image
                     </label>
-                    <div className="flex items-center gap-2">
-                        <FaCloudUploadAlt className="text-2xl text-lime-500" />
-                        <input
-                            type="file"
-                            id="medicineImage"
-                            {...register("medicineImage", { required: "Image is required" })}
-                            accept="image/*"
-                            className="block w-full text-sm text-gray-600"
-                        />
+                    <div className="flex flex-col  gap-4">
+                        <div className="relative">
+                            <input
+                                type="file"
+                                id="medicineImage"
+                                accept="image/*"
+                                {...register("medicineImage")}
+                                onChange={handleImageChange}
+                                className="hidden"
+                            />
+                            <label
+                                htmlFor="medicineImage"
+                                className="flex w-5/12 items-center gap-2 cursor-pointer bg-lime-500 text-white py-2 px-4 rounded-md hover:bg-lime-600"
+                            >
+                                <FaCloudUploadAlt className="text-xl" />
+                                Choose File
+                            </label>
+                            {selectedImage && (
+                                <div className="mt-2">
+                                    <img
+                                        src={URL.createObjectURL(selectedImage)}
+                                        alt="Selected"
+                                        className="w-24 h-24 object-cover rounded-md border border-gray-300"
+                                    />
+                                    <p className="mt-2 text-sm text-gray-600">{imageName}...</p>
+                                </div>
+                            )}
+                            {medicineImage && !selectedImage && (
+                                <div className="mt-2">
+                                    <img
+                                        src={medicineImage}
+                                        alt="Current"
+                                        className="w-24 h-24 object-cover rounded-md border border-gray-300"
+                                    />
+                                    <p className="mt-2 text-sm text-gray-600">{imageName}...</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     {errors.medicineImage && <p className="text-red-500 text-sm">{errors.medicineImage.message}</p>}
                 </div>
 
+                {/* Other Fields (Medicine Category, Company, Mass Unit, etc.) */}
+                {/* ... Your existing code for other fields like medicine category, company, mass unit, etc. */}
                 {/* Medicine Category */}
                 <div>
                     <label htmlFor="medicineCategory" className="block text-gray-600 mb-1">
@@ -167,6 +209,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         Medicine Mass Unit
                     </label>
                     <input
+                        
                         type="text"
                         defaultValue={medicineMassUnit}
                         id="medicineMassUnit"
@@ -208,12 +251,13 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                     />
                 </div>
 
+
                 {/* Submit Button */}
                 <button
                     type="submit"
                     className="w-full py-3 text-white bg-lime-500 rounded-md hover:bg-lime-600 transition duration-200"
                 >
-                    Add Medicine
+                    Update Medicine
                 </button>
             </form>
         </div>

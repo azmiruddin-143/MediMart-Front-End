@@ -45,10 +45,10 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
                 <td className='text-neutral'>{genericName}</td>
                 <td className='text-neutral'>{shortDescription}</td>
                 <td className='text-neutral'>{medicineCategory}</td>
-                <td className='text-neutral'>{company}</td>
-                <td className='text-neutral'>{medicineMassUnit}</td>
+                {/* {/* <td className='text-neutral'>{company}</td> */}
+                {/* <td className='text-neutral'>{medicineMassUnit}</td>
                 <td className='text-neutral'>{perUnitPrice}</td>
-                <td className='text-neutral'>{discountPercentage}</td>
+                <td className='text-neutral'>{discountPercentage}</td> */}
                 <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
