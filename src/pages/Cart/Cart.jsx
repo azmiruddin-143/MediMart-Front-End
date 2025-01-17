@@ -3,15 +3,28 @@ import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 import CartRow from '../../components/Dashboard/TableRows/CartRow';
+import axios from 'axios';
 const Cart = () => {
     
      const [cart,isLoading,cartRefetch] = useCart()
     if (isLoading) return <LoadingSpinner />;
+
+    const clearAllCarts = () => {
+        axios.delete("http://localhost:5000/cartsClear")
+            .then(res => {
+                console.log(res.data);
+                cartRefetch(); 
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     
     return (
         <div className=" overflow-x-auto max-w-4xl mx-auto my-10">
-            <div className='flex justify-between mb-8'>
-                <h1 className='text-xl' >( All Users <span className='text-primary' >{cart.length}</span> )</h1>
+            <div className='flex justify-end mb-8'>
+                <button onClick={clearAllCarts} className='bg-primary text-white py-2 px-6 rounded-md ' >Clear All</button>
                 
             </div>
         <table className="table">
