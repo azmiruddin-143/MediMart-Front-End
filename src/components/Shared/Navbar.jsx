@@ -16,7 +16,7 @@ const Navbar = () => {
     const [isBlurred, setIsBlurred] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
-    const [cart,isLoading] = useCart()
+    const [cart, isLoading] = useCart()
 
     // Logout Handler
     const userLogoutHandler = () => {
@@ -220,7 +220,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end">
 
-                        <div className="flex gap-0 sm:gap-4 items-center">
+                        <div className="flex gap-0 sm:gap-8 items-center">
                             {/* <ToggleTeme></ToggleTeme> */}
                             {/* <input type="checkbox" value="synthwave" className="toggle theme-controller" /> */}
 
@@ -244,10 +244,13 @@ const Navbar = () => {
                                     </button>
                                 </Link>
                             )} */}
-                            <div className='relative'>
-                                <FaCartShopping className='text-3xl  text-black' />
-                                <h1 className=' font-bold bg-white text-primary px-2 rounded-full absolute -top-3 left-6'>{cart.length}</h1>
-                            </div>
+
+                            <Link to={'/cart'} >
+                                <div className='relative'>
+                                    <FaCartShopping className='text-3xl  text-black' />
+                                    <h1 className=' font-bold bg-white text-primary px-2 rounded-full absolute -top-3 left-6'>{cart.length}</h1>
+                                </div>
+                            </Link>
 
                             {
                                 user ?

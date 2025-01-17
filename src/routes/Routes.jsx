@@ -14,6 +14,7 @@ import AskForAdvertisement from "../pages/Dashboard/Seller/askForAdvertisement";
 import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines";
 import Home from "../components/Home/Home";
 import Shop from "../pages/Shop/Shop";
+import Cart from "../pages/Cart/Cart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path:"/shop",
         element: <Shop></Shop>
+      },
+      {
+        path:"/cart",
+        element: <Cart></Cart>
       }
     ]
   },
