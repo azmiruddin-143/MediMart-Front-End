@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { RxCross2 } from "react-icons/rx";
 import { GoPlus } from "react-icons/go";
@@ -9,6 +9,9 @@ import axios from 'axios';
 const CartRow = ({ cart, index, cartRefetch }) => {
     const { image, name, company, perUnitPrice, quantity: buyQuantity, _id } = cart
     const [quantity, Setquantity] = useState(buyQuantity)
+
+   
+    
     const subTotal = perUnitPrice * quantity
 
     const updateCart = {
