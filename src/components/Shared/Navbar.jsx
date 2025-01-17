@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaCartShopping } from "react-icons/fa6";
+import useCart from '../../hooks/useCart';
+import LoadingSpinner from './LoadingSpinner';
 
 const Navbar = () => {
     // old header//
@@ -14,6 +16,7 @@ const Navbar = () => {
     const [isBlurred, setIsBlurred] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
+    const [cart,isLoading] = useCart()
 
     // Logout Handler
     const userLogoutHandler = () => {
@@ -46,6 +49,7 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <div
@@ -242,7 +246,7 @@ const Navbar = () => {
                             )} */}
                             <div className='relative'>
                                 <FaCartShopping className='text-3xl  text-black' />
-                                <h1 className=' font-bold bg-white text-primary px-2 rounded-full absolute -top-3 left-6'>0</h1>
+                                <h1 className=' font-bold bg-white text-primary px-2 rounded-full absolute -top-3 left-6'>{cart.length}</h1>
                             </div>
 
                             {

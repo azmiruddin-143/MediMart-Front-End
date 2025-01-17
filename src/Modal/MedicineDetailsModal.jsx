@@ -9,7 +9,7 @@ import {
 import { Fragment } from 'react'
 import MedicineDetailsCard from '../pages/Shop/MedicineDetailsCard'
 
-const MedicineDetailsModal = ({ setIsEditModalOpen, isOpen,medicine,refetch }) => {
+const MedicineDetailsModal = ({ setIsEditModalOpen, isOpen,medicine,refetch,cartMedicine }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -48,7 +48,7 @@ const MedicineDetailsModal = ({ setIsEditModalOpen, isOpen,medicine,refetch }) =
                   Details Medicine
                 </DialogTitle>
                 <div className='mt-2 w-full'>
-                  <MedicineDetailsCard medicine ={medicine} refetch={refetch} setIsEditModalOpen = {setIsEditModalOpen } />
+                  <MedicineDetailsCard medicine ={medicine} refetch={refetch} cartMedicine ={cartMedicine} setIsEditModalOpen = {setIsEditModalOpen } />
                 </div>
                 <hr className='mt-8 ' />
                 <div className='mt-2 '>

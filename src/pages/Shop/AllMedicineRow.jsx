@@ -1,14 +1,48 @@
-
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MedicineDetailsModal from '../../Modal/MedicineDetailsModal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { IoMdCart } from "react-icons/io";
+import axios from 'axios';
+import { AuthContext } from '../../providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 const AllMedicineRow = ({ medicine, index, refetch }) => {
-    const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage } = medicine
+    const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+     const [,,cartRefetch] = useCart()
+    const cartMedicine = () => {
+
+        if (user && user?.email) {
+            const cartsInfo = {
+                cartId: _id,
+                email: user?.email,
+                name: medicineName,
+                image: medicineImage,
+                company: company,
+                perUnitPrice: perUnitPrice,
+
+            }
+
+            axios.post('http://localhost:5000/carts', cartsInfo)
+                .then(res => {
+                    console.log(res.data);
+                    cartRefetch()
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                })
+        }
+
+        else {
+            navigate('/signin')
+        }
+
+    }
 
     return (
         <tbody>
@@ -30,7 +64,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
 
                 <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                     <span
-                       onClick={() => { setIsEditModalOpen(true) }}
+                        onClick={() => { setIsEditModalOpen(true) }}
                         className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
                     >
 
@@ -49,9 +83,15 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                         setIsEditModalOpen={setIsEditModalOpen}
                         medicine={medicine}
                         refetch={refetch}
+                        cartMedicine ={cartMedicine}
                     />
                 </td>
-                <td className='rounded-full bg-primary px-3 py-2 text-white text-end flex items-center justify-center'>Selected <IoMdCart className='text-lg' /></td>
+                <td className='flex justify-end items-center' >
+                    <button onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                        Select <IoMdCart className='text-lg' />
+                    </button>
+
+                </td>
 
 
             </tr>
