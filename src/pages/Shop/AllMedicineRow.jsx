@@ -25,6 +25,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                 image: medicineImage,
                 company: company,
                 perUnitPrice: perUnitPrice,
+                quantity: 1
 
             }
 

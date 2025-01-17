@@ -5,9 +5,27 @@ import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 const CartRow = ({ cart, index, cartRefetch }) => {
-    const { image, name, company, perUnitPrice, } = cart
-    const [quantity, Setquantity] = useState(1)
+    const { image, name, company, perUnitPrice, quantity:buyQuantity,_id } = cart
+    const [quantity, Setquantity] = useState(buyQuantity)
+    const subTotal = perUnitPrice * quantity
+
+    const updateCart = {
+        quantity,
+        subTotal
+    }
+
+    axios.put(`http://localhost:5000/carts/${_id}`,updateCart)
+    .then(res =>{
+        console.log(res.data);
+        cartRefetch()
+    })
+    .catch((error) =>{
+        console.log(error);
+    })
+
+
 
     return (
         <tbody>
@@ -36,7 +54,7 @@ const CartRow = ({ cart, index, cartRefetch }) => {
                     </div>
 
                 </td>
-                <td className='text-neutral text-end'>2058$</td>
+                <td className='text-neutral text-end'>{subTotal}</td>
 
             </tr>
         </tbody>
