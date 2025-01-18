@@ -7,9 +7,13 @@ import { TbCategory, TbFileReport } from "react-icons/tb";
 import { MdLogout, MdPayment } from "react-icons/md";
 import { PiFlagBanner } from "react-icons/pi";
 import { BsEnvelopeOpenHeart } from 'react-icons/bs';
-import useAdmin from '../../../hooks/useAdmin';
+import LoadingSpinner from '../../Shared/LoadingSpinner';
+import useRole from '../../../hooks/useRole';
 
 const Sidebar = () => {
+    const { role, isLoading } = useRole()
+
+    console.log(role);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const location = useLocation();
     useEffect(() => {
@@ -18,7 +22,7 @@ const Sidebar = () => {
         }
     }, [location]);
 
-    const [isAdmin] = useAdmin()
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
 
     return (
         <div>
@@ -47,7 +51,7 @@ const Sidebar = () => {
 
                 <div>
                     {
-                        isAdmin &&
+                        role === "Admin" &&
                         <div>
 
                             <NavLink
@@ -125,28 +129,76 @@ const Sidebar = () => {
 
                 {/* seller */}
 
-                <NavLink
-                    to="/dashboard/askforadvertisement"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <PiFlagBanner className="text-xl" />
-                    Ask For Advertisement
-                </NavLink>
-                <NavLink
-                    to="/dashboard/managemedicines"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <BsEnvelopeOpenHeart className="text-xl" />
-                    Manage Medicines
-                </NavLink>
+
+                {
+                    role === "Seller" &&
+                    <div>
+                        <NavLink
+                            to="/dashboard/sellerhomepage"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                    : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                            }
+                        >
+                            <PiFlagBanner className="text-xl" />
+                            Seller Homepage
+                        </NavLink>
+                        
+
+                        <NavLink
+                            to="/dashboard/managemedicines"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                    : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                            }
+                        >
+                            <BsEnvelopeOpenHeart className="text-xl" />
+                            Manage Medicines
+                        </NavLink>
+
+                        <NavLink
+                            to="/dashboard/paymenthistory"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                    : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                            }
+                        >
+                            <PiFlagBanner className="text-xl" />
+                            Payment History
+                        </NavLink>
+                        <NavLink
+                            to="/dashboard/askforadvertisement"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                    : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                            }
+                        >
+                            <PiFlagBanner className="text-xl" />
+                            Ask For Advertisement
+                        </NavLink>
+                    </div>
+                }
+
+
+                {
+                    role === "User" &&
+                    <NavLink
+                            to="/dashboard/userpaymenthistory"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                    : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                            }
+                        >
+                            <PiFlagBanner className="text-xl" />
+                            Payment history
+                        </NavLink>
+                }
+
 
                 {/* Divider */}
                 <div className="divider"></div>

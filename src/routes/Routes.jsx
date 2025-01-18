@@ -17,6 +17,9 @@ import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../components/Home/CategoryDetails";
 import PrivateRoute from "./PrivateRoute";
+import SellerHomepage from "../pages/Dashboard/Seller/SellerHomepage";
+import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory";
+import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,7 +59,7 @@ const router = createBrowserRouter([
   
   {
     path: '/dashboard',
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    element: <DashboardLayout></DashboardLayout>,
     children: [
       {
         path: "adminhomepage",
@@ -83,6 +86,9 @@ const router = createBrowserRouter([
         path: "managebanner",
         element: <ManageBanner></ManageBanner>,
       },
+
+      // seller//
+
       {
         path: "askforadvertisement",
         element: <AskForAdvertisement></AskForAdvertisement>
@@ -90,6 +96,19 @@ const router = createBrowserRouter([
       {
         path: "managemedicines",
         element: <ManageMedicines></ManageMedicines>
+      },
+      {
+        path: "sellerhomepage",
+        element: <SellerHomepage></SellerHomepage>
+      },
+      {
+        path: "paymenthistory",
+        element: <PaymentHistory></PaymentHistory>
+      },
+      // user//
+      {
+        path: "userpaymenthistory",
+        element: <UserPaymentHistory></UserPaymentHistory>
       },
     ]
   }
