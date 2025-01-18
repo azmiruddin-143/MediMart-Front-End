@@ -7,6 +7,7 @@ import { TbCategory, TbFileReport } from "react-icons/tb";
 import { MdLogout, MdPayment } from "react-icons/md";
 import { PiFlagBanner } from "react-icons/pi";
 import { BsEnvelopeOpenHeart } from 'react-icons/bs';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Sidebar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -16,6 +17,8 @@ const Sidebar = () => {
             setIsDrawerOpen(true);
         }
     }, [location]);
+
+    const [isAdmin] = useAdmin()
 
     return (
         <div>
@@ -41,72 +44,84 @@ const Sidebar = () => {
                 </Link>
 
                 {/* Navigation Links */}
-                <NavLink
-                    to="/dashboard/adminhomepage"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start py-2 bg-gray-200 pl-3 gap-3 mb-5"
+
+                <div>
+                    {
+                        isAdmin &&
+                        <div>
+
+                            <NavLink
+                                to="/dashboard/adminhomepage"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start py-2 bg-gray-200 pl-3 gap-3 mb-5"
+                                }
+                            >
+                                <IoHomeOutline className="text-xl" />
+                                Admin Homepage
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/manageusers"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                                }
+                            >
+                                <FaUsers className="text-xl" />
+                                Manage Users
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/managecategory"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                                }
+                            >
+                                <TbCategory className="text-xl" />
+                                Manage Category
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/paymentmanagement"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                                }
+                            >
+                                <MdPayment className="text-xl" />
+                                Payment management
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/salesreport"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                                }
+                            >
+                                <TbFileReport className="text-xl" />
+                                Sales Report
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/managebanner"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
+                                        : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
+                                }
+                            >
+                                <PiFlagBanner className="text-xl" />
+                                Manage banner Advertise
+                            </NavLink>
+                        </div>
                     }
-                >
-                    <IoHomeOutline className="text-xl" />
-                    Admin Homepage
-                </NavLink>
-                <NavLink
-                    to="/dashboard/manageusers"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <FaUsers className="text-xl" />
-                    Manage Users
-                </NavLink>
-                <NavLink
-                    to="/dashboard/managecategory"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <TbCategory className="text-xl" />
-                    Manage Category
-                </NavLink>
-                <NavLink
-                    to="/dashboard/paymentmanagement"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <MdPayment className="text-xl" />
-                    Payment management
-                </NavLink>
-                <NavLink
-                    to="/dashboard/salesreport"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <TbFileReport className="text-xl" />
-                    Sales Report
-                </NavLink>
-                <NavLink
-                    to="/dashboard/managebanner"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-red-600 border-b flex items-center pl-3 py-2 justify-start mb-5 gap-3 bg-black border-secondary"
-                            : "flex items-center justify-start bg-gray-200 pl-3 py-2 gap-3 mb-5"
-                    }
-                >
-                    <PiFlagBanner className="text-xl" />
-                    Manage banner Advertise
-                </NavLink>
+                </div>
+
+
+
 
                 {/* seller */}
 
