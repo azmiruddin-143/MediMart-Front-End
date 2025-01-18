@@ -8,8 +8,13 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import LoadingSpinner from '../Shared/LoadingSpinner';
+import { FaEye } from 'react-icons/fa6';
+import { IoMdCart } from 'react-icons/io';
+import DiscountModal from '../../Modal/DiscountModal';
+import DiscountProductRow from '../Dashboard/TableRows/DiscountProductRow';
 const DiscountProducts = () => {
-    const { data: medicine = [], isLoading, } = useQuery({
+
+    const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine-percent'],
         queryFn: async () => {
             const { data } = await axios.get('http://localhost:5000/medicine-percent');
@@ -18,8 +23,9 @@ const DiscountProducts = () => {
     });
 
     if (isLoading) return <LoadingSpinner />;
-    return (
 
+
+    return (
 
         <Slide direction="up" duration={2000} triggerOnce>
             <div className='md:my-28 text-center  my-14 bg-gray-100'>
@@ -52,27 +58,14 @@ const DiscountProducts = () => {
                             },
                         }}
                     >
-                        {medicine.map((medicine) => (
-                            <SwiperSlide key={medicine._id}>
-                                <div className="h-[450px] bg-white rounded-lg shadow-lg 2xl:p-4 p-2 text-center">
-                                    <div className='relative' >
-                                        <img
-                                            src={medicine.medicineImage}
-                                            className="w-full h-72 rounded-md object-cover mb-4"
-                                        />
-                                        <div class="absolute text-white top-2 right-2 bg-primary rounded-full p-1 shadow">
-                                            <h1>{medicine.discountPercentage}%</h1>
-                                        </div>
-                                    </div>
-
-                                    <h3 className="text-lg font-semibold">{medicine.medicineName}</h3>
-                                    <p className="text-[#9dc923] font-bold">${medicine.perUnitPrice}</p>
-                                    <Link  ><button className='text-white bg-[#9dc923] my-3 py-2 px-5'>View Details</button></Link>
-                                </div>
+                        {medicine.map((item) => (
+                            <SwiperSlide key={item._id}>
+                                <DiscountProductRow medicine={item} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
+
             </div>
         </Slide>
 
