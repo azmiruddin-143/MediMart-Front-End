@@ -2,7 +2,7 @@
 import React from 'react';
 import { IoMdCart } from 'react-icons/io';
 
-const DiscountDetailsCart = ({medicine }) => {
+const DiscountDetailsCart = ({medicine,cartDiscount }) => {
     const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage } = medicine
     return (
         <div>
@@ -19,7 +19,7 @@ const DiscountDetailsCart = ({medicine }) => {
                     <h1>Discount Percentage: {discountPercentage} % </h1>
                     <div className='flex justify-between items-center'>
                         <h1>PerUnit Price: {perUnitPrice} $</h1>
-                        <button  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                        <button onClick={cartDiscount}  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                             Select <IoMdCart className='text-lg' />
                         </button>
                     </div>

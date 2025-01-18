@@ -36,10 +36,10 @@ const DiscountProducts = () => {
                         modules={[Navigation, Autoplay]}
                         navigation
                         loop={true}
-                        autoplay={{
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 3000,
+                        //     disableOnInteraction: false,
+                        // }}
                         spaceBetween={20}
                         slidesPerView={4}
 

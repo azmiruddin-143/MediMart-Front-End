@@ -1,11 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DiscountModal from '../../../Modal/DiscountModal';
 import { FaEye } from 'react-icons/fa6';
 import { IoMdCart } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
+import useCart from '../../../hooks/useCart';
+import axios from 'axios';
 
 const DiscountProductRow = ({ medicine }) => {
-    const { _id, medicineImage, discountPercentage, medicineName, perUnitPrice } = medicine
+    const { _id, medicineImage, discountPercentage,company, medicineName, perUnitPrice } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+     const [,,cartRefetch] = useCart()
+    const cartDiscount = () => {
+
+        if (user && user?.email) {
+            const cartsInfo = {
+                cartId: _id,
+                email: user?.email,
+                name: medicineName,
+                image: medicineImage,
+                company: company,
+                perUnitPrice: perUnitPrice,
+                quantity: 1
+
+            }
+
+            axios.post('http://localhost:5000/carts', cartsInfo)
+                .then(res => {
+                    console.log(res.data);
+                    cartRefetch()
+                    setIsEditModalOpen(false)
+                })
+                .catch((error) => {
+                    console.log(error.data);
+                })
+        }
+
+        else {
+            navigate('/signin')
+        }
+
+    }
+
     return (
 
         
@@ -44,12 +82,13 @@ const DiscountProductRow = ({ medicine }) => {
                                 isOpen={isEditModalOpen}
                                 setIsEditModalOpen={setIsEditModalOpen}
                                 medicine={medicine}
+                                cartDiscount ={cartDiscount}
 
 
                             />
                         </div>
                         <div className='flex justify-end items-center' >
-                            <button className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                            <button onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                                 Select <IoMdCart className='text-lg' />
                             </button>
 

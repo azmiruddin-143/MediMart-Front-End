@@ -9,7 +9,7 @@ import {
 import { Fragment } from 'react'
 import DiscountDetailsCart from '../components/Home/DiscountDetailsCart'
 
-const DiscountModal = ({ setIsEditModalOpen, isOpen,medicine,refetch, }) => {
+const DiscountModal = ({ setIsEditModalOpen, isOpen,medicine,refetch,cartDiscount }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -48,7 +48,7 @@ const DiscountModal = ({ setIsEditModalOpen, isOpen,medicine,refetch, }) => {
                   Details Medicine
                 </DialogTitle>
                 <div className='mt-2 w-full'>
-                  <DiscountDetailsCart medicine ={medicine} refetch={refetch}  setIsEditModalOpen = {setIsEditModalOpen } />
+                  <DiscountDetailsCart medicine ={medicine} cartDiscount ={cartDiscount} refetch={refetch}  setIsEditModalOpen = {setIsEditModalOpen } />
                 </div>
                 <hr className='mt-8 ' />
                 <div className='mt-2 '>
