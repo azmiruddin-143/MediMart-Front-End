@@ -76,10 +76,10 @@ const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
                                 {...register("category", { required: "Category is required" })}
                                 className="w-full px-4 my-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md">
                                 <option disabled>Who chose Category?</option>
-                                <option value="Indoor">Indoor</option>
-                                <option value="Outdoor">Outdoor</option>
-                                <option value="Succulent">Succulent</option>
-                                <option value="Flowering">Flowering</option>
+                                <option value="Analgesics">Analgesics</option>
+                                <option value="Vitamins">Vitamins</option>
+                                <option value="Antifungals">Antifungals</option>
+                                <option value="Antipyretics">Antipyretics</option>
                             </select>
                             {errors.category && (
                                 <p className="text-red-500 text-sm">{errors.category.message}</p>

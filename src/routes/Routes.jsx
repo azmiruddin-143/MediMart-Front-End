@@ -15,6 +15,7 @@ import ManageMedicines from "../pages/Dashboard/Seller/ManageMedicines";
 import Home from "../components/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Cart/Cart";
+import CategoryDetails from "../components/Home/CategoryDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:"/cart",
         element: <Cart></Cart>
+      },
+      {
+        path:"/category/:categoryName",
+        element: <CategoryDetails></CategoryDetails>
       }
     ]
   },
