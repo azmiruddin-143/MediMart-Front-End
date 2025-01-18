@@ -16,6 +16,7 @@ import Home from "../components/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../components/Home/CategoryDetails";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
   
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: "adminhomepage",
