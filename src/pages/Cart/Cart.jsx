@@ -5,11 +5,13 @@ import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 
 import axios from 'axios';
 import CartRow from '../../components/Dashboard/TableRows/CartRow';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 const Cart = () => {
+    const axiosSecure = useAxiosSecure();
     const [cart, isLoading, cartRefetch] = useCart()
     const [totalPrice, setTotalPrice] = useState(0);
 
-        axios.get("http://localhost:5000/carts/total")
+        axiosSecure.get("/carts/total")
             .then((res) => {
                 setTotalPrice(res.data.totalPrice);
                 cartRefetch()
@@ -21,7 +23,7 @@ const Cart = () => {
     if (isLoading) return <LoadingSpinner />;
 
     const clearAllCarts = () => {
-        axios.delete("http://localhost:5000/cartsClear")
+        axiosSecure.delete("/cartsClear")
             .then(res => {
                 console.log(res.data);
                 cartRefetch();

@@ -3,8 +3,10 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
 import axios from "axios";
 import { useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
+    const axiosSecure = useAxiosSecure()
     const { medicineName, discountPercentage, perUnitPrice, medicineMassUnit, company, medicineImage, medicineCategory, genericName, shortDescription, _id } = medicine;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -35,7 +37,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
         reset();
         setIsEditModalOpen(false);
         refetch();
-        axios.put(`http://localhost:5000/medicine/${_id}`, medicineUpdate)
+        axiosSecure.put(`/medicine/${_id}`, medicineUpdate)
             .then(res => {
                 console.log(res.data);
                 refetch();

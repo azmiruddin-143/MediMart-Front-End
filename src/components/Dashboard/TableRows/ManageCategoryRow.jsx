@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import UpdateCategoryModal from '../../../Modal/UpdateCategoryModal';
 import DeleteCategory from '../../../Modal/DeleteCategory';
-import axios from 'axios';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageCategoryRow = ({ category, index, refetch }) => {
     const { categoryImage, categoryName, _id } = category
+    const axiosSecure = useAxiosSecure()
     let [isOpen, setIsOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     function openModal() {
@@ -15,7 +16,7 @@ const ManageCategoryRow = ({ category, index, refetch }) => {
       }
 
        const categoryDelete = () =>{
-          axios.delete(`http://localhost:5000/category/${_id}`)
+          axiosSecure.delete(`/category/${_id}`)
           .then(res =>{
               console.log(res.data);
               refetch()

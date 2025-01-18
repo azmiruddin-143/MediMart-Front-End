@@ -1,15 +1,16 @@
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import ManageBannerRow from '../../../components/Dashboard/TableRows/ManageBannerRow';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const ManageBanner = () => {
+    const axiosSecure = useAxiosSecure()
     const { data: advertisement = [], isLoading, refetch } = useQuery({
         queryKey: ['advertisement'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/advertisement');
+            const { data } = await axiosSecure.get('/advertisement');
             return data;
         }
     });

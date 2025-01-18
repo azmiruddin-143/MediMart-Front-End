@@ -5,8 +5,9 @@ import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const CartRow = ({ cart, index, cartRefetch }) => {
+    const axiosSecure = useAxiosSecure();
     const { image, name, company, perUnitPrice, quantity: buyQuantity, _id } = cart
     const [quantity, Setquantity] = useState(buyQuantity)
 
@@ -19,7 +20,7 @@ const CartRow = ({ cart, index, cartRefetch }) => {
         subTotal
     }
 
-    axios.put(`http://localhost:5000/carts/${_id}`, updateCart)
+    axiosSecure.put(`/carts/${_id}`, updateCart)
         .then(res => {
             console.log(res.data);
             cartRefetch()
@@ -30,7 +31,7 @@ const CartRow = ({ cart, index, cartRefetch }) => {
 
 
     const clearCart = (id) => {
-        axios.delete(`http://localhost:5000/carts/${id}`)
+        axiosSecure.delete(`/carts/${id}`)
             .then(res => {
                 console.log(res.data);
                 cartRefetch()

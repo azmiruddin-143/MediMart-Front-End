@@ -3,8 +3,10 @@ import { imageUpload } from "../api/utilis";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
+    const axiosSecure = useAxiosSecure()
     const { categoryImage, categoryName,_id } = category;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [previewImage, setPreviewImage] = useState(categoryImage); // Default preview image
@@ -40,7 +42,7 @@ const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
 
         reset();
         // Uncomment below to send the data to your backend
-        axios.put(`http://localhost:5000/category/${_id}`, categoryData)
+        axiosSecure.put(`/category/${_id}`, categoryData)
           .then(res => {
             console.log(res.data);
             refetch();

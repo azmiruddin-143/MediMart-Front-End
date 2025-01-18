@@ -4,8 +4,10 @@ import DeleteCategory from '../../../Modal/DeleteCategory';
 import axios from 'axios';
 import MedicineupdateModal from '../../../Modal/MedicineUpdateModal';
 import DeleteMedicine from '../../../Modal/DeleteMedicine';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageMedicineRow = ({ medicine, index, refetch }) => {
+    const axiosSecure = useAxiosSecure()
     const { medicineName,discountPercentage,perUnitPrice,medicineMassUnit,company,medicineImage,medicineCategory, genericName,shortDescription, _id } = medicine
     let [isOpen, setIsOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -17,7 +19,7 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
       }
 
        const madicineyDelete = () =>{
-          axios.delete(`http://localhost:5000/medicine/${_id}`)
+          axiosSecure.delete(`/medicine/${_id}`)
           .then(res =>{
               console.log(res.data);
               refetch()

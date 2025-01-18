@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { FaDownload } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
-import axios from "axios";
 
 const AddCategoryForm = ({setIsEditModalOpen,refetch}) => {
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const addCategory = async (data) => {
@@ -18,7 +18,7 @@ const AddCategoryForm = ({setIsEditModalOpen,refetch}) => {
 
          reset()
          setIsEditModalOpen(false)
-        axios.post('http://localhost:5000/category',categoryData)
+        axiosSecure.post('/category',categoryData)
         .then(res =>{
             console.log(res.data);
             refetch()

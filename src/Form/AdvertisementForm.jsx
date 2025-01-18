@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { FaDownload } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
+  const axiosSecure = useAxiosSecure()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const addAdvertisement = async (data) => {
@@ -19,7 +20,7 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
 
     reset();
     setIsEditModalOpen(false);
-    axios.post("http://localhost:5000/advertisement", advertisementData)
+    axiosSecure.post("/advertisement", advertisementData)
       .then((res) => {
         console.log(res.data);
         refetch();

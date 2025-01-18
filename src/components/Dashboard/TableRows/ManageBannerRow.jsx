@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import ManageBannerModal from '../../../Modal/ManageBannerModal';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageBannerRow = ({ advertisement, refetch }) => {
+    const axiosSecure = useAxiosSecure()
     const { advertisementImage, advertisementDescription, advertisementStatus,_id } = advertisement
        const [isOpen, setIsOpen] = useState(false)
     const updateStatus =(selectStatus) =>{
         if(advertisementStatus === selectStatus) return
-          axios.patch(`http://localhost:5000/advertisement/status/${_id}`,{
+          axiosSecure.patch(`/advertisement/status/${_id}`,{
             advertisementStatus : selectStatus
           })
           .then(res =>{

@@ -1,17 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import ManageCategoryRow from '../../../components/Dashboard/TableRows/ManageCategoryRow';
 import AddCategoryModal from '../../../Modal/AddCategoryModal';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageCategory = () => {
+    const axiosSecure = useAxiosSecure()
      const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: category = [], isLoading, refetch } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/category');
+            const { data } = await axiosSecure.get('/category');
             return data;
         }
     });

@@ -4,13 +4,15 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GiClick } from "react-icons/gi";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const UserDataRow = ({ user, index, refetch }) => {
+    const axiosSecure = useAxiosSecure()
     const { userName,
         userphoto, userEmail, userRole } = user
     const [isOpen, setIsOpen] = useState(false)
     const updateRole = (selectRole) => {
         if (userRole === selectRole) return
-        axios.patch(`http://localhost:5000/users/role/${userEmail}`, {
+        axiosSecure.patch(`/users/role/${userEmail}`, {
             userRole: selectRole
         })
             .then(res => {

@@ -1,17 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import ManageMedicineRow from '../../../components/Dashboard/TableRows/ManageMedicineRow';
 import AddMedicineModal from '../../../Modal/AddMedicineModal';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageMedicines = () => {
+    const axiosSecure = useAxiosSecure()
      const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/medicine');
+            const { data } = await axiosSecure.get('/medicine');
             return data;
         }
     });

@@ -4,16 +4,16 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
-import ManageCategoryRow from '../../../components/Dashboard/TableRows/ManageCategoryRow';
-import AddCategoryModal from '../../../Modal/AddCategoryModal';
 import Advertisementrow from '../../../components/Dashboard/TableRows/advertisementrow';
 import AdvertisementModal from '../../../Modal/AdvertisementModal';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const AskForAdvertisement = () => {
+    const axiosSecure = useAxiosSecure()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: advertisement = [], isLoading, refetch } = useQuery({
         queryKey: ['advertisement'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/advertisement');
+            const { data } = await axiosSecure.get('/advertisement');
             return data;
         }
     });
