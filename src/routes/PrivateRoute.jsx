@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import LoadingSpinner from '../components/Shared/LoadingSpinner';
 import { AuthContext } from '../providers/AuthProvider';
+import LoadingSpinner from '../components/Shared/LoadingSpinner';
+
 
 const PrivateRoute = ({children}) => {
     const { loader, user } = useContext(AuthContext)
     const loacation = useLocation()
   
     if (loader) {
-      <LoadingSpinner></LoadingSpinner>
+     return  <LoadingSpinner></LoadingSpinner>
     }
   
     if (user) {
@@ -17,7 +18,7 @@ const PrivateRoute = ({children}) => {
   
     return (
       <div>
-        <Navigate to='/signin' state={{from: loacation}} replace ></Navigate>
+        <Navigate to='/signin' state={{from: loacation}} replace></Navigate>
       </div>
     );
 };

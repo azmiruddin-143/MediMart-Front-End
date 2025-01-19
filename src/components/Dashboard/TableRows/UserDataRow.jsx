@@ -42,8 +42,10 @@ const UserDataRow = ({ user, index, refetch }) => {
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
+                             referrerPolicy='no-referrer'
                                 src={
                                     userphoto} />
+                                    
                         </div>
                     </div>
                 </th>

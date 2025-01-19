@@ -15,9 +15,9 @@ const GoogleAccount = () => {
                 console.log(result.user);
                 const userInfo = {
                     userName: result.user?.displayName,
-                    useEmail: result.user?.email,
+                    userEmail: result.user?.email,
                     userPhoto: result.user?.photoURL,
-                    userRole: "user"
+                    userRole: "User"
                 }
                 axios.post('http://localhost:5000/users', userInfo)
                     .then(result => {
