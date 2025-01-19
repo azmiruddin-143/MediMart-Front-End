@@ -5,41 +5,42 @@ import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 import CartRow from '../../components/Dashboard/TableRows/CartRow';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../providers/AuthProvider';
-const Cart = () => {
-    const { user } = useContext(AuthContext)
+import ChekOutRow from '../../components/Dashboard/TableRows/ChekOutRow';
+import Payment from '../Dashboard/Payment/Payment';
+const ChekOut = () => {
+   const {user} = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
     const [totalPrice, setTotalPrice] = useState(0);
     const axiosSecure = useAxiosSecure();
-    axiosSecure.get(`/carts/total?email=${user?.email}`)
-        .then((res) => {
-            setTotalPrice(res.data.totalPrice);
-            cartRefetch()
-        })
-        .catch((error) => {
-            console.error("Error fetching total:", error);
-        });
+        axiosSecure.get(`/carts/total?email=${user?.email}`)
+            .then((res) => {
+                setTotalPrice(res.data.totalPrice);
+                cartRefetch()
+            })
+            .catch((error) => {
+                console.error("Error fetching total:", error);
+            });
 
     if (isLoading) return <LoadingSpinner />;
 
-    const clearAllCarts = () => {
-        axiosSecure.delete("/cartsClear")
-            .then(res => {
-                console.log(res.data);
-                cartRefetch();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-
-
-
+    const handleCheckout = () => {
+        const selectedCartData = cart.map(item => ({
+            image: item.image,
+            name: item.name,
+            company: item.company,
+            perUnitPrice: item.perUnitPrice,
+            quantity: item.quantity,
+            subTotal: item.subTotal,
+            totalPrice: totalPrice,
+            _id: item._id
+        }));
+        console.log(selectedCartData);
+    }
     return (
         <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
-            <div className='flex justify-end mb-8'>
-                <button onClick={clearAllCarts} className='bg-primary text-white py-2 px-6 rounded-md ' >Clear All </button>
-
+       <div className='text-center mb-8'>
+                
+                <h1 className='text-5xl' >ChekOut</h1>
 
             </div>
 
@@ -50,7 +51,7 @@ const Cart = () => {
                         <thead>
                             <tr className='text-lg uppercase  text-neutral'>
                                 <th></th>
-                                <th>Name</th>
+                                <th>Name5</th>
                                 <th>Company</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
@@ -74,7 +75,7 @@ const Cart = () => {
 
                     {
                         cart.map((cart, index) =>
-                            <CartRow cart={cart} key={cart?._id} cartRefetch={cartRefetch} index={index} ></CartRow>
+                            <ChekOutRow cart={cart} key={cart?._id} cartRefetch={cartRefetch} index={index} ></ChekOutRow>
                         )
                     }
                 </table>
@@ -92,15 +93,14 @@ const Cart = () => {
                             </div>
                         </div>
 
-                         
-                        <Link to={'/chekout'} >
+                        <Payment></Payment>
 
-                            <button
-                                className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium transition duration-300"
-                            >
-                                PROCEED TO CHECKOUT
-                            </button>
-                        </Link>
+                        <button
+                            onClick={handleCheckout}
+                            className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium transition duration-300"
+                        >
+                            Order Now
+                        </button>
                     </div>
                 }
 
@@ -113,4 +113,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default ChekOut;

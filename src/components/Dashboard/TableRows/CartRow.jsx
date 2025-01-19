@@ -7,12 +7,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const CartRow = ({ cart, index, cartRefetch, }) => {
+    
  
     const axiosSecure = useAxiosSecure();
     const { image, name, company, perUnitPrice, quantity: buyQuantity, _id } = cart
     const [quantity, Setquantity] = useState(buyQuantity)
 
-   
+    
     
     const subTotal = perUnitPrice * quantity
 
@@ -43,7 +44,7 @@ const CartRow = ({ cart, index, cartRefetch, }) => {
     }
 
 
-       
+
    
 
     return (

@@ -185,7 +185,7 @@ const Navbar = () => {
                             </NavLink>
 
                             <NavLink
-                                to="/aboutus"
+                                to="/chekout"
                                 className={({ isActive }) =>
                                     isActive
                                         ? `${isBlurred ? "text-secondary font-bold border-b border-secondary" : "text-secondary border-b border-secondary"}`

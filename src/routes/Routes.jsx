@@ -22,6 +22,8 @@ import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory";
 import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
+import Checkout from "../pages/Checkout/Checkout";
+import ChekOut from "../pages/Checkout/Checkout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart></Cart>
+      },
+      {
+        path: "/chekout",
+        element: <ChekOut></ChekOut>
       },
       {
         path: "/category/:categoryName",
