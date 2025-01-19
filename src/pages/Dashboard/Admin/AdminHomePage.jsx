@@ -13,7 +13,7 @@ const AdminHomePage = () => {
                 console.log(res.data); 
                 setStatusCounts({
                     pending: res.data.pendingCount,
-                    paid: res.data.paidCount
+                    paid: res.data.paidCount 
                 });
             })
             .catch((error) => {

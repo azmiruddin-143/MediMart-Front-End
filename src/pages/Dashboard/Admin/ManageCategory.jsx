@@ -8,7 +8,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ManageCategory = () => {
     const axiosSecure = useAxiosSecure()
-     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: category = [], isLoading, refetch } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
@@ -36,7 +36,7 @@ const ManageCategory = () => {
                     <AddCategoryModal
                         isOpen={isEditModalOpen}
                         setIsEditModalOpen={setIsEditModalOpen}
-                        refetch ={refetch}
+                        refetch={refetch}
                     />
                     {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
                 </div>
