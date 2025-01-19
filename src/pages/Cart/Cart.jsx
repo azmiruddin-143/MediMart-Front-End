@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import LoadingSpinner from '../../components/Shared/LoadingSpinner';
-
-import axios from 'axios';
 import CartRow from '../../components/Dashboard/TableRows/CartRow';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { AuthContext } from '../../providers/AuthProvider';
 const Cart = () => {
-    const axiosSecure = useAxiosSecure();
+   const {user} = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
     const [totalPrice, setTotalPrice] = useState(0);
-
-        axiosSecure.get("/carts/total")
+    const axiosSecure = useAxiosSecure();
+        axiosSecure.get(`/carts/total?email=${user?.email}`)
             .then((res) => {
                 setTotalPrice(res.data.totalPrice);
                 cartRefetch()
@@ -33,6 +32,11 @@ const Cart = () => {
             });
     };
 
+    const chekOutMedicine = () =>{
+        console.log(cart);
+        
+    }
+   
 
     return (
         <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
@@ -74,7 +78,7 @@ const Cart = () => {
 
                     {
                         cart.map((cart, index) =>
-                            <CartRow cart={cart} key={cart?._id} cartRefetch={cartRefetch} index={index} ></CartRow>
+                            <CartRow cart={cart} key={cart?._id} cartRefetch={cartRefetch} index={index} chekOutMedicine ={chekOutMedicine}  ></CartRow>
                         )
                     }
                 </table>
@@ -108,7 +112,9 @@ const Cart = () => {
                         </div>
 
                         <button
-                            className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium hover:bg-red-600 transition duration-300"
+                           onClick={chekOutMedicine}
+                           
+                            className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium transition duration-300"
                         >
                             PROCEED TO CHECKOUT
                         </button>

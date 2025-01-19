@@ -6,7 +6,8 @@ import { FiMinus } from "react-icons/fi";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-const CartRow = ({ cart, index, cartRefetch }) => {
+const CartRow = ({ cart, index, cartRefetch, }) => {
+ 
     const axiosSecure = useAxiosSecure();
     const { image, name, company, perUnitPrice, quantity: buyQuantity, _id } = cart
     const [quantity, Setquantity] = useState(buyQuantity)
@@ -41,6 +42,9 @@ const CartRow = ({ cart, index, cartRefetch }) => {
             })
     }
 
+
+       
+   
 
     return (
         <tbody>
