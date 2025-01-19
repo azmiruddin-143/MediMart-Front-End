@@ -4,7 +4,9 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const AdminHomePage = () => {
     const [statusCounts, setStatusCounts] = useState({ pending: 0, paid: 0 });
     const [priceCounts, setPriceCounts] = useState({ pending: 0, paid: 0 })
+    const [totalOrder, setTotalOrder] = useState(0);
     const axiosSecure = useAxiosSecure()
+
     useEffect(() => {
         axiosSecure.get('/payment/pending-paid')
             .then(res => {
@@ -32,6 +34,17 @@ const AdminHomePage = () => {
             });
     }, [])
 
+
+
+useEffect(() => {
+  axiosSecure.get('/order/total')
+    .then(res => {
+        setTotalOrder(res.data.totalOrder);
+    })
+    .catch(err => {
+      console.error("Error fetching total payments:", err.message);
+    });
+}, []);
   
 
 
@@ -72,10 +85,10 @@ const AdminHomePage = () => {
                     <p className="text-lg">Total Paid</p>
                 </div>
             </div>
-            <div className="flex items-center justify-center p-6 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg shadow-md">
+            <div className="flex items-center justify-center p-6 bg-primary text-white rounded-lg shadow-md">
                 <div className="text-center">
                     <FaTruck className="text-4xl mb-2 mx-auto" />
-                    <p className="text-3xl font-bold">500</p>
+                    <p className="text-3xl font-bold">{totalOrder}</p>
                     <p className="text-lg">Orders</p>
                 </div>
             </div>
