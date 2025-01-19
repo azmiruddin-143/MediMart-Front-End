@@ -1,9 +1,11 @@
 
 import React from 'react';
 import { IoMdCart } from 'react-icons/io';
+import useRole from '../../hooks/useRole';
 
 const DiscountDetailsCart = ({medicine,cartDiscount }) => {
     const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage } = medicine
+    const {role} = useRole()
     return (
         <div>
 
@@ -19,7 +21,7 @@ const DiscountDetailsCart = ({medicine,cartDiscount }) => {
                     <h1>Discount Percentage: {discountPercentage} % </h1>
                     <div className='flex justify-between items-center'>
                         <h1>PerUnit Price: {perUnitPrice} $</h1>
-                        <button onClick={cartDiscount}  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                        <button disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount}  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                             Select <IoMdCart className='text-lg' />
                         </button>
                     </div>

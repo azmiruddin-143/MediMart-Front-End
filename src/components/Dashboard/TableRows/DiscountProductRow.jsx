@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import useCart from '../../../hooks/useCart';
 import axios from 'axios';
-
+import useRole from '../../../hooks/useRole';
 const DiscountProductRow = ({ medicine }) => {
     const { _id, medicineImage, discountPercentage,company, medicineName, perUnitPrice } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
      const [,,cartRefetch] = useCart()
+     const {role} = useRole()
     const cartDiscount = () => {
 
         if (user && user?.email) {
@@ -88,7 +89,7 @@ const DiscountProductRow = ({ medicine }) => {
                             />
                         </div>
                         <div className='flex justify-end items-center' >
-                            <button onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                            <button  disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                                 Select <IoMdCart className='text-lg' />
                             </button>
 

@@ -6,6 +6,7 @@ import axios from 'axios';
 import useCart from '../../../hooks/useCart';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import useRole from '../../../hooks/useRole';
 
 const CategoryDetailsRow = ({medicine,index,refetch}) => {
     const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
@@ -13,6 +14,7 @@ const CategoryDetailsRow = ({medicine,index,refetch}) => {
    const navigate = useNavigate()
    const { user } = useContext(AuthContext)
    const [,,cartRefetch] = useCart()
+   const {role} = useRole()
    const cartMedicine = () => {
 
     if (user && user?.email) {
@@ -87,7 +89,7 @@ const CategoryDetailsRow = ({medicine,index,refetch}) => {
                             />
                         </td>
                         <td className='flex justify-end items-center' >
-                            <button onClick={cartMedicine}  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                            <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine}  className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                                 Select <IoMdCart className='text-lg' />
                             </button>
         
