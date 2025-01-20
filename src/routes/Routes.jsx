@@ -24,6 +24,7 @@ import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import Checkout from "../pages/Checkout/Checkout";
 import ChekOut from "../pages/Checkout/Checkout";
+import Invoice from "../pages/Invoice/Invoice";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
         path: "/chekout",
         element: <ChekOut></ChekOut>
       },
+      
       {
         path: "/category/:categoryName",
         element: <CategoryDetails></CategoryDetails>
@@ -170,7 +172,12 @@ const router = createBrowserRouter([
         element: <UserPaymentHistory></UserPaymentHistory>
       },
     ]
-  }
+  },
+
+  {
+    path: "/invoice/:transactionId",
+    element: <Invoice></Invoice>
+  },
 
 ]);
 

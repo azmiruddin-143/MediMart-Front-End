@@ -105,9 +105,9 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/dashboard/paymenthistory')
+                    const transactionId = paymentIntent.id;
+                    navigate(`/invoice/${transactionId}`);
                 }
-
             }
         }
 
