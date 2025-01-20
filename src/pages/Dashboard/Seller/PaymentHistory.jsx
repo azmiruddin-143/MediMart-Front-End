@@ -5,6 +5,7 @@ import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import PaymentManagementRow from '../../../components/Dashboard/TableRows/PaymentManagementRow';
 import { AuthContext } from '../../../providers/AuthProvider';
+import PaymentHistoryRow from '../../../components/Dashboard/TableRows/PaymentHistoryRow';
 
 const PaymentHistory = () => {
     const {user} = useContext(AuthContext)
@@ -56,7 +57,7 @@ const PaymentHistory = () => {
 
                 {
                     payment.map((payment, index) =>
-                        <PaymentManagementRow payment={payment}  key={payment?._id} refetch={refetch} >  </PaymentManagementRow>
+                        <PaymentHistoryRow payment={payment}  key={payment?._id} refetch={refetch} >  </PaymentHistoryRow>
                     )
                 }
             </table>
