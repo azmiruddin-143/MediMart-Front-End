@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
-import UpdateCategoryModal from '../../../Modal/UpdateCategoryModal';
-import DeleteCategory from '../../../Modal/DeleteCategory';
-import axios from 'axios';
 import MedicineupdateModal from '../../../Modal/MedicineUpdateModal';
 import DeleteMedicine from '../../../Modal/DeleteMedicine';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { FaEye } from 'react-icons/fa';
+import ManageMedicineDetailsModal from '../../../Modal/ManageMedicineDetailsModal';
 
-const ManageMedicineRow = ({ medicine, index, refetch }) => {
+const ManageMedicineRow = ({ medicine,  refetch }) => {
     const axiosSecure = useAxiosSecure()
-    const { medicineName,discountPercentage,perUnitPrice,medicineMassUnit,company,medicineImage,medicineCategory, genericName,shortDescription, _id } = medicine
+    const { medicineName, discountPercentage, perUnitPrice, medicineMassUnit, company, medicineImage, medicineCategory, genericName, shortDescription, _id } = medicine
     let [isOpen, setIsOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
     function openModal() {
         setIsOpen(true)
-      }
-      function closeModal() {
+    }
+    function closeModal() {
         setIsOpen(false)
-      }
+    }
 
-       const madicineyDelete = () =>{
-          axiosSecure.delete(`/medicine/${_id}`)
-          .then(res =>{
-              console.log(res.data);
-              refetch()
-              setIsOpen(false)
-          })
-          .catch((error) =>{
-              console.log(error.message);
-          })
-       }
+    const madicineyDelete = () => {
+        axiosSecure.delete(`/medicine/${_id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch()
+                setIsOpen(false)
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
+    }
 
 
     return (
@@ -48,10 +48,31 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
                 <td className='text-neutral'>{genericName}</td>
                 <td className='text-neutral'>{shortDescription}</td>
                 <td className='text-neutral'>{medicineCategory}</td>
-                {/* {/* <td className='text-neutral'>{company}</td> */}
-                {/* <td className='text-neutral'>{medicineMassUnit}</td>
-                <td className='text-neutral'>{perUnitPrice}</td>
-                <td className='text-neutral'>{discountPercentage}</td> */}
+
+                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                    <span
+                        onClick={() => { setIsDetailsModalOpen(true) }}
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                    >
+
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0  bg-primary text-white rounded-full'
+                        ></span>
+                        <div className='flex items-center gap-2'>
+                            <span className='relative '>Details</span>
+                            <FaEye className=' relative text-lg' />
+                        </div>
+
+                    </span>
+                    <ManageMedicineDetailsModal
+                        isOpen={isDetailsModalOpen}
+                        setIsDetailsModalOpen={setIsDetailsModalOpen}
+                        medicine={medicine}
+                        refetch={refetch}
+                    
+                    />
+                </td>
                 <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
@@ -66,7 +87,7 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
                         isOpen={isEditModalOpen}
                         setIsEditModalOpen={setIsEditModalOpen}
                         refetch={refetch}
-                        medicine ={medicine}
+                        medicine={medicine}
                     />
                 </td>
                 <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -80,7 +101,7 @@ const ManageMedicineRow = ({ medicine, index, refetch }) => {
                         ></span>
                         <span className='relative'>Delete</span>
                     </span>
-                    <DeleteMedicine isOpen={isOpen} madicineyDelete ={madicineyDelete}  closeModal={closeModal} />
+                    <DeleteMedicine isOpen={isOpen} madicineyDelete={madicineyDelete} closeModal={closeModal} />
                 </td>
             </tr>
         </tbody>

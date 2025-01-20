@@ -48,15 +48,13 @@ const ManageMedicines = () => {
                         <tr className='text-lg text-neutral'>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Modifide</th>
+                            <th>Generic</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Details</th>
+                            <th>Update</th>
                             <th>Action</th>
-                            <th>Image</th>
-                            {/* <th>Name</th>
-                            <th>Modifide</th>
-                            <th>Action</th>
-                            <th>Action</th>
-                            <th>Action</th>
-                            <th>Action</th> */}
+                            
                         </tr>
                     </thead>
 
@@ -73,10 +71,9 @@ const ManageMedicines = () => {
 
 
 
-
                 {
                     medicine.map((medicine, index) =>
-                        <ManageMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} ></ManageMedicineRow>
+                        <ManageMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch}  ></ManageMedicineRow>
                     )
                 }
             </table>
