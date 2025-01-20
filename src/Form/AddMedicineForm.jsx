@@ -3,14 +3,18 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
 import axios from "axios";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
+  const {user} = useContext(AuthContext)
   const axiosSecure = useAxiosSecure()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const addMedicine = async (data) => {
     const medicineImage = await imageUpload(data.medicineImage[0]);
     const medicineData = {
       medicineName: data.medicineName,
+      sellerEmail: user?.email,
       genericName: data.genericName,
       shortDescription: data.shortDescription,
       medicineImage,

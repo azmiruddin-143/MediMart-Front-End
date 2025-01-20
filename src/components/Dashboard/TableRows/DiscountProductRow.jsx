@@ -8,7 +8,7 @@ import useCart from '../../../hooks/useCart';
 import axios from 'axios';
 import useRole from '../../../hooks/useRole';
 const DiscountProductRow = ({ medicine }) => {
-    const { _id, medicineImage, discountPercentage,company, medicineName, perUnitPrice } = medicine
+    const { _id, medicineImage, discountPercentage,company,sellerEmail, medicineName, perUnitPrice } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
@@ -22,6 +22,7 @@ const DiscountProductRow = ({ medicine }) => {
                 email: user?.email,
                 name: medicineName,
                 image: medicineImage,
+                sellerEmail:sellerEmail,
                 company: company,
                 perUnitPrice: perUnitPrice,
                 quantity: 1

@@ -37,7 +37,7 @@ const AdminHomePage = () => {
 
 
 useEffect(() => {
-  axiosSecure.get('/order/total')
+  axiosSecure.get('/order/total/')
     .then(res => {
         setTotalOrder(res.data.totalOrder);
     })
@@ -72,7 +72,7 @@ useEffect(() => {
             <div className="flex items-center justify-center p-6 bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-lg shadow-md">
                 <div className="text-center">
                     <FaBox className="text-4xl mb-2 mx-auto" />
-                    <p className="text-3xl font-bold">{statusCounts.pending || 'loading'}</p>
+                    <p className="text-3xl font-bold">{statusCounts.pending}</p>
                     <p className="text-lg">Total Pending</p>
                 </div>
             </div>

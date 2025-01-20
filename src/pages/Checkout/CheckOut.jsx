@@ -23,19 +23,19 @@ const ChekOut = () => {
 
     if (isLoading) return <LoadingSpinner />;
 
-    const handleCheckout = () => {
-        const selectedCartData = cart.map(item => ({
-            image: item.image,
-            name: item.name,
-            company: item.company,
-            perUnitPrice: item.perUnitPrice,
-            quantity: item.quantity,
-            subTotal: item.subTotal,
-            totalPrice: totalPrice,
-            _id: item._id
-        }));
-        console.log(selectedCartData);
-    }
+    // const handleCheckout = () => {
+    //     const selectedCartData = cart.map(item => ({
+    //         image: item.image,
+    //         name: item.name,
+    //         company: item.company,
+    //         perUnitPrice: item.perUnitPrice,
+    //         quantity: item.quantity,
+    //         subTotal: item.subTotal,
+    //         totalPrice: totalPrice,
+    //         _id: item._id
+    //     }));
+    //     console.log(selectedCartData);
+    // }
     return (
         <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
        <div className='text-center mb-8'>
@@ -96,7 +96,7 @@ const ChekOut = () => {
                         <Payment></Payment>
 
                         <button
-                            onClick={handleCheckout}
+                            
                             className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium transition duration-300"
                         >
                             Order Now

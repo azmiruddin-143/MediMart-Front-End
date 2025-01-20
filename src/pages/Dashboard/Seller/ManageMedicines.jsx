@@ -1,18 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import ManageMedicineRow from '../../../components/Dashboard/TableRows/ManageMedicineRow';
 import AddMedicineModal from '../../../Modal/AddMedicineModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const ManageMedicines = () => {
+    const {user} = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
      const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine'],
         queryFn: async () => {
-            const { data } = await axiosSecure.get('/medicine');
+            const { data } = await axiosSecure.get(`/medicine/manage/${user?.email}`);
             return data;
         }
     });

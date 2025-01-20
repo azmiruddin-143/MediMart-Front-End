@@ -89,6 +89,7 @@ const CheckoutForm = () => {
                     cartIds: cart.map(item => item._id),
                     name: cart.map(item => item.name),
                     image: cart.map(item => item.image),
+                    sellerEmail: cart.map(item => item.sellerEmail),
                     menuItemIds: cart.map(item => item.cartId),
                     status: 'Pending'
                 }

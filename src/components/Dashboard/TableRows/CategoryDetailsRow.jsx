@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import useRole from '../../../hooks/useRole';
 
 const CategoryDetailsRow = ({medicine,index,refetch}) => {
-    const { medicineName, genericName, shortDescription, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
+    const { medicineName, genericName, shortDescription,sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
    const navigate = useNavigate()
    const { user } = useContext(AuthContext)
@@ -23,6 +23,7 @@ const CategoryDetailsRow = ({medicine,index,refetch}) => {
             email: user?.email,
             name: medicineName,
             image: medicineImage,
+            sellerEmail:sellerEmail,
             company: company,
             perUnitPrice: perUnitPrice,
             quantity: 1
