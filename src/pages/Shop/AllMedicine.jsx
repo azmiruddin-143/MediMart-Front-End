@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,36 +7,54 @@ import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 import { FaSearchengin } from 'react-icons/fa';
 const AllMedicine = () => {
     const [search, setSearch] = useState('')
-
+    const [sort, setSort] = useState('')
 
     const { data: medicine = [], isLoading, refetch } = useQuery({
-        queryKey: ['medicine',search ],
+        queryKey: ['medicine', search, sort],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/medicine?search=${search}`);
+            const { data } = await axios.get(`http://localhost:5000/medicine?search=${search}&sort=${sort}`);
             return data;
         },
-
+       
     });
 
-    if (isLoading) return <LoadingSpinner />;
+      if(isLoading) return <LoadingSpinner></LoadingSpinner>
+      const handleSearchChange = (e) => {
+        setSearch(e.target.value); // Update state on text change
+    };
 
 
     return (
         <div className=" overflow-x-auto  xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
-            <div className='flex justify-between mb-8'>
+            <div className='flex items-center justify-between mb-8'>
                 <h1 className='text-xl' >( All Medicine <span className='text-primary' >{medicine.length}</span> )</h1>
+
+                <div>
+                    <select
+                        className='border p-4 rounded-md'
+                        value={sort}
+                        onChange={(e) => setSort(e.target.value)}
+                    >
+                        <option value=''>Sort By Purchase Count</option>
+                        <option value='dsc'>Descending Purchase </option>
+                        <option value='asc'>Ascending Purchase </option>
+                    </select>
+                </div>
                 <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
                     <input
                         className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
                         type='text'
                         name='search'
                         placeholder='Seach foods'
-                        onBlur={(e) => setSearch(e.target.value)}
-                        
-                       
+                        onBlur={handleSearchChange}
+
                     />
 
-                    <button className='px-1 md:px-4 py-3 text-sm text-neutral '>
+                    <button
+                   
+                        className="px-1 md:px-4 py-3 text-sm text-neutral"
+                         // Trigger search when button is clicked
+                    >
                         <FaSearchengin size={25} />
                     </button>
                 </div>
