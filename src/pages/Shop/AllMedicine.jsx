@@ -5,29 +5,40 @@ import { Link } from 'react-router-dom';
 import AllMedicineRow from './AllMedicineRow';
 import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 import { FaSearchengin } from 'react-icons/fa';
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 const AllMedicine = () => {
-    const [search, setSearch] = useState('')
-    const [sort, setSort] = useState('')
+    const [search, setSearch] = useState('');
+    const [sort, setSort] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 3; // Number of items per page
 
     const { data: medicine = [], isLoading, refetch } = useQuery({
-        queryKey: ['medicine', search, sort],
+        queryKey: ['medicine', search, sort, currentPage],
         queryFn: async () => {
             const { data } = await axios.get(`http://localhost:5000/medicine?search=${search}&sort=${sort}`);
             return data;
         },
-       
     });
 
-      if(isLoading) return <LoadingSpinner></LoadingSpinner>
-      const handleSearchChange = (e) => {
+    if (isLoading) return <LoadingSpinner />;
+
+    // Calculate pagination
+    const totalPages = Math.ceil(medicine.length / itemsPerPage);
+    const paginatedData = medicine.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handleSearchChange = (e) => {
         setSearch(e.target.value); // Update state on text change
+        setCurrentPage(1); // Reset to first page on search
     };
 
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return (
-        <div className=" overflow-x-auto  xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
+        <div className="overflow-x-auto xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
             <div className='flex items-center justify-between mb-8'>
-                <h1 className='text-xl' >( All Medicine <span className='text-primary' >{medicine.length}</span> )</h1>
+                <h1 className='text-xl'>( All Medicine <span className='text-primary'>{medicine.length}</span> )</h1>
 
                 <div>
                     <select
@@ -36,8 +47,8 @@ const AllMedicine = () => {
                         onChange={(e) => setSort(e.target.value)}
                     >
                         <option value=''>Sort By Price</option>
-                        <option value='dsc'>Descending Price </option>
-                        <option value='asc'>Ascending Price </option>
+                        <option value='dsc'>Descending Price</option>
+                        <option value='asc'>Ascending Price</option>
                     </select>
                 </div>
                 <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
@@ -45,56 +56,72 @@ const AllMedicine = () => {
                         className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
                         type='text'
                         name='search'
-                        placeholder='Seach foods'
+                        placeholder='Search Medicine'
                         onBlur={handleSearchChange}
-
                     />
-
-                    <button
-                   
-                        className="px-1 md:px-4 py-3 text-sm text-neutral"
-                         // Trigger search when button is clicked
-                    >
+                    <button className="px-1 md:px-4 py-3 text-sm text-neutral">
                         <FaSearchengin size={25} />
                     </button>
                 </div>
             </div>
+
             <table className="table border-collapse border border-gray-300">
-                {
-                    medicine.length > 0 &&
+                {medicine.length > 0 && (
                     <thead>
                         <tr className='text-lg text-neutral'>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Image</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Name</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Generic</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Category</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Company</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Details</th>
-                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Cart</th>
-
+                            <th className='border border-gray-300 px-4 py-2'>Image</th>
+                            <th className='border border-gray-300 px-4 py-2'>Name</th>
+                            <th className='border border-gray-300 px-4 py-2'>Generic</th>
+                            <th className='border border-gray-300 px-4 py-2'>Category</th>
+                            <th className='border border-gray-300 px-4 py-2'>Company</th>
+                            <th className='border border-gray-300 px-4 py-2'>Details</th>
+                            <th className='border border-gray-300 px-4 py-2'>Cart</th>
                         </tr>
                     </thead>
+                )}
 
-                }
-
-                {medicine.length === 0 &&
+                {medicine.length === 0 && (
                     <div className="flex h-screen justify-center my-5">
                         <div>
                             <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                            <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
+                            <Link to={'/allfoods'}>
+                                <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button>
+                            </Link>
                         </div>
                     </div>
-                }
+                )}
 
-
-
-
-                {
-                    medicine.map((medicine, index) =>
-                        <AllMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} ></AllMedicineRow>
-                    )
-                }
+                {paginatedData.map((medicine, index) => (
+                    <AllMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} />
+                ))}
             </table>
+
+            {/* Pagination */}
+            <div className='flex justify-center items-center mt-8'>
+                <button
+                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === 1 ? 'bg-gray-200' : 'bg-primary'}`}
+                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                >
+                    <SlArrowLeft />
+                </button>
+                {[...Array(totalPages)].map((_, i) => (
+                    <button
+                        key={i}
+                        className={`px-4 py-2 mx-1 rounded-md ${currentPage === i + 1 ? 'bg-primary text-black' : 'bg-gray-200'}`}
+                        onClick={() => handlePageChange(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+                <button
+                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-primary'}`}
+                    disabled={currentPage === totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                >
+                    <SlArrowRight />
+                </button>
+            </div>
         </div>
     );
 };

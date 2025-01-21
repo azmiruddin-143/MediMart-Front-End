@@ -70,12 +70,12 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                 <td className='px-5 py-5 border-b border-gray-300  text-sm border   cursor-pointer '>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
-                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
 
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0  bg-primary text-white rounded-full'
+                            className='absolute inset-0  bg-primary  rounded-full'
                         ></span>
                         <div className='flex items-center gap-2'>
                             <span className='relative '>Details</span>
@@ -92,7 +92,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                     />
                 </td>
                 <td className=' border border-gray-300 px-4 py-2 cursor-pointer' >
-                    <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                    <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
                         Select <IoMdCart className='text-lg' />
                     </button>
 
