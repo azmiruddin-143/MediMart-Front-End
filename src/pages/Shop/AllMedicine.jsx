@@ -35,9 +35,9 @@ const AllMedicine = () => {
                         value={sort}
                         onChange={(e) => setSort(e.target.value)}
                     >
-                        <option value=''>Sort By Purchase Count</option>
-                        <option value='dsc'>Descending Purchase </option>
-                        <option value='asc'>Ascending Purchase </option>
+                        <option value=''>Sort By Price</option>
+                        <option value='dsc'>Descending Price </option>
+                        <option value='asc'>Ascending Price </option>
                     </select>
                 </div>
                 <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
@@ -59,19 +59,18 @@ const AllMedicine = () => {
                     </button>
                 </div>
             </div>
-            <table className="table">
+            <table className="table border-collapse border border-gray-300">
                 {
                     medicine.length > 0 &&
                     <thead>
-                        <tr className='text-lg  text-neutral'>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Generic</th>
-                            <th>Category</th>
-                            <th>Company</th>
-                            <th>Details</th>
-                            <th className='text-end'>Cart</th>
-
+                        <tr className='text-lg text-neutral'>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Image</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Name</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Generic</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Category</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Company</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Details</th>
+                            <th className=' border border-gray-300 px-4 py-2 cursor-pointer'>Cart</th>
 
                         </tr>
                     </thead>

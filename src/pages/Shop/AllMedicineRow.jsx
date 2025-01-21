@@ -51,8 +51,8 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
 
     return (
         <tbody>
-            <tr className='text-neutral'>
-                <th className='flex  text-neutral items-center gap-5'>{index + 1}
+            <tr className='text-neutral '>
+                <td className=' border border-gray-300 px-4 py-2 cursor-pointer  '>
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -60,14 +60,14 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                                     medicineImage} />
                         </div>
                     </div>
-                </th>
+                </td>
 
-                <td className='text-neutral'>{medicineName}</td>
-                <td className='text-neutral'>{genericName} </td>
-                <td className='text-neutral'> {medicineCategory}</td>
-                <td className='text-neutral'> {company}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'>{medicineName}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'>{genericName} </td>
+                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {medicineCategory}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {company}</td>
 
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                <td className='px-5 py-5 border-b border-gray-300  text-sm border   cursor-pointer '>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
                         className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
@@ -91,7 +91,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                         cartMedicine ={cartMedicine}
                     />
                 </td>
-                <td className='flex justify-end items-center' >
+                <td className=' border border-gray-300 px-4 py-2 cursor-pointer' >
                     <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
                         Select <IoMdCart className='text-lg' />
                     </button>
