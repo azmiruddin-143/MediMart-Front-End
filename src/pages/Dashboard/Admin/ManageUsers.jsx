@@ -5,6 +5,7 @@ import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import UserDataRow from '../../../components/Dashboard/TableRows/UserDataRow';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure()
     const { data: users = [], isLoading, refetch } = useQuery({
@@ -16,48 +17,41 @@ const ManageUsers = () => {
     });
     console.log(users);
     if (isLoading) return <LoadingSpinner />;
-    
+
     return (
-        <div className=" overflow-x-auto max-w-7xl mx-auto my-10">
-            <div className='flex justify-between mb-8'>
-                <h1 className='text-xl' >( All Users <span className='text-primary' >{users.length}</span> )</h1>
-                
+        <div className=" overflow-x-auto container mx-auto my-5">
+            <div className='flex justify-between mb-8 items-center'>
+                <h1 className='text-xl' >( All Users <span className='text-primary font-bold' >{users.length}</span> )</h1>
+
             </div>
-        <table className="table">
-            {
-                users.length > 0 &&
-                <thead>
-                    <tr className='text-lg  text-neutral'>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th className='text-end'>User Status</th>
+            <table className="table border-collapse border border-gray-300">
+                {
+                    users.length > 0 &&
+                    <thead className='bg-primary '>
+                        <tr className='text-lg text-neutral'>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>User Image</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>User Name</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>User Email</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>User Role</th>
+                            <th className='text-end border border-gray-300 px-4 py-2 text-black'>User Status</th>
 
-                    </tr>
-                </thead>
+                        </tr>
+                    </thead>
 
-            }
+                }
 
+
+                {
+                    users.map((user, index) =>
+                        <UserDataRow user={user} key={user?._id} refetch={refetch} index={index} ></UserDataRow>
+                    )
+                }
+
+            </table>
             {users.length === 0 &&
-                <div className="flex h-screen justify-center my-5">
-                    <div>
-                        <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                        <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                    </div>
-                </div>
+                <NoResultFound></NoResultFound>
             }
-
-
-
-
-            {
-                users.map((user, index) =>
-                    <UserDataRow user={user} key={user?._id} refetch ={refetch}  index={index} ></UserDataRow>
-                )
-            }
-        </table>
-    </div>
+        </div>
     );
 };
 

@@ -3,6 +3,7 @@ import UpdateCategoryModal from '../../../Modal/UpdateCategoryModal';
 import DeleteCategory from '../../../Modal/DeleteCategory';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { GiClick } from 'react-icons/gi';
 
 const ManageCategoryRow = ({ category, index, refetch }) => {
     const { categoryImage, categoryName, _id } = category
@@ -11,34 +12,34 @@ const ManageCategoryRow = ({ category, index, refetch }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     function openModal() {
         setIsOpen(true)
-      }
-      function closeModal() {
+    }
+    function closeModal() {
         setIsOpen(false)
-      }
+    }
 
-       const categoryDelete = () =>{
-          axiosSecure.delete(`/category/${_id}`)
-          .then(res =>{
-            if (res.data.deletedCount > 0) {
-                toast.success('Category deleted successfully!', {
-                    duration: 3000, 
-                });
-            }
-              refetch()
-              setIsOpen(false)
-          })
-          .catch((error) =>{
-            toast.error("Error!", (error.message), {
-                duration: 3000,
+    const categoryDelete = () => {
+        axiosSecure.delete(`/category/${_id}`)
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    toast.success('Category deleted successfully!', {
+                        duration: 3000,
+                    });
+                }
+                refetch()
+                setIsOpen(false)
             })
-          })
-       }
+            .catch((error) => {
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
+            })
+    }
 
 
     return (
         <tbody>
             <tr className='text-neutral'>
-                <th className='flex  text-neutral items-center gap-5'>
+                <td className=' border border-gray-300 px-4 py-2  text-neutral '>
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -46,18 +47,22 @@ const ManageCategoryRow = ({ category, index, refetch }) => {
                                     categoryImage} />
                         </div>
                     </div>
-                </th>
+                </td>
 
-                <td className='text-neutral'>{categoryName}</td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{categoryName}</td>
+                <td className='border border-gray-300 px-4 py-2 text-sm'>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
-                        <span aria-hidden='true' className='absolute inset-0 bg-green-200 opacity-50 rounded-full'>
+                        <span aria-hidden='true' className='absolute inset-0 bg-primary  rounded-full'>
 
                         </span>
-                        <span className='relative'>Update</span>
+
+                        <div className='flex items-center gap-0'>
+                            <span className='relative'>Update</span>
+                            <GiClick className=' relative text-lg' />
+                        </div>
                     </span>
                     <UpdateCategoryModal
                         isOpen={isEditModalOpen}
@@ -66,18 +71,24 @@ const ManageCategoryRow = ({ category, index, refetch }) => {
                         refetch={refetch}
                     />
                 </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                    <span
-                        onClick={openModal}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-                    >
+                <td className='border  border-gray-300 px-4 py-2 text-sm'>
+                    <div className='flex justify-end' >
                         <span
-                            aria-hidden='true'
-                            className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
-                        ></span>
-                        <span className='relative'>Delete</span>
-                    </span>
-                    <DeleteCategory isOpen={isOpen} categoryDelete ={categoryDelete} closeModal={closeModal} />
+                            onClick={openModal}
+                            className='relative cursor-pointer  inline-block px-3 py-2 font-semibold text-white leading-tight'
+                        >
+                            <span
+                                aria-hidden='true'
+                                className='absolute inset-0 bg-black  rounded-full'
+                            ></span>
+
+                            <div className='flex items-center gap-0'>
+                                <span className='relative'>Delete</span>
+                                <GiClick className=' relative text-lg' />
+                            </div>
+                        </span>
+                    </div>
+                    <DeleteCategory isOpen={isOpen} categoryDelete={categoryDelete} closeModal={closeModal} />
                 </td>
             </tr>
         </tbody>

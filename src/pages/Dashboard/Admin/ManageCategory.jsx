@@ -19,17 +19,17 @@ const ManageCategory = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto max-w-5xl mx-auto my-10 ">
-            <div className='flex justify-between mb-8'>
-                <h1>(All Category {category.length})</h1>
+        <div className=" overflow-x-auto container mx-auto my-5 ">
+            <div className='flex justify-between items-center  mb-8'>
+                <h1 className='text-xl'>(All Category <span className='text-primary font-bold' >{category.length}</span> )</h1>
                 <div>
                     <span
                         onClick={() => setIsEditModalOpen(true)}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0 bg-green-700 opacity-50 rounded-full'
+                            className='absolute inset-0 bg-primary  rounded-full'
                         ></span>
                         <span className='relative'>Add Category</span>
                     </span>
@@ -38,33 +38,23 @@ const ManageCategory = () => {
                         setIsEditModalOpen={setIsEditModalOpen}
                         refetch={refetch}
                     />
-                    {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
+
                 </div>
             </div>
-            <table className="table ">
+            <table className="table border-collapse border border-gray-300">
                 {
                     category.length > 0 &&
-                    <thead>
+                    <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Modifide</th>
-                            <th>Action</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Image</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Name</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Modified</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black text-end'>Category Action</th>
 
                         </tr>
                     </thead>
 
                 }
-
-                {category.length === 0 &&
-                    <div className="flex h-screen justify-center my-5">
-                        <div>
-                            <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                            <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                        </div>
-                    </div>
-                }
-
 
 
 
@@ -74,6 +64,10 @@ const ManageCategory = () => {
                     )
                 }
             </table>
+
+            {category.length === 0 &&
+                <NoResultFound></NoResultFound>
+            }
         </div>
     );
 };

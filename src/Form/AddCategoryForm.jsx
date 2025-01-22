@@ -42,12 +42,12 @@ const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
                     <div className="space-y-6">
                         {/* Category */}
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="category" className="block text-gray-600">
+                            {/* <label htmlFor="category" className="block text-gray-600">
                                 Category
-                            </label>
+                            </label> */}
                             <select
                                 {...register("category", { required: "Category is required" })}
-                                className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                                className="w-full px-4 py-3 border-primary focus:outline-lime-500 rounded-md bg-gray-50 border"
                             >
                                 <option disabled selected>
                                     Who chose Category?
@@ -84,7 +84,7 @@ const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-lime-500"
+                            className="w-full p-3 mt-5 text-center font-medium  transition duration-200 rounded shadow-md bg-primary text-black"
                         >
                             Add Category
                         </button>

@@ -50,21 +50,21 @@ const UserDataRow = ({ user, index, refetch }) => {
                     </div>
                 </th>
 
-                <td className='text-neutral'>{userName}</td>
-                <td className='text-neutral'>{userEmail} </td>
-                <td className='text-neutral'> {userRole}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{userName}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{userEmail} </td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'> {userRole}</td>
                 <td className='px-2 text-end py-5 border-b  border-gray-200 bg-white text-sm'>
                     <span
                         onClick={() => setIsOpen(true)}
-                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                        className='relative cursor-pointer inline-block px-2 py-2 font-semibold text-black leading-tight'
                     >
 
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0  bg-primary text-white rounded-full'
+                            className='absolute inset-0  bg-primary  rounded-full'
                         ></span>
                         <div className='flex items-center gap-0'>
-                            <span className='relative '>Update</span>
+                            <span className='relative '>Toggle Role </span>
                             <GiClick className=' relative text-lg' />
                         </div>
 
