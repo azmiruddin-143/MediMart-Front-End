@@ -50,6 +50,7 @@ const AskForAdvertisement = () => {
                         <th>Image</th>
                         <th>Descrption</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
