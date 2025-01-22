@@ -4,6 +4,7 @@ import { imageUpload } from "../api/utilis";
 import axios from "axios";
 import { useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
     const axiosSecure = useAxiosSecure()
@@ -39,12 +40,20 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
         refetch();
         axiosSecure.put(`/medicine/${_id}`, medicineUpdate)
             .then(res => {
-                console.log(res.data);
+                   console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    toast.success('Medicine modified !', {
+                        duration: 3000, 
+                    });
+                }
+
                 refetch();
                 setIsEditModalOpen(false);
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             });
     };
 
@@ -211,7 +220,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         Medicine Mass Unit
                     </label>
                     <input
-                        
+
                         type="text"
                         defaultValue={medicineMassUnit}
                         id="medicineMassUnit"

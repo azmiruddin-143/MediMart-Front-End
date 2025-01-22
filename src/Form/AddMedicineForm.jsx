@@ -5,9 +5,10 @@ import axios from "axios";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const axiosSecure = useAxiosSecure()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const addMedicine = async (data) => {
@@ -25,25 +26,31 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
       discountPercentage: parseFloat(data.discountPercentage) || 0,
 
     };
-    if(data.medicineCategory === "Select a category"){
-        return
-      }
-    if(data.company === "Select a company"){
-        return
+    if (data.medicineCategory === "Select a category") {
+      return
+    }
+    if (data.company === "Select a company") {
+      return
     }
 
     // Reset form
     reset();
     setIsEditModalOpen(false);
     refetch();
-    axiosSecure.post('/medicine',medicineData)
-        .then(res =>{
-            console.log(res.data);
-            refetch()
-        })
-        .catch((error) =>{
-            console.log(error.message);
-        })
+    axiosSecure.post('/medicine', medicineData)
+      .then(res => {
+        if (res.data.insertedId) {
+          toast.success(' Medicine added successfully', {
+            duration: 3000, 
+          });
+        }
+        refetch()
+      })
+      .catch((error) => {
+        toast.error("Error!", (error.message), {
+          duration: 3000,
+      })
+      })
   };
 
   return (

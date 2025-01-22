@@ -4,6 +4,7 @@ import DeleteMedicine from '../../../Modal/DeleteMedicine';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaEye } from 'react-icons/fa';
 import ManageMedicineDetailsModal from '../../../Modal/ManageMedicineDetailsModal';
+import toast from 'react-hot-toast';
 
 const ManageMedicineRow = ({ medicine,  refetch }) => {
     const axiosSecure = useAxiosSecure()
@@ -21,12 +22,18 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
     const madicineyDelete = () => {
         axiosSecure.delete(`/medicine/${_id}`)
             .then(res => {
-                console.log(res.data);
+                if (res.data.deletedCount > 0) {
+                    toast.success('Medicine deleted successfully!', {
+                        duration: 3000, 
+                    });
+                }    
                 refetch()
                 setIsOpen(false)
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             })
     }
 

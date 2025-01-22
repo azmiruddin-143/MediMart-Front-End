@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import UpdateUserModal from '../../../Modal/UpdateUserModal';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { GiClick } from "react-icons/gi";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 const UserDataRow = ({ user, index, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const { userName,
@@ -16,18 +14,20 @@ const UserDataRow = ({ user, index, refetch }) => {
             userRole: selectRole
         })
             .then(res => {
-                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    toast.success('User Role Change', {
+                        duration: 3000, 
+                    });
+                }
                 refetch()
                 setIsOpen(false)
-                if (res.data.modifiedCount > 0) {
-                    toast.success("user Role Change!", { autoClose: 3000 });
-                }
+              
 
             })
-            .catch((err) => {
-                toast.error(`user role error: ${err.message}`, {
-                    autoClose: 3000,
-                });
+            .catch((error) => {
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
                 setIsOpen(false)
             })
 

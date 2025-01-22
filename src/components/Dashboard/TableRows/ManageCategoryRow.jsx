@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import UpdateCategoryModal from '../../../Modal/UpdateCategoryModal';
 import DeleteCategory from '../../../Modal/DeleteCategory';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const ManageCategoryRow = ({ category, index, refetch }) => {
     const { categoryImage, categoryName, _id } = category
@@ -18,12 +19,18 @@ const ManageCategoryRow = ({ category, index, refetch }) => {
        const categoryDelete = () =>{
           axiosSecure.delete(`/category/${_id}`)
           .then(res =>{
-              console.log(res.data);
+            if (res.data.deletedCount > 0) {
+                toast.success('Category deleted successfully!', {
+                    duration: 3000, 
+                });
+            }
               refetch()
               setIsOpen(false)
           })
           .catch((error) =>{
-              console.log(error.message);
+            toast.error("Error!", (error.message), {
+                duration: 3000,
+            })
           })
        }
 

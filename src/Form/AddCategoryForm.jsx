@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { FaDownload } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
-
-const AddCategoryForm = ({setIsEditModalOpen,refetch}) => {
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -12,20 +13,24 @@ const AddCategoryForm = ({setIsEditModalOpen,refetch}) => {
         const categoryImage = await imageUpload(image);
 
         const categoryData = {
-            categoryName ,
+            categoryName,
             categoryImage
         }
 
-         reset()
-         setIsEditModalOpen(false)
-        axiosSecure.post('/category',categoryData)
-        .then(res =>{
-            console.log(res.data);
-            refetch()
-        })
-        .catch((error) =>{
-            console.log(error.message);
-        })
+        reset()
+        setIsEditModalOpen(false)
+        axiosSecure.post('/category', categoryData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('Successfully Add Category', {
+                        duration: 3000, 
+                    });
+                }
+                refetch()
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
 
 
     };

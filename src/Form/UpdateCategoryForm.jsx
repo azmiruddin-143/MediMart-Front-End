@@ -2,12 +2,12 @@ import { FaDownload } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
-const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
+const UpdateCategoryForm = ({ category, refetch, setIsEditModalOpen }) => {
     const axiosSecure = useAxiosSecure()
-    const { categoryImage, categoryName,_id } = category;
+    const { categoryImage, categoryName, _id } = category;
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [previewImage, setPreviewImage] = useState(categoryImage); // Default preview image
     const [fileName, setFileName] = useState(""); // To store file name
@@ -23,11 +23,15 @@ const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
     };
 
 
+
+
     useEffect(() => {
         if (categoryImage) {
             setFileName(getFileNameFromURL(categoryImage)); // Set default file name from URL
         }
     }, [categoryImage]);
+
+
 
     const addCategory = async (data) => {
         const categoryName = data.category;
@@ -43,14 +47,21 @@ const UpdateCategoryForm = ({ category,refetch,setIsEditModalOpen  }) => {
         reset();
         // Uncomment below to send the data to your backend
         axiosSecure.put(`/category/${_id}`, categoryData)
-          .then(res => {
-            console.log(res.data);
-            refetch();
-            setIsEditModalOpen(false)
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    toast.success('Category Update', {
+                        duration: 3000,
+                    });
+                }
+                refetch();
+                setIsEditModalOpen(false)
+            })
+            .catch((error) => {
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
+
+            });
     };
 
     // Handle image change, preview, and file name

@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
 import ManageBannerModal from '../../../Modal/ManageBannerModal';
-import { toast } from 'react-toastify';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const ManageBannerRow = ({ advertisement, refetch }) => {
     const axiosSecure = useAxiosSecure()
-    const { advertisementImage, advertisementDescription, advertisementStatus,_id } = advertisement
-       const [isOpen, setIsOpen] = useState(false)
-    const updateStatus =(selectStatus) =>{
-        if(advertisementStatus === selectStatus) return
-          axiosSecure.patch(`/advertisement/status/${_id}`,{
-            advertisementStatus : selectStatus
-          })
-          .then(res =>{
-             console.log(res.data);
-             refetch()
-             setIsOpen(false)
-             if(res.data.modifiedCount > 0) {
-                toast.success("user Role Change!", { autoClose: 3000 });
-             }
-             
-          })
-          .catch((err) =>{
-            toast.error(`user role error: ${err.message}`, {
-                autoClose: 3000,
-            });
-             setIsOpen(false)
-          })
-         
-    
-      }
-    
+    const { advertisementImage, advertisementDescription, advertisementStatus, _id } = advertisement
+    const [isOpen, setIsOpen] = useState(false)
+    const updateStatus = (selectStatus) => {
+        if (advertisementStatus === selectStatus) return
+        axiosSecure.patch(`/advertisement/status/${_id}`, {
+            advertisementStatus: selectStatus
+        })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    toast.success('banner Advertise Role Change', {
+                        duration: 3000,
+                    });
+                }
+                refetch()
+                setIsOpen(false)
+
+
+            })
+            .catch((error) => {
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
+
+                setIsOpen(false)
+            })
+
+
+    }
+
     return (
         <tbody>
             <tr className='text-neutral'>

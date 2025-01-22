@@ -13,7 +13,7 @@ import {
 } from '@headlessui/react'
 import { BsCheckLg } from 'react-icons/bs'
 import { AiOutlineDown } from 'react-icons/ai'
-const roles = ['Pending', 'Accepted', ]
+const roles = ['Pending', 'Accept', ]
 
 const ManageBannerModal = ({ setIsOpen, isOpen, updateStatus,advertisementStatus }) => {
   const [selected, setSelected] = useState(advertisementStatus)
