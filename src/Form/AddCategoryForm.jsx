@@ -23,7 +23,7 @@ const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Successfully Add Category', {
-                        duration: 3000, 
+                        duration: 3000,
                     });
                 }
                 refetch()
@@ -42,21 +42,12 @@ const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
                     <div className="space-y-6">
                         {/* Category */}
                         <div className="space-y-1 text-sm">
-                            {/* <label htmlFor="category" className="block text-gray-600">
-                                Category
-                            </label> */}
-                            <select
+                            <input
+                                type="text"
                                 {...register("category", { required: "Category is required" })}
-                                className="w-full px-4 py-3 border-primary focus:outline-lime-500 rounded-md bg-gray-50 border"
-                            >
-                                <option disabled selected>
-                                    Who chose Category?
-                                </option>
-                                <option value="Analgesics">Analgesics</option>
-                                <option value="Vitamins">Vitamins</option>
-                                <option value="Antifungals">Antifungals</option>
-                                <option value="Antipyretics">Antipyretics</option>
-                            </select>
+                                className="w-full px-4 py-3 border-black focus:outline-primary rounded-md bg-gray-50 border"
+                                placeholder="Type Category"
+                            />
                             {errors.category && (
                                 <p className="text-red-500 text-sm">{errors.category.message}</p>
                             )}

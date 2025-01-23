@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
-import { Link } from 'react-router-dom';
 import ManageCategoryRow from '../../../components/Dashboard/TableRows/ManageCategoryRow';
 import AddCategoryModal from '../../../Modal/AddCategoryModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 
 const ManageCategory = () => {
     const axiosSecure = useAxiosSecure()
@@ -42,8 +42,7 @@ const ManageCategory = () => {
                 </div>
             </div>
             <table className="table border-collapse border border-gray-300">
-                {
-                    category.length > 0 &&
+                
                     <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
                             <th className='border border-gray-300 px-4 py-2 text-black'>Category Image</th>
@@ -54,8 +53,7 @@ const ManageCategory = () => {
                         </tr>
                     </thead>
 
-                }
-
+            
 
 
                 {

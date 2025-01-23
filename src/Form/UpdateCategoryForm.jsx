@@ -81,19 +81,13 @@ const UpdateCategoryForm = ({ category, refetch, setIsEditModalOpen }) => {
                     <div className="space-y-6">
                         {/* Category */}
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="category" className="block text-gray-600">
-                                Category
-                            </label>
-                            <select
+                            <input
+                                type="text"
                                 defaultValue={categoryName}
                                 {...register("category", { required: "Category is required" })}
-                                className="w-full px-4 my-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md">
-                                <option disabled>Who chose Category?</option>
-                                <option value="Analgesics">Analgesics</option>
-                                <option value="Vitamins">Vitamins</option>
-                                <option value="Antifungals">Antifungals</option>
-                                <option value="Antipyretics">Antipyretics</option>
-                            </select>
+                                className="w-full px-4 py-3 border-black focus:outline-primary rounded-md bg-gray-50 border"
+                                placeholder="Type Category"
+                            />
                             {errors.category && (
                                 <p className="text-red-500 text-sm">{errors.category.message}</p>
                             )}
@@ -126,7 +120,7 @@ const UpdateCategoryForm = ({ category, refetch, setIsEditModalOpen }) => {
 
                                 <label
                                     htmlFor="image"
-                                    className="flex mt-5 sm:w-5/12 w-8/12 text-center items-center gap-2 mb-2 text-sm cursor-pointer bg-lime-500 text-white px-4 py-2 rounded shadow"
+                                    className="flex mt-5 sm:w-5/12 w-8/12 text-center items-center gap-2 mb-2 text-sm cursor-pointer bg-primary text-white px-4 py-2 rounded shadow"
                                 >
                                     <FaDownload /> Upload Image
                                 </label>
@@ -144,7 +138,7 @@ const UpdateCategoryForm = ({ category, refetch, setIsEditModalOpen }) => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="sm:w-5/12 w-8/12 p-2 mt-5 text-center text-sm text-white transition duration-200 rounded shadow-md bg-lime-500"
+                            className="sm:w-5/12 w-8/12 p-2 mt-5 text-center text-sm text-white transition duration-200 rounded shadow-md bg-primary"
                         >
                             Update Category
                         </button>

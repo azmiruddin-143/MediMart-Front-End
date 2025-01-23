@@ -131,16 +131,13 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             <option disabled selected>
               Select a category
             </option>
-            <option value="Analgesics">Analgesics</option>
-            <option value="Antibiotics">Antibiotics</option>
-            <option value="Antiseptics">Antiseptics</option>
-            <option value="Antipyretics">Antipyretics</option>
-            <option value="Antacids">Antacids</option>
-            <option value="Antihistamines">Antihistamines</option>
-            <option value="Antimalarials">Antimalarials</option>
-            <option value="Vitamins">Vitamins</option>
-            <option value="Antifungals">Antifungals</option>
-            <option value="Antiviral">Antiviral</option>
+            <option value="Capsule">Capsule</option>
+            <option value="Syrup">Syrup</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Drops">Drops</option>
+            <option value="Powder">Powder</option>
+            <option value="Injection">Injection</option>
+            <option value="Diabetic">Diabetic</option>
           </select>
           {errors.medicineCategory && <p className="text-red-500 text-sm">{errors.medicineCategory.message}</p>}
         </div>
@@ -157,11 +154,14 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             <option disabled selected>
               Select a company
             </option>
-            <option value="ABC Pharmaceuticals">ABC Pharmaceuticals</option>
-            <option value="XYZ Biotech">XYZ Biotech</option>
-            <option value="MediCare Ltd.">MediCare Ltd.</option>
-            <option value="HealthCare Inc.">HealthCare Inc.</option>
-            <option value="PharmaPlus">PharmaPlus</option>
+            <option value="Renata Limited">Renata Limited</option>
+            <option value="Opsonin Pharma">Opsonin Pharma</option>
+            <option value="ACI Limited">ACI Limited</option>
+            <option value="Beximco Pharma">Beximco Pharma</option>
+            <option value="Square Pharmaceuticals">Square Pharmaceuticals</option>
+            <option value="Opso Saline">Opso Saline</option>
+            <option value="Incepta Pharmaceuticals">Incepta Pharmaceuticals</option>
+            <option value="Aristopharma Limited">Aristopharma Limited</option>
           </select>
           {errors.company && <p className="text-red-500 text-sm">{errors.company.message}</p>}
         </div>

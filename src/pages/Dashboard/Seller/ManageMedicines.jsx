@@ -6,11 +6,12 @@ import ManageMedicineRow from '../../../components/Dashboard/TableRows/ManageMed
 import AddMedicineModal from '../../../Modal/AddMedicineModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../providers/AuthProvider';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 
 const ManageMedicines = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
-     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine'],
         queryFn: async () => {
@@ -38,15 +39,14 @@ const ManageMedicines = () => {
                     <AddMedicineModal
                         isOpen={isEditModalOpen}
                         setIsEditModalOpen={setIsEditModalOpen}
-                        refetch ={refetch}
+                        refetch={refetch}
                     />
 
                 </div>
             </div>
             <table className="table ">
-                {
-                    medicine.length > 0 &&
-                    <thead>
+                
+                    <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
                             <th>Image</th>
                             <th>Name</th>
@@ -56,22 +56,11 @@ const ManageMedicines = () => {
                             <th>Details</th>
                             <th>Update</th>
                             <th>Action</th>
-                            
+
                         </tr>
                     </thead>
 
-                }
-
-                {medicine.length === 0 &&
-                    <div className="flex h-screen justify-center my-5">
-                        <div>
-                            <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                            <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                        </div>
-                    </div>
-                }
-
-
+           
 
                 {
                     medicine.map((medicine, index) =>
@@ -79,6 +68,10 @@ const ManageMedicines = () => {
                     )
                 }
             </table>
+            {medicine.length === 0 &&
+                <NoResultFound></NoResultFound>
+            }
+
         </div>
     );
 };
