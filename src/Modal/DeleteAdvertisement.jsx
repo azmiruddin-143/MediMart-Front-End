@@ -51,13 +51,13 @@ import {
                     <button
                       type='button'
                       onClick={AdvertisementDelete}
-                      className='inline-flex justify-center rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-black '
+                      className='inline-flex justify-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white '
                     >
                       Yes
                     </button>
                     <button
                       type='button'
-                      className='inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-black'
+                      className='inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white'
                       onClick={closeModal}
                     >
                       No

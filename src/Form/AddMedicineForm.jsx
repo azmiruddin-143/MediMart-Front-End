@@ -66,7 +66,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             type="text"
             id="medicineName"
             {...register("medicineName", { required: "Medicine Name is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="Enter medicine name"
           />
           {errors.medicineName && <p className="text-red-500 text-sm">{errors.medicineName.message}</p>}
@@ -81,7 +81,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             type="text"
             id="genericName"
             {...register("genericName", { required: "Generic Name is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="Enter generic name"
           />
           {errors.genericName && <p className="text-red-500 text-sm">{errors.genericName.message}</p>}
@@ -95,7 +95,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
           <textarea
             id="shortDescription"
             {...register("shortDescription", { required: "Description is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="Enter a short description"
           ></textarea>
           {errors.shortDescription && <p className="text-red-500 text-sm">{errors.shortDescription.message}</p>}
@@ -107,7 +107,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             Upload Medicine Image
           </label>
           <div className="flex items-center gap-2">
-            <FaCloudUploadAlt className="text-2xl text-lime-500" />
+            <FaCloudUploadAlt className="text-2xl text-primary" />
             <input
               type="file"
               id="medicineImage"
@@ -126,7 +126,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
           </label>
           <select
             {...register("medicineCategory", { required: "Category is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
           >
             <option disabled selected>
               Select a category
@@ -149,7 +149,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
           </label>
           <select
             {...register("company", { required: "Company is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
           >
             <option disabled selected>
               Select a company
@@ -175,7 +175,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             type="text"
             id="medicineMassUnit"
             {...register("medicineMassUnit", { required: "Mass Unit is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="e.g., 500 Mg or 200 ML"
           />
           {errors.medicineMassUnit && <p className="text-red-500 text-sm">{errors.medicineMassUnit.message}</p>}
@@ -190,7 +190,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             type="number"
             id="perUnitPrice"
             {...register("perUnitPrice", { required: "Price is required" })}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="Enter price per unit"
           />
           {errors.perUnitPrice && <p className="text-red-500 text-sm">{errors.perUnitPrice.message}</p>}
@@ -205,7 +205,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
             type="number"
             id="discountPercentage"
             {...register("discountPercentage")}
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
             placeholder="Enter discount percentage (optional)"
           />
         </div>
@@ -213,7 +213,7 @@ const AddMedicineForm = ({ setIsEditModalOpen, refetch }) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 text-white bg-lime-500 rounded-md hover:bg-lime-600 transition duration-200"
+          className="w-full py-3 text-white bg-primary rounded-md "
         >
           Add Medicine
         </button>

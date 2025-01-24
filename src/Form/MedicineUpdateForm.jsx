@@ -79,7 +79,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         defaultValue={medicineName}
                         id="medicineName"
                         {...register("medicineName", { required: "Medicine Name is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="Enter medicine name"
                     />
                     {errors.medicineName && <p className="text-red-500 text-sm">{errors.medicineName.message}</p>}
@@ -95,7 +95,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         defaultValue={genericName}
                         id="genericName"
                         {...register("genericName", { required: "Generic Name is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="Enter generic name"
                     />
                     {errors.genericName && <p className="text-red-500 text-sm">{errors.genericName.message}</p>}
@@ -110,7 +110,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         id="shortDescription"
                         defaultValue={shortDescription}
                         {...register("shortDescription", { required: "Description is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="Enter a short description"
                     ></textarea>
                     {errors.shortDescription && <p className="text-red-500 text-sm">{errors.shortDescription.message}</p>}
@@ -133,7 +133,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                             />
                             <label
                                 htmlFor="medicineImage"
-                                className="flex w-5/12 items-center gap-2 cursor-pointer bg-lime-500 text-white py-2 px-4 rounded-md hover:bg-lime-600"
+                                className="flex w-5/12 items-center gap-2 cursor-pointer bg-primary text-white py-2 px-4 rounded-md hover:bg-primary"
                             >
                                 <FaCloudUploadAlt className="text-xl" />
                                 Choose File
@@ -173,7 +173,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                     <select
                         defaultValue={medicineCategory}
                         {...register("medicineCategory", { required: "Category is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                     >
                         <option disabled selected>
                             Select a category
@@ -200,7 +200,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                     <select
                         defaultValue={company}
                         {...register("company", { required: "Company is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                     >
                         <option disabled selected>
                             Select a company
@@ -225,7 +225,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         defaultValue={medicineMassUnit}
                         id="medicineMassUnit"
                         {...register("medicineMassUnit", { required: "Mass Unit is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="e.g., 500 Mg or 200 ML"
                     />
                     {errors.medicineMassUnit && <p className="text-red-500 text-sm">{errors.medicineMassUnit.message}</p>}
@@ -241,7 +241,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         defaultValue={perUnitPrice}
                         id="perUnitPrice"
                         {...register("perUnitPrice", { required: "Price is required" })}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="Enter price per unit"
                     />
                     {errors.perUnitPrice && <p className="text-red-500 text-sm">{errors.perUnitPrice.message}</p>}
@@ -257,7 +257,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                         defaultValue={discountPercentage}
                         id="discountPercentage"
                         {...register("discountPercentage")}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-lime-500"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-primary"
                         placeholder="Enter discount percentage (optional)"
                     />
                 </div>
@@ -266,7 +266,7 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full py-3 text-white bg-lime-500 rounded-md hover:bg-lime-600 transition duration-200"
+                    className="w-full py-3 text-white bg-primary rounded-md "
                 >
                     Update Medicine
                 </button>

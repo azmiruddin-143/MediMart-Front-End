@@ -22,17 +22,17 @@ const ManageMedicines = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto max-w-7xl mx-auto my-10 ">
+        <div className=" overflow-x-auto container mx-auto my-10 ">
             <div className='flex justify-between mb-8'>
-                <h1>(All Category {medicine.length})</h1>
+                <h1 className='text-xl'>(All Medicine <span className='text-primary font-bold'>{medicine.length}</span>)</h1>
                 <div>
                     <span
                         onClick={() => setIsEditModalOpen(true)}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0 bg-green-700 opacity-50 rounded-full'
+                            className='absolute inset-0 bg-primary  rounded-full'
                         ></span>
                         <span className='relative'>Add Medicine</span>
                     </span>
@@ -48,14 +48,14 @@ const ManageMedicines = () => {
                 
                     <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Generic</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Details</th>
-                            <th>Update</th>
-                            <th>Action</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Name</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Generic</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Description</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Category</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Details</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Modified</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black text-end'>Action</th>
 
                         </tr>
                     </thead>

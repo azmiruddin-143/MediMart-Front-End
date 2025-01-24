@@ -7,13 +7,12 @@ const PaymentManagementRow = ({ payment, refetch, }) => {
     const { price, email, _id, transactionId, status, name, image, menuItemIds, date } = payment
     const axiosSecure = useAxiosSecure()
 
-    const dateFromMongoDB = date; // MongoDB theke asha date
-    const dateObject = new Date(dateFromMongoDB); // ISO string ke Date object e convert
+    const dateFromMongoDB = date; 
+    const dateObject = new Date(dateFromMongoDB); 
     
-    // MM/DD/YYYY format e convert
     const formattedDate = `${dateObject.getMonth() + 1}/${dateObject.getDate()}/${dateObject.getFullYear()}`;
     
-    // console.log(formattedDate); // Output: 1/20/2025
+   
 
     const acceptPayment = () => {
         axiosSecure.put(`/payment-status/${_id}`, { status: "Paid" })
@@ -61,7 +60,7 @@ const PaymentManagementRow = ({ payment, refetch, }) => {
                     </div>
                 </td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{email}</td>
-                <td className='text-neutral border border-gray-300 px-4 py-2'>{price}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{price}$</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{menuItemIds.length}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{transactionId}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{formattedDate}</td>

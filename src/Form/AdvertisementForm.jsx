@@ -47,7 +47,7 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
                   id="image"
                   {...register("image", { required: "Image is required" })}
                   accept="image/*"
-                  className="file:btn file:btn-sm file:bg-blue-500 file:text-white file:rounded file:border-0 file:cursor-pointer"
+                  className="file:btn file:btn-sm file:bg-primary file:text-white file:rounded file:border-0 file:cursor-pointer"
                 />
                 {errors.image && (
                   <p className="text-red-500 text-sm">{errors.image.message}</p>
@@ -64,7 +64,7 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-lime-500"
+              className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-primary"
             >
               Add Advertisement
             </button>

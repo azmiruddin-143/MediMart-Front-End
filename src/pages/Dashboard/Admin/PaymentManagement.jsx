@@ -2,9 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
-import { Link } from 'react-router-dom';
 import PaymentManagementRow from '../../../components/Dashboard/TableRows/PaymentManagementRow';
-import NoWorkResult_ from 'postcss/lib/no-work-result';
 import NoResultFound from '../../../components/Shared/NoResultFound';
 
 const PaymentManagement = () => {

@@ -5,8 +5,9 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaEye } from 'react-icons/fa';
 import ManageMedicineDetailsModal from '../../../Modal/ManageMedicineDetailsModal';
 import toast from 'react-hot-toast';
+import { GiClick } from 'react-icons/gi';
 
-const ManageMedicineRow = ({ medicine,  refetch }) => {
+const ManageMedicineRow = ({ medicine, refetch }) => {
     const axiosSecure = useAxiosSecure()
     const { medicineName, discountPercentage, perUnitPrice, medicineMassUnit, company, medicineImage, medicineCategory, genericName, shortDescription, _id } = medicine
     let [isOpen, setIsOpen] = useState(false)
@@ -24,9 +25,9 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
             .then(res => {
                 if (res.data.deletedCount > 0) {
                     toast.success('Medicine deleted successfully!', {
-                        duration: 3000, 
+                        duration: 3000,
                     });
-                }    
+                }
                 refetch()
                 setIsOpen(false)
             })
@@ -41,7 +42,7 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
     return (
         <tbody>
             <tr className='text-neutral'>
-                <th className='flex  text-neutral items-center gap-5'>
+                <th className='border border-gray-300 px-4 py-2'>
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
@@ -51,20 +52,20 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
                     </div>
                 </th>
 
-                <td className='text-neutral'>{medicineName}</td>
-                <td className='text-neutral'>{genericName}</td>
-                <td className='text-neutral'>{shortDescription}</td>
-                <td className='text-neutral'>{medicineCategory}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{medicineName}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{genericName}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{shortDescription}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{medicineCategory}</td>
 
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                <td className='border border-gray-300 px-4 py-2'>
                     <span
                         onClick={() => { setIsDetailsModalOpen(true) }}
-                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
 
                         <span
                             aria-hidden='true'
-                            className='absolute inset-0  bg-primary text-white rounded-full'
+                            className='absolute inset-0  bg-primary  rounded-full'
                         ></span>
                         <div className='flex items-center gap-2'>
                             <span className='relative '>Details</span>
@@ -77,18 +78,21 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
                         setIsDetailsModalOpen={setIsDetailsModalOpen}
                         medicine={medicine}
                         refetch={refetch}
-                    
+
                     />
                 </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                <td className='border border-gray-300 px-4 py-2'>
                     <span
                         onClick={() => { setIsEditModalOpen(true) }}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                     >
-                        <span aria-hidden='true' className='absolute inset-0 bg-green-200 opacity-50 rounded-full'>
+                        <span aria-hidden='true' className='absolute inset-0 bg-primary  rounded-full'>
 
                         </span>
-                        <span className='relative'>Update</span>
+                        <div className='flex'>
+                            <span className='relative'>Update</span>
+                            <GiClick className=' relative text-lg' />
+                        </div>
                     </span>
                     <MedicineupdateModal
                         isOpen={isEditModalOpen}
@@ -97,17 +101,23 @@ const ManageMedicineRow = ({ medicine,  refetch }) => {
                         medicine={medicine}
                     />
                 </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                    <span
-                        onClick={openModal}
-                        className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-                    >
+                <td className='border border-gray-300 px-4 py-2'>
+                    <div className='flex justify-end'>
                         <span
-                            aria-hidden='true'
-                            className='absolute inset-0 bg-red-200 opacity-50 rounded-full'
-                        ></span>
-                        <span className='relative'>Delete</span>
-                    </span>
+                            onClick={openModal}
+                            className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                        >
+                            <span
+                                aria-hidden='true'
+                                className='absolute inset-0 bg-black  rounded-full'
+                            ></span>
+                            <div className='flex'>
+                                <span className='relative'>Delete</span>
+                                <GiClick className=' relative text-lg' />
+                            </div>
+
+                        </span>
+                    </div>
                     <DeleteMedicine isOpen={isOpen} madicineyDelete={madicineyDelete} closeModal={closeModal} />
                 </td>
             </tr>

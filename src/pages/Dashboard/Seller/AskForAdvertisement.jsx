@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Advertisementrow from '../../../components/Dashboard/TableRows/advertisementrow';
 import AdvertisementModal from '../../../Modal/AdvertisementModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 const AskForAdvertisement = () => {
     const axiosSecure = useAxiosSecure()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -20,61 +21,56 @@ const AskForAdvertisement = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto max-w-5xl mx-auto my-10 ">
-        <div className='flex justify-between mb-8'>
-            <h1>(All Advertisement {advertisement.length})</h1>
-            <div>
-                <span
-                    onClick={() => setIsEditModalOpen(true)}
-                    className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
-                >
+        <div className=" overflow-x-auto container mx-auto my-5 ">
+            <div className='sm:flex  justify-between mb-8'>
+                <h1 className='text-xl mb-4 sm:mb-0'>(All Advertisement <span className='text-primary font-bold'>{advertisement.length}</span>)</h1>
+                <div>
                     <span
-                        aria-hidden='true'
-                        className='absolute inset-0 bg-green-700 opacity-50 rounded-full'
-                    ></span>
-                    <span className='relative'>Add Advertisement</span>
-                </span>
-                <AdvertisementModal
-                    isOpen={isEditModalOpen}
-                    setIsEditModalOpen={setIsEditModalOpen}
-                    refetch ={refetch}
-                />
-                {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
+                        onClick={() => setIsEditModalOpen(true)}
+                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
+                    >
+                        <span
+                            aria-hidden='true'
+                            className='absolute inset-0 bg-primary  rounded-full'
+                        ></span>
+                        <span className='relative'>Add Advertisement</span>
+                    </span>
+                    <AdvertisementModal
+                        isOpen={isEditModalOpen}
+                        setIsEditModalOpen={setIsEditModalOpen}
+                        refetch={refetch}
+                    />
+                    {/* <button className='bg-slate-600 py-2 px-5 rounded-md text-white'>  Add category</button> */}
+                </div>
             </div>
-        </div>
-        <table className="table ">
-            {
-                advertisement.length > 0 &&
-                <thead>
+            <table className="table ">
+
+                <thead className='bg-primary'>
                     <tr className='text-lg text-neutral'>
-                        <th>Image</th>
-                        <th>Descrption</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Descrption</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Status</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black text-end'>Action</th>
                     </tr>
                 </thead>
 
-            }
+
+
+
+
+
+
+                {
+                    advertisement.map((advertisement, index) =>
+                        <Advertisementrow advertisement={advertisement} key={advertisement?._id} refetch={refetch} index={index} ></Advertisementrow>
+                    )
+                }
+            </table>
 
             {advertisement.length === 0 &&
-                <div className="flex h-screen justify-center my-5">
-                    <div>
-                        <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                        <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                    </div>
-                </div>
+                <NoResultFound></NoResultFound>
             }
-
-
-
-
-            {
-                advertisement.map((advertisement, index) =>
-                    <Advertisementrow advertisement={advertisement} key={advertisement?._id} refetch={refetch} index={index} ></Advertisementrow>
-                )
-            }
-        </table>
-    </div>
+        </div>
     );
 };
 

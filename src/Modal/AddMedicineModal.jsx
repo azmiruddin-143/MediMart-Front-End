@@ -45,7 +45,7 @@ const AddMedicineModal = ({ setIsEditModalOpen, isOpen,refetch }) => {
                   as='h3'
                   className='text-lg font-medium text-center leading-6 text-gray-900'
                 >
-                  Add Medicine
+                 
                 </DialogTitle>
                 <div className='mt-2 w-full'>
                   <AddMedicineForm setIsEditModalOpen ={setIsEditModalOpen} refetch ={refetch} />
@@ -54,7 +54,7 @@ const AddMedicineModal = ({ setIsEditModalOpen, isOpen,refetch }) => {
                 <div className='mt-2 '>
                   <button
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white'
                     onClick={() => setIsEditModalOpen(false)}
                   >
                     Cancel
