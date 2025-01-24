@@ -17,7 +17,7 @@ const DiscountProducts = () => {
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine-percent'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/medicine-percent');
+            const { data } = await axios.get('https://medi-mart-server-opal.vercel.app/medicine-percent');
             return data;
         }
     });

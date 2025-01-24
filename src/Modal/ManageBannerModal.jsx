@@ -52,7 +52,7 @@ const ManageBannerModal = ({ setIsOpen, isOpen, updateStatus,advertisementStatus
                   as='h3'
                   className='text-lg font-medium text-center leading-6 text-gray-900'
                 >
-                  Update User Role
+                  Update Banner Role
                 </DialogTitle>
                 <div className='mt-4 w-full'>
                   <Listbox value={selected} onChange={setSelected}>
@@ -110,13 +110,13 @@ const ManageBannerModal = ({ setIsOpen, isOpen, updateStatus,advertisementStatus
                   <button
                     onClick={() => updateStatus(selected)}
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white '
                   >
                     Update
                   </button>
                   <button
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white '
                     onClick={() => setIsOpen(false)}
                   >
                     Cancel

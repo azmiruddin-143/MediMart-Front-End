@@ -19,7 +19,7 @@ const Banner = () => {
     const { data: banner = [], isLoading, } = useQuery({
         queryKey: ['acceptad-advertisement'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/acceptad-advertisement');
+            const { data } = await axios.get('https://medi-mart-server-opal.vercel.app/acceptad-advertisement');
             return data;
         }
     });

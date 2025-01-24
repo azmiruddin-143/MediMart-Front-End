@@ -3,12 +3,14 @@ import SalesReportRow from './SalesReportRow';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const SalesReport = () => {
+    const axiosSecure = useAxiosSecure()
     const { data: report = [], isLoading, refetch } = useQuery({
         queryKey: ['report'],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/all-payments`);
+            const { data } = await axiosSecure.get(`/all-payments`);
             return data;
         },
        

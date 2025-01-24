@@ -29,7 +29,7 @@ const DiscountProductRow = ({ medicine }) => {
 
             }
 
-            axios.post('http://localhost:5000/carts', cartsInfo)
+            axios.post('https://medi-mart-server-opal.vercel.app/carts', cartsInfo)
                 .then(res => {
                     console.log(res.data);
                     cartRefetch()

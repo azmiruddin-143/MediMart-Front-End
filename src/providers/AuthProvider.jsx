@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
                 const userInfo = {
                     email: currentUser?.email
                 }
-                axios.post('http://localhost:5000/jwt', userInfo)
+                axios.post('https://medi-mart-server-opal.vercel.app/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem("access-token", res.data.token)

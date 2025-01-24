@@ -5,6 +5,7 @@ import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import ManageBannerRow from '../../../components/Dashboard/TableRows/ManageBannerRow';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 const ManageBanner = () => {
     const axiosSecure = useAxiosSecure()
     const { data: advertisement = [], isLoading, refetch } = useQuery({
@@ -17,44 +18,36 @@ const ManageBanner = () => {
 
     if (isLoading) return <LoadingSpinner />;
     return (
-        <div className=" overflow-x-auto max-w-5xl mx-auto my-10 ">
+        <div className=" overflow-x-auto container mx-auto my-10 ">
             <div className='flex justify-between mb-8'>
-                <h1>(All Advertisement request {advertisement.length})</h1>
+                <h1 className='text-xl'>(All Advertisement request <span className='text-primary font-bold'>{advertisement.length}</span>)</h1>
 
             </div>
             <table className="table ">
-                {
-                    advertisement.length > 0 &&
-                    <thead>
+               
+                    <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
-                            <th>Image</th>
-                            <th>Descrption</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Banner Image</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Short Descrption</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Status</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Action</th>
 
                         </tr>
                     </thead>
 
-                }
-
-                {advertisement.length === 0 &&
-                    <div className="flex h-screen justify-center my-5">
-                        <div>
-                            <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                            <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                        </div>
-                    </div>
-                }
-
-
-
-
+              
+     
                 {
                     advertisement.map((advertisement, index) =>
                         <ManageBannerRow advertisement={advertisement} key={advertisement?._id} refetch={refetch} index={index} ></ManageBannerRow>
                     )
                 }
             </table>
+
+            {
+                advertisement.length === 0 &&
+                <NoResultFound></NoResultFound>
+            }
         </div>
     );
 };

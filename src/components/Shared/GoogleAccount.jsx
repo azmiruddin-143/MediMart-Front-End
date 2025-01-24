@@ -19,7 +19,7 @@ const GoogleAccount = () => {
                     userPhoto: result.user?.photoURL,
                     userRole: "User"
                 }
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)
                     .then(result => {
                         console.log(result.data);
                         navigate('/')

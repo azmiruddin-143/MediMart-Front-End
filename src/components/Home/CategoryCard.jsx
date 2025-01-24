@@ -10,7 +10,7 @@ const CategoryCard = () => {
     const { data: category = [], isLoading, } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/category');
+            const { data } = await axios.get('https://medi-mart-server-opal.vercel.app/category');
             return data;
         }
     });

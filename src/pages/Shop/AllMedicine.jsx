@@ -15,7 +15,7 @@ const AllMedicine = () => {
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine', search, sort, currentPage],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/medicine?search=${search}&sort=${sort}`);
+            const { data } = await axios.get(`https://medi-mart-server-opal.vercel.app/medicine?search=${search}&sort=${sort}`);
             return data;
         },
     });

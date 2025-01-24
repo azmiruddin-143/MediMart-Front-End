@@ -25,8 +25,7 @@ const ManageUsers = () => {
 
             </div>
             <table className="table border-collapse border border-gray-300">
-                {
-                    users.length > 0 &&
+             
                     <thead className='bg-primary '>
                         <tr className='text-lg text-neutral'>
                             <th className='border border-gray-300 px-4 py-2 text-black'>User Image</th>
@@ -38,7 +37,7 @@ const ManageUsers = () => {
                         </tr>
                     </thead>
 
-                }
+             
 
 
                 {

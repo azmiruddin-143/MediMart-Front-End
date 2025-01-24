@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import PaymentManagementRow from '../../../components/Dashboard/TableRows/PaymentManagementRow';
+import NoWorkResult_ from 'postcss/lib/no-work-result';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 
 const PaymentManagement = () => {
     const axiosSecure = useAxiosSecure()
@@ -19,38 +21,29 @@ const PaymentManagement = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className=" overflow-x-auto max-w-7xl mx-auto my-10 ">
+        <div className=" overflow-x-auto container mx-auto my-5 ">
             <div className='flex justify-between mb-8'>
-                <h1>( All Order {payment.length} )</h1>
+                <h1 className='text-xl'>( All Order <span className='text-primary font-bold' >{payment.length}</span> )</h1>
                
             </div>
             <table className="table ">
-                {
-                    payment.length > 0 &&
-                    <thead>
+                
+                    <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
                             {/* <th>Image</th> */}
-                            <th className='text-start' >Name</th>
-                            <th>Email</th>
-                            <th>Price</th>
-                            <th>Item</th>
-                            <th>Transaction</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th className='text-end'>Action</th>
+                            <th className='text-start border border-gray-300 text-black ' >Medicine Name</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Buyer Email</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Total Price</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Total Item</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Transaction</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Date</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black'>Status</th>
+                            <th className='text-end border border-gray-300 text-black px-4 py-2'>Action</th>
                         </tr>
                     </thead>
 
-                }
+              
 
-                {payment.length === 0 &&
-                    <div className="flex h-screen justify-center my-5">
-                        <div>
-                            <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                            <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                        </div>
-                    </div>
-                }
 
                 {
                     payment.map((payment, index) =>
@@ -58,6 +51,11 @@ const PaymentManagement = () => {
                     )
                 }
             </table>
+
+            {
+                payment.length === 0 &&
+                <NoResultFound></NoResultFound>
+            }
         </div>
     );
 };

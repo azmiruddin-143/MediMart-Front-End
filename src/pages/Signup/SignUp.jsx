@@ -35,7 +35,7 @@ const SignUp = () => {
                                 userRole: role
                             };
 
-                            axios.post('http://localhost:5000/users',userInfo)
+                            axios.post('https://medi-mart-server-opal.vercel.app/users',userInfo)
                             .then(res =>{
                                 console.log(res.data);
                             })

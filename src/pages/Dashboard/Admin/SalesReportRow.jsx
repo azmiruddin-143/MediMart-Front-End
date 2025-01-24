@@ -6,9 +6,15 @@ const SalesReportRow = ({ data }) => {
     const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
     // Handle Search
-    const filteredData = data.filter((item) =>
-        item.email.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredData = data.filter((item) => {
+        const query = searchQuery.toLowerCase();
+        return (
+            item.email.toLowerCase().includes(query) || // Buyer Email ফিল্টার
+            item.sellerEmail.some((seller) => seller.toLowerCase().includes(query)) || // Seller Email ফিল্টার
+            item.name.some((name) => name.toLowerCase().includes(query)) || // Name ফিল্টার
+            item.price.toString().includes(query) // Price ফিল্টার
+        );
+    });
 
     // Handle Sorting
     const sortedData = [...filteredData].sort((a, b) => {
@@ -60,25 +66,25 @@ const SalesReportRow = ({ data }) => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto p-5">
-            <div className="flex justify-between items-center mb-5">
+        <div className="container mx-auto p-5">
+            <div className="md:flex justify-between items-center mb-5">
                 {/* Search Bar */}
                 <input
                     type="text"
-                    placeholder="Search by email..."
-                    className="p-2 border rounded-md w-1/3"
+                    placeholder="Search Email, Name, or Price..."
+                    className="p-2 border rounded-md w-full md:w-1/3 my-3"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
 
                 {/* Sort Dropdown */}
                 <select
-                    className="p-2 border rounded-md"
+                    className="p-2 border rounded-md w-full md:w-1/3 lg:w-[25%] xl:w-[17%] my-4"
                     onChange={(e) => handleDropdownSort(e.target.value)}
                 >
                     <option value="asc">Sort by Price</option>
-                    <option value="asc">Sort by Price: Ascending</option>
-                    <option value="desc">Sort by Price: Descending</option>
+                    <option value="asc">Sort by Ascending</option>
+                    <option value="desc">Sort by Descending</option>
                 </select>
 
                 {/* PDF Download */}
