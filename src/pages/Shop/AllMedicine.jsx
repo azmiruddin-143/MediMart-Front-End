@@ -11,7 +11,7 @@ const AllMedicine = () => {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3; // Number of items per page
+    const itemsPerPage = 6; // Number of items per page
 
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine', search, sort, currentPage],
@@ -67,22 +67,22 @@ const AllMedicine = () => {
             </div>
 
             <table className="table border-collapse border border-gray-300">
-                
-                    <thead className='bg-primary'>
-                        <tr className='text-lg text-neutral'>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Name</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Generic</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Category</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Company</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Price</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Details</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black text-end'>Cart</th>
-                        </tr>
-                    </thead>
-             
 
-              
+                <thead className='bg-primary'>
+                    <tr className='text-lg text-neutral'>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Name</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Generic</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Category</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Company</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Price</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Details</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black text-end'>Cart</th>
+                    </tr>
+                </thead>
+
+
+
 
                 {paginatedData.map((medicine, index) => (
                     <AllMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} />
@@ -95,31 +95,34 @@ const AllMedicine = () => {
             }
 
             {/* Pagination */}
-            <div className='sm:flex justify-center items-center mt-8'>
-                <button
-                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === 1 ? 'bg-gray-200' : 'bg-primary'}`}
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                >
-                    <SlArrowLeft />
-                </button>
-                {[...Array(totalPages)].map((_, i) => (
+            {
+                paginatedData.length > 0 &&
+                <div className='sm:flex justify-center items-center mt-8'>
                     <button
-                        key={i}
-                        className={`px-4 py-2 mx-1 rounded-md ${currentPage === i + 1 ? 'bg-primary text-black' : 'bg-gray-200'}`}
-                        onClick={() => handlePageChange(i + 1)}
+                        className={`px-2 py-3 mx-1 rounded-md ${currentPage === 1 ? 'bg-gray-200' : 'bg-primary'}`}
+                        disabled={currentPage === 1}
+                        onClick={() => handlePageChange(currentPage - 1)}
                     >
-                        {i + 1}
+                        <SlArrowLeft />
                     </button>
-                ))}
-                <button
-                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-primary'}`}
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                >
-                    <SlArrowRight />
-                </button>
-            </div>
+                    {[...Array(totalPages)].map((_, i) => (
+                        <button
+                            key={i}
+                            className={`px-4 py-2 mx-1 rounded-md ${currentPage === i + 1 ? 'bg-primary text-black' : 'bg-gray-200'}`}
+                            onClick={() => handlePageChange(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                    <button
+                        className={`px-2 py-3 mx-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-primary'}`}
+                        disabled={currentPage === totalPages}
+                        onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                        <SlArrowRight />
+                    </button>
+                </div>
+            }
         </div>
     );
 };
