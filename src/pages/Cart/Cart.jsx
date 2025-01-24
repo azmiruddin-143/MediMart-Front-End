@@ -5,6 +5,7 @@ import LoadingSpinner from '../../components/Shared/LoadingSpinner';
 import CartRow from '../../components/Dashboard/TableRows/CartRow';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../providers/AuthProvider';
+import NoResultFound from '../../components/Shared/NoResultFound';
 const Cart = () => {
     const { user } = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
@@ -37,11 +38,13 @@ const Cart = () => {
 
     return (
         <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
-            <div className='flex justify-end mb-8'>
-                <button onClick={clearAllCarts} className='bg-primary text-white py-2 px-6 rounded-md ' >Clear All </button>
+            {
+                cart.length > 0 &&
+                <div className='flex justify-end mb-8'>
+                    <button onClick={clearAllCarts} className='bg-primary text-white py-2 px-6 rounded-md ' >Clear All </button>
 
-
-            </div>
+                </div>
+            }
 
             <div className='lg:flex items-center gap-5 ' >
                 <table className="table ">
@@ -61,15 +64,6 @@ const Cart = () => {
 
                     }
 
-                    {cart.length === 0 &&
-                        <div className="flex h-screen justify-center my-5">
-                            <div>
-                                <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                                <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                            </div>
-                        </div>
-                    }
-
 
 
                     {
@@ -78,6 +72,12 @@ const Cart = () => {
                         )
                     }
                 </table>
+                <div className='absolute top-28 right-5'>
+                    {
+                        cart.length === 0 &&
+                        <NoResultFound></NoResultFound>
+                    }
+                </div>
 
                 {
                     cart.length > 0 &&
@@ -92,7 +92,7 @@ const Cart = () => {
                             </div>
                         </div>
 
-                         
+
                         <Link to={'/chekout'} >
 
                             <button

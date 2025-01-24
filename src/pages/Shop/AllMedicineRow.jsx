@@ -12,12 +12,12 @@ import useCart from '../../hooks/useCart';
 import useRole from '../../hooks/useRole';
 const AllMedicineRow = ({ medicine, index, refetch }) => {
     const { medicineName, genericName, shortDescription,
-        sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
+        sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice,  discountPercentage, _id } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
-     const [,,cartRefetch] = useCart()
-     const {role} = useRole()
+    const [, , cartRefetch] = useCart()
+    const { role } = useRole()
     const cartMedicine = () => {
 
         if (user && user?.email) {
@@ -26,7 +26,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                 email: user?.email,
                 name: medicineName,
                 image: medicineImage,
-                sellerEmail:sellerEmail,
+                sellerEmail: sellerEmail,
                 company: company,
                 perUnitPrice: perUnitPrice,
                 quantity: 1
@@ -66,6 +66,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                 <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'>{genericName} </td>
                 <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {medicineCategory}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {company}</td>
+                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {perUnitPrice}$</td>
 
                 <td className='px-5 py-5 border-b border-gray-300  text-sm border   cursor-pointer '>
                     <span
@@ -88,13 +89,15 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
                         setIsEditModalOpen={setIsEditModalOpen}
                         medicine={medicine}
                         refetch={refetch}
-                        cartMedicine ={cartMedicine}
+                        cartMedicine={cartMedicine}
                     />
                 </td>
                 <td className=' border border-gray-300 px-4 py-2 cursor-pointer' >
-                    <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
-                        Select <IoMdCart className='text-lg' />
-                    </button>
+                    <div className='flex justify-end'>
+                        <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
+                            Select <IoMdCart className='text-lg' />
+                        </button>
+                    </div>
 
                 </td>
 

@@ -7,19 +7,20 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../providers/AuthProvider';
 import ChekOutRow from '../../components/Dashboard/TableRows/ChekOutRow';
 import Payment from '../Dashboard/Payment/Payment';
+import NoResultFound from '../../components/Shared/NoResultFound';
 const ChekOut = () => {
-   const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
     const [totalPrice, setTotalPrice] = useState(0);
     const axiosSecure = useAxiosSecure();
-        axiosSecure.get(`/carts/total?email=${user?.email}`)
-            .then((res) => {
-                setTotalPrice(res.data.totalPrice);
-                cartRefetch()
-            })
-            .catch((error) => {
-                console.error("Error fetching total:", error);
-            });
+    axiosSecure.get(`/carts/total?email=${user?.email}`)
+        .then((res) => {
+            setTotalPrice(res.data.totalPrice);
+            cartRefetch()
+        })
+        .catch((error) => {
+            console.error("Error fetching total:", error);
+        });
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -38,20 +39,21 @@ const ChekOut = () => {
     // }
     return (
         <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
-       <div className='text-center mb-8'>
-                
-                <h1 className='text-5xl' >ChekOut</h1>
+            <div className='text-center mb-8'>
+
+                <h1 className='xl:text-5xl  sm:text-3xl md:text-4xl text-xl text-primary font-bold' >ChekOut</h1>
 
             </div>
 
             <div className='lg:flex items-center gap-5 ' >
                 <table className="table ">
+
                     {
                         cart.length > 0 &&
                         <thead>
                             <tr className='text-lg uppercase  text-neutral'>
-                                <th></th>
-                                <th>Name5</th>
+                                <th>Image</th>
+                                <th>Name</th>
                                 <th>Company</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
@@ -59,17 +61,8 @@ const ChekOut = () => {
 
                             </tr>
                         </thead>
-
                     }
 
-                    {cart.length === 0 &&
-                        <div className="flex h-screen justify-center my-5">
-                            <div>
-                                <h1 className='text-4xl py-3 text-neutral'>No Data Found ?</h1>
-                                <Link to={'/allfoods'} > <button className='py-2 my-3 px-6 bg-primary-content text-primary rounded-md'>Purchase Food</button> </Link>
-                            </div>
-                        </div>
-                    }
 
 
 
@@ -79,11 +72,17 @@ const ChekOut = () => {
                         )
                     }
                 </table>
+                <div className='absolute top-28 right-5'>
+                    {
+                        cart.length === 0 &&
+                        <NoResultFound></NoResultFound>
+                    }
+                </div>
 
                 {
                     cart.length > 0 &&
                     <div className="lg:w-[50%]  mx-auto border rounded-lg p-6 shadow-md bg-white">
-                        <h2 className="text-xl font-bold mb-4">CART TOTALS {cart.length}</h2>
+                        <h2 className="text-xl font-bold mb-4">CART TOTALS <span className='text-primary font-bold'>{cart.length}</span></h2>
 
 
                         <div className="border-b pb-4 mb-4">
@@ -95,12 +94,12 @@ const ChekOut = () => {
 
                         <Payment></Payment>
 
-                        <button
-                            
+                        {/* <button
+
                             className="w-full bg-primary text-white py-3 rounded-lg text-center font-medium transition duration-300"
                         >
                             Order Now
-                        </button>
+                        </button> */}
                     </div>
                 }
 

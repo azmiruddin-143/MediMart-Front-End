@@ -131,8 +131,8 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button className="btn btn-sm btn-primary my-4" type="submit" >
-                Pay
+            <button className="w-full bg-primary text-black font-bold py-3 mt-6 rounded-lg text-center" type="submit" >
+            Make Payment
             </button>
             <p className="text-red-600">{error}</p>
             {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}

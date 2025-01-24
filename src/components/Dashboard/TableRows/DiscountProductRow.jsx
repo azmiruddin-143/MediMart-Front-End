@@ -55,7 +55,7 @@ const DiscountProductRow = ({ medicine }) => {
                             src={medicineImage}
                             className="w-full h-72 rounded-md object-cover mb-4"
                         />
-                        <div class="absolute text-white top-2 right-2 bg-primary rounded-full p-1 shadow">
+                        <div class="absolute text-black top-2 font-bold right-2 bg-primary rounded-full p-1 shadow">
                             <h1>{discountPercentage}%</h1>
                         </div>
                     </div>
@@ -67,12 +67,12 @@ const DiscountProductRow = ({ medicine }) => {
                         <div className=' py-5 border-b border-gray-200 bg-white text-sm'>
                             <span
                                 onClick={() => { setIsEditModalOpen(true) }}
-                                className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-white leading-tight'
+                                className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
                             >
 
                                 <span
                                     aria-hidden='true'
-                                    className='absolute inset-0  bg-primary text-white rounded-full'
+                                    className='absolute inset-0  bg-primary black rounded-full'
                                 ></span>
                                 <div className='flex items-center gap-2'>
                                     <span className='relative '>Details</span>
@@ -90,7 +90,7 @@ const DiscountProductRow = ({ medicine }) => {
                             />
                         </div>
                         <div className='flex justify-end items-center' >
-                            <button  disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-white text-end flex items-center justify-center'>
+                            <button  disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
                                 Select <IoMdCart className='text-lg' />
                             </button>
 

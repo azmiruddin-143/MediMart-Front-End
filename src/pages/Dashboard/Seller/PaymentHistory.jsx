@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import PaymentManagementRow from '../../../components/Dashboard/TableRows/PaymentManagementRow';
 import { AuthContext } from '../../../providers/AuthProvider';
 import PaymentHistoryRow from '../../../components/Dashboard/TableRows/PaymentHistoryRow';
+import NoResultFound from '../../../components/Shared/NoResultFound';
 
 const PaymentHistory = () => {
     const {user} = useContext(AuthContext)
@@ -32,7 +33,7 @@ const PaymentHistory = () => {
                     <thead className='bg-primary'>
                         <tr className='text-lg text-neutral'>
                             {/* <th>Image</th> */}
-                            <th className='text-start border border-gray-300 px-4 py-2 text-black'>Medicine Name</th>
+                            <th className='border border-gray-300 px-4 py-2 text-black' >Medicine Name</th>
                             <th className='border border-gray-300 px-4 py-2 text-black'>Buyer Email</th>
                             <th  className='border border-gray-300 px-4 py-2 text-black'>Total Price</th>
                             <th className='border border-gray-300 px-4 py-2 text-black'>Total Item</th>
@@ -43,9 +44,6 @@ const PaymentHistory = () => {
                         </tr>
                     </thead>
 
-            
-
-                
 
                 {
                     payment.map((payment, index) =>
@@ -53,6 +51,11 @@ const PaymentHistory = () => {
                     )
                 }
             </table>
+
+            {
+                payment.length === 0 &&
+                <NoResultFound></NoResultFound>
+            }
         </div>
     );
 };
