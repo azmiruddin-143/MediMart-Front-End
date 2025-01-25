@@ -37,7 +37,7 @@ const Cart = () => {
 
 
     return (
-        <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
+        <div className="overflow-x-auto h-screen max-w-7xl mx-auto  my-10">
             {
                 cart.length > 0 &&
                 <div className='flex justify-end mb-8'>

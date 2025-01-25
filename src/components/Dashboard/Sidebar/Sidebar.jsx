@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import sitelogo from '../../../assets/foods-logo.png';
+import sitelogo from '../../../assets/medicine-logo.png';
 import { IoHomeOutline, IoSettingsSharp, IoMenu, IoClose } from "react-icons/io5";
 import { FaUsers } from 'react-icons/fa';
 import { TbCategory, TbFileReport } from "react-icons/tb";
@@ -57,7 +57,7 @@ const Sidebar = () => {
             >
                 {/* Logo Section */}
                 <Link to={'/'}>
-                    <div className="flex bg-slate-700 mx-auto py-2 justify-center items-center mb-8 gap-1">
+                    <div className="flex bg-gray-600 mx-auto py-2 justify-center items-center mb-8 gap-1">
                         <img className="sm:w-[60px] w-[40px] rounded-full" src={sitelogo} alt="Logo" />
                         <h1 className="text-white">MediMart</h1>
                     </div>

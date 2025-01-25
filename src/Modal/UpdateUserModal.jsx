@@ -15,7 +15,7 @@ import { BsCheckLg } from 'react-icons/bs'
 import { AiOutlineDown } from 'react-icons/ai'
 const roles = ['User', 'Seller', 'Admin']
 
-const UpdateUserModal = ({ setIsOpen, isOpen, updateRole,userRole }) => {
+const UpdateUserModal = ({ setIsOpen, isOpen, closeUpdateModal,updateRole,userRole }) => {
   const [selected, setSelected] = useState(userRole)
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -117,7 +117,7 @@ const UpdateUserModal = ({ setIsOpen, isOpen, updateRole,userRole }) => {
                   <button
                     type='button'
                     className='inline-flex justify-center rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-white'
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => closeUpdateModal(false)}
                   >
                     Cancel
                   </button>

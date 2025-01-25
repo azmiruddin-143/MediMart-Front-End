@@ -2,13 +2,12 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { IoIosCloseCircle } from "react-icons/io";
 import sitelogo from '../../assets/medicine-logo.png'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaCartShopping } from "react-icons/fa6";
 import useCart from '../../hooks/useCart';
 import LoadingSpinner from './LoadingSpinner';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     // old header//
@@ -22,13 +21,16 @@ const Navbar = () => {
     const userLogoutHandler = () => {
         userLogout()
             .then(() => {
-                toast.success("Logout successful!", { autoClose: 3000 });
+                toast.success('Logout successful!!', {
+                    duration: 3000, 
+                });
                 navigate("/");
             })
             .catch((error) => {
-                toast.error(`Logout failed: ${error.message}`, {
-                    autoClose: 3000,
-                });
+                
+                toast.error("Logout failed", (error.message), {
+                    duration: 3000,
+                })
 
             });
 

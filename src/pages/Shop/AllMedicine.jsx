@@ -37,7 +37,7 @@ const AllMedicine = () => {
     };
 
     return (
-        <div className="overflow-x-auto xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
+        <div className="overflow-x-auto h-screen xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
             <div className='sm:flex space-y-5 sm:space-y-0 items-center justify-between mb-8'>
                 <h1 className='text-xl'>( All Medicine <span className='text-primary font-bold'>{medicine.length}</span> )</h1>
 

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../../components/Shared/GoogleAccount';
 import signinImage from '../../assets/Sign in-pana.png';
 import { FaChevronLeft } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+
 
 const SignIn = () => {
     const { loginUser } = useContext(AuthContext);
@@ -22,16 +22,16 @@ const SignIn = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                toast.success("Login successful!", {
-                    autoClose: 3000,
+                toast.success('Login successful!!', {
+                    duration: 3000, 
                 });
                 navigate(from, { replace: true });
                 reset();
             })
             .catch((error) => {
-                toast.error(`Login failed: ${error.message}`, {
-                    autoClose: 3000,
-                });
+                toast.error("Login failed!", (error.message), {
+                    duration: 3000,
+                })
             });
     };
 

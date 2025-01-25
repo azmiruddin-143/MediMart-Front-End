@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { imageUpload } from '../../api/utilis';
 import { AuthContext } from '../../providers/AuthProvider';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../../components/Shared/GoogleAccount';
 import axios from 'axios';
 import signupImage from '../../assets/Sign up-bro.png';
 import { FaChevronLeft } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const { register, reset, handleSubmit, formState: { errors }, } = useForm();
     const { registerUser, myProfileUpdate, setuser } = useContext(AuthContext);
-
+    const navigate = useNavigate()
     const onSubmit = async (data) => {
         try {
             const photoURL = await imageUpload(data.image[0]);
@@ -47,16 +46,17 @@ const SignUp = () => {
                                 });
 
                             setuser({ ...result.user, displayName: name, photoURL: image });
-                            toast.success("Registration successful!", {
-                                autoClose: 3000,
+
+                            toast.success('Registration successful!', {
+                                duration: 3000,
                             });
+                            navigate('/')
                             reset();
                         })
                         .catch((error) => {
-                            toast.error(`Registration failed: ${error.message}`, {
-                                autoClose: 3000,
-                            });
-                            console.log('error kahico', error.message);
+                            toast.error("Registration faild!", (error.message), {
+                                duration: 3000,
+                            })
                         });
                 })
                 .catch((error) => {
@@ -69,9 +69,9 @@ const SignUp = () => {
 
     return (
         <div>
-             
-             <Link to={'/'} ><h1 className='bg-primary text-black font-bold w-fit py-2 px-4 flex items-center gap-2 rounded-md my-3 mx-3'><FaChevronLeft /> Home Page</h1></Link>
-             
+
+            <Link to={'/'} ><h1 className='bg-primary text-black font-bold w-fit py-2 px-4 flex items-center gap-2 rounded-md my-3 mx-3'><FaChevronLeft /> Home Page</h1></Link>
+
             <div className="min-h-screen flex items-center justify-center">
                 <div className="flex flex-col md:flex-row items-center gap-10 md:gap-6 max-w-4xl w-full">
                     {/* Left Side Image */}
@@ -140,7 +140,6 @@ const SignUp = () => {
                                     <span className="label-text">User Role</span>
                                 </label>
                                 <select className="select select-bordered w-full"  {...register("role", { required: true })}>
-                                    <option disabled selected>Choose role?</option>
                                     <option>User</option>
                                     <option>Seller</option>
                                 </select>

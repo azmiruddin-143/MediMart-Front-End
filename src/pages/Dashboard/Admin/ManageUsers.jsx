@@ -19,7 +19,7 @@ const ManageUsers = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className=" overflow-x-auto container mx-auto my-5">
+        <div className="overflow-x-auto container mx-auto my-5">
             <div className='flex justify-between mb-8 items-center'>
                 <h1 className='text-xl' >( All Users <span className='text-primary font-bold' >{users.length}</span> )</h1>
 
@@ -32,7 +32,8 @@ const ManageUsers = () => {
                             <th className='border border-gray-300 px-4 py-2 text-black'>User Name</th>
                             <th className='border border-gray-300 px-4 py-2 text-black'>User Email</th>
                             <th className='border border-gray-300 px-4 py-2 text-black'>User Role</th>
-                            <th className='text-end border border-gray-300 px-4 py-2 text-black'>User Status</th>
+                            <th className=' text-end border-gray-300 px-4 py-2 text-black'>User Status</th>
+                            <th className='text-end border border-gray-300 px-4 py-2 text-black'>User Action</th>
 
                         </tr>
                     </thead>

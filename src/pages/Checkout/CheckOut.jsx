@@ -38,7 +38,7 @@ const ChekOut = () => {
     //     console.log(selectedCartData);
     // }
     return (
-        <div className="overflow-x-auto max-w-7xl mx-auto  my-10">
+        <div className="overflow-x-auto h-screen max-w-7xl mx-auto  my-10">
             <div className='text-center mb-8'>
 
                 <h1 className='xl:text-5xl  sm:text-3xl md:text-4xl text-xl text-primary font-bold' >ChekOut</h1>

@@ -181,7 +181,7 @@ const router = createBrowserRouter([
 
   {
     path: "/invoice/:transactionId",
-    element: <Invoice></Invoice>
+    element: <PrivateRoute><Invoice></Invoice></PrivateRoute>
   },
 
 ]);

@@ -2,7 +2,7 @@ import React from 'react';
 import noData from '../../assets/No data-bro.png'
 const NoResultFound = () => {
     return (
-        <div className="flex flex-col items-center justify-center  p-4">
+        <div className="flex flex-col items-center justify-center p-4">
 
             <img src={noData} alt="No results found" class="w-2/3 md:w-2/4 lg:w-2/5 xl:w-1/5 mb-2" />
 
