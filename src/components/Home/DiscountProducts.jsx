@@ -25,7 +25,7 @@ const DiscountProducts = () => {
     return (
 
         <Slide direction="up" duration={2000} triggerOnce>
-            <div className='md:my-28 text-center  my-14 bg-gray-100'>
+            <div className='md:my-28 text-center  my-14 bg-gray-50'>
 
                 <Fade className='xl:text-4xl lg:text-3xl sm:text-2xl rounded-md relative -top-7 text-black bg-primary py-2 px-5 w-fit mx-auto' duration={500} cascade triggerOnce>Discount products</Fade>
                 <div className=" lg:py-20 pb-10 2xl:mx-36 xl:mx-28 mx-4 lg:mx-10 ">

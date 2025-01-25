@@ -47,7 +47,7 @@ const LatestProductCard = ({ medicine }) => {
 
     }
     return (
-        <div class="max-w-md p-4">
+        <div class="max-w-sm p-4">
             <div class=" border rounded-lg p-2 shadow-lg overflow-hidden">
 
                 <div class="relative">
