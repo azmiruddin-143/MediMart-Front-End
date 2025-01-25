@@ -25,6 +25,7 @@ import SellerRoute from "./SellerRoute";
 import Checkout from "../pages/Checkout/Checkout";
 import ChekOut from "../pages/Checkout/Checkout";
 import Invoice from "../pages/Invoice/Invoice";
+import RoleBasedRedirect from "../components/Shared/RoleBasedRedirect";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
+      {
+        path: '',
+        element: <RoleBasedRedirect />,
+      },
       {
         path: "adminhomepage",
         element: <PrivateRoute>
