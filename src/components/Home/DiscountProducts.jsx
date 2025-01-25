@@ -8,9 +8,6 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import LoadingSpinner from '../Shared/LoadingSpinner';
-import { FaEye } from 'react-icons/fa6';
-import { IoMdCart } from 'react-icons/io';
-import DiscountModal from '../../Modal/DiscountModal';
 import DiscountProductRow from '../Dashboard/TableRows/DiscountProductRow';
 const DiscountProducts = () => {
 
@@ -30,7 +27,7 @@ const DiscountProducts = () => {
         <Slide direction="up" duration={2000} triggerOnce>
             <div className='md:my-28 text-center  my-14 bg-gray-100'>
 
-                <Fade className='xl:text-4xl lg:text-3xl sm:text-2xl relative -top-7 text-white bg-[#9dc923] py-2 px-5 w-fit mx-auto' duration={500} cascade triggerOnce>Top Trending</Fade>
+                <Fade className='xl:text-4xl lg:text-3xl sm:text-2xl rounded-md relative -top-7 text-black bg-primary py-2 px-5 w-fit mx-auto' duration={500} cascade triggerOnce>Discount products</Fade>
                 <div className=" lg:py-20 pb-10 2xl:mx-36 xl:mx-28 mx-4 lg:mx-10 ">
                     <Swiper
                         modules={[Navigation, Autoplay]}

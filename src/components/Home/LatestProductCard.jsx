@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
-import DiscountModal from '../../../Modal/DiscountModal';
-import { FaEye } from 'react-icons/fa6';
 import { IoMdCart } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../providers/AuthProvider';
-import useCart from '../../../hooks/useCart';
-import axios from 'axios';
-import useRole from '../../../hooks/useRole';
-const DiscountProductRow = ({ medicine }) => {
-    const { _id, medicineImage, discountPercentage,company,sellerEmail, medicineName, perUnitPrice } = medicine
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+import { Link, useNavigate } from 'react-router-dom';
+import DiscountModal from '../../Modal/DiscountModal';
+import { FaEye } from 'react-icons/fa';
+import { AuthContext } from '../../providers/AuthProvider';
+import useCart from '../../hooks/useCart';
+import useRole from '../../hooks/useRole';
+
+const LatestProductCard = ({ medicine }) => {
+    const { medicineName, genericName, shortDescription,
+        sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
+        const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
      const [,,cartRefetch] = useCart()
@@ -45,23 +46,26 @@ const DiscountProductRow = ({ medicine }) => {
         }
 
     }
-
     return (
+        <div class="max-w-md p-4">
+            <div class=" border rounded-lg p-2 shadow-lg overflow-hidden">
 
-        
-                <div className="h-[450px] bg-white rounded-lg shadow-lg 2xl:p-4 p-2 text-start">
-                    <div className='relative' >
-                        <img
-                            src={medicineImage}
-                            className="w-full h-72 rounded-md object-cover mb-4"
-                        />
-                        <div class="absolute text-black top-2 font-bold right-2 bg-primary rounded-full p-1 shadow">
-                            <h1>{discountPercentage}%</h1>
-                        </div>
+                <div class="relative">
+                    <div class="absolute top-2 left-2 bg-primary text-black text-xs font-semibold py-1 px-2 rounded-full">
+                        Latest Product
+                    </div>
+                </div>
+
+                <img class="w-[400px] h-64 object-cover rounded-md" src={medicineImage} alt="Chek Trouser" />
+
+                <div class="p-2">
+                    <h1 class="text-2xl font-semibold pb-1 text-neutral">{medicineName}</h1>
+                    <p class="text-md text-neutral">{medicineCategory}</p>
+                    {/* <p class="text-md text-neutral py-1"> Total Purchase: <span className='font-bold text-neutral'>{purchaseCount}</span> </p> */}
+                    <div class="flex items-center mt-1">
+                        <span class="text-xl font-bold text-neutral"> ${perUnitPrice}</span>
                     </div>
 
-                    <h3 className="text-lg font-semibold">{medicineName}</h3>
-                    <h3 className="text-lg font-semibold">{perUnitPrice}$</h3>
 
                     <div className='flex justify-between' >
                         <div className=' py-5 border-b border-gray-200 bg-white text-sm'>
@@ -84,24 +88,22 @@ const DiscountProductRow = ({ medicine }) => {
                                 isOpen={isEditModalOpen}
                                 setIsEditModalOpen={setIsEditModalOpen}
                                 medicine={medicine}
-                                cartDiscount ={cartDiscount}
+                                cartDiscount={cartDiscount}
 
 
                             />
                         </div>
                         <div className='flex justify-end items-center' >
-                            <button  disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
+                            <button disabled={role === "Admin" || role === "Seller"} onClick={cartDiscount} className='rounded-full bg-primary text-sm px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
                                 Select <IoMdCart className='text-lg' />
                             </button>
 
                         </div>
                     </div>
-
                 </div>
-    
-        
-
+            </div>
+        </div>
     );
 };
 
-export default DiscountProductRow;
+export default LatestProductCard;

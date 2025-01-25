@@ -23,12 +23,12 @@ const CategoryCard = () => {
             <h1 className='text-center pt-6 text-4xl' >Shop By Category</h1>
             <div className='grid max-w-7xl mx-auto my-12 lg:grid-cols-4 grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 place-items-center gap-4'>
                 {
-                    category.map(category =>
+                    category.slice(0,6).map(category =>
                         <div 
                         
                         onClick={()=> navigate(`/category/${category.categoryName}`)} 
                         
-                        class="flex justify-center items-center  bg-gray-100">
+                        class="flex justify-center items-center my-10  bg-gray-100">
                             <div class="w-52 h-52 bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
 
                                 <div class="h-[85%]">
