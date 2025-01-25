@@ -51,6 +51,13 @@ const Navbar = () => {
     }, []);
     if (isLoading) return <LoadingSpinner />;
 
+    const handleClose = (event) => {
+        const detailsElement = event.target.closest("details");
+        if (detailsElement) {
+            detailsElement.removeAttribute("open");
+        }
+    };
+
     return (
         <div
             className={`sticky top-0 w-full z-40 transition-all duration-300 ${isBlurred ? "bg-[#070609c3] backdrop-blur-md " : "bg-[#ad7925]"
@@ -125,7 +132,7 @@ const Navbar = () => {
                                         About Us
                                     </NavLink>
                                     <NavLink
-                                    onClick={() => setIsDropdownOpen(false)}
+                                        onClick={() => setIsDropdownOpen(false)}
                                         to="/contactus"
                                         className={({ isActive }) =>
                                             isActive
@@ -139,13 +146,16 @@ const Navbar = () => {
 
 
                                     <details className="dropdown">
+
                                         <summary className="">Languse Change</summary>
                                         <ul className="menu dropdown-content bg-base-10 text-white bg-black rounded-box z-[1] w-52 p-5 shadow">
-                                            <li><a>English</a></li>
-                                            <li><a>Bangla</a></li>
+                                            <button onClick={handleClose}>
+                                                <IoIosCloseCircle className=" absolute text-primary right-0 top-0" size={30} />
+                                            </button>
+                                            <li onClick={handleClose}><a>English</a></li>
+                                            <li onClick={handleClose}> <a>Bangla</a></li>
                                         </ul>
                                     </details>
-
 
                                 </ul>
                             )}
@@ -161,6 +171,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="navbar-center  xl:ml-10 2xl:ml-0 hidden lg:flex">
+
                         <ul className={`${isBlurred ? "xl:text-lg text-md font-semibold text-white flex gap-3 sm:gap-6 xl:gap-8" : "xl:text-lg text-md font-semibold text-black  flex gap-3 sm:gap-6 xl:gap-8"}`}>
                             <NavLink
                                 to="/"
@@ -207,10 +218,14 @@ const Navbar = () => {
 
 
                             <details className="dropdown">
+
                                 <summary className="">Languse Change</summary>
                                 <ul className="menu dropdown-content bg-base-10 text-white bg-black rounded-box z-[1] w-52 p-5 shadow">
-                                    <li><a>English</a></li>
-                                    <li><a>Bangla</a></li>
+                                    <button onClick={handleClose}>
+                                        <IoIosCloseCircle className=" absolute text-primary right-0 top-0" size={30} />
+                                    </button>
+                                    <li onClick={handleClose}><a>English</a></li>
+                                    <li onClick={handleClose}> <a>Bangla</a></li>
                                 </ul>
                             </details>
 
@@ -257,48 +272,53 @@ const Navbar = () => {
 
                                         {
                                             user &&
-                                            <div className="dropdown dropdown-end">
-                                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <details className="dropdown dropdown-end">
+                                                {/* Dropdown Toggle */}
+                                                <summary tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                                     <div className="w-96 rounded-full">
                                                         <img
-                                                            referrerPolicy='no-referrer'
-                                                            // alt="Tailwind CSS Navbar component"
+                                                            referrerPolicy="no-referrer"
                                                             src={user?.photoURL}
-
+                                                            alt="User Avatar"
                                                         />
-
-
                                                     </div>
-                                                </div>
-                                                <ul
-                                                    tabIndex={0}
-                                                    className="menu menu-sm dropdown-content text-primary bg-black space-y-3 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                                </summary>
 
-                                                    <NavLink
-                                                        to="/updateprofile"
-                                                        className='text-primary font-semibold  px-3 rounded-md hover:bg-white'
+                                                {/* Dropdown Content */}
+                                                <ul
+                                                    className="menu menu-sm py-8 dropdown-content text-primary bg-black space-y-3 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                                                >
+                                                    {/* Close Button */}
+                                                    <button
+                                                        onClick={handleClose}
+                                                        className="absolute text-primary right-0 top-0 p-2"
                                                     >
+                                                        <IoIosCloseCircle size={30} />
+                                                    </button>
+
+                                                    {/* Dropdown Links */}
+
+                                                    <Link onClick={handleClose} to="/updateprofile" className="text-primary font-semibold px-3 rounded-md hover:bg-white">
                                                         Update Profile
-                                                    </NavLink>
-                                                    <NavLink
-                                                        to="/dashboard"
-                                                        className='text-primary font-semibold  px-3 rounded-md hover:bg-white'
-                                                    >
+                                                    </Link>
+
+                                                    <Link onClick={handleClose} to="/dashboard" className="text-primary font-semibold px-3 rounded-md hover:bg-white">
                                                         Dashboard
-                                                    </NavLink>
+                                                    </Link>
+                                                    <Link onClick={handleClose} to="/cart" className="text-primary font-semibold px-3 rounded-md hover:bg-white">
+                                                        WishList
+                                                    </Link>
+
 
                                                     <button
                                                         onClick={userLogoutHandler}
-                                                        className='text-primary font-semibold flex justify-start px-3 rounded-md hover:bg-white'
-
-
+                                                        className="text-primary font-semibold flex justify-start px-3 rounded-md hover:bg-white"
                                                     >
                                                         Logout
                                                     </button>
 
-
                                                 </ul>
-                                            </div>
+                                            </details>
                                         }
                                     </div>
 

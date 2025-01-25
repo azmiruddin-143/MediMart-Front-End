@@ -42,7 +42,7 @@ const Faq = () => {
                         <Disclosure key={index}>
                             {({ open }) => (
                                 <div className="mb-5 border rounded-lg">
-                                    <Disclosure.Button className="flex justify-between items-center w-full px-4 py-2 text-left text-lg font-medium text-gray-800 bg-gray-100 hover:bg-gray-200">
+                                    <Disclosure.Button className="flex justify-between items-center w-full px-4 py-2 text-left text-lg font-medium text-gray-800 bg-gray-50 hover:bg-gray-200">
                                         <span>{faq.question}</span>
                                         {open ? <FaChevronUp className="w-5 h-5" /> : <FaChevronDown className="w-5 h-5" />}
                                     </Disclosure.Button>
