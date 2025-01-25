@@ -29,8 +29,8 @@ const GoogleAccount = () => {
 
     return (
 
-        <div onClick={googleSignin} className='mx-auto flex my-4'>
-            <button className="btn">
+        <div onClick={googleSignin} className='mx-auto flex items-center my-4'>
+            <button className="bg-black flex items-center gap-2 text-white rounded-md py-2 px-5">
                 <FaGoogle></FaGoogle>
                 Google
             </button>

@@ -36,14 +36,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>
       },
-      {
-        path: "/signup",
-        element: <SignUp></SignUp>
-      },
-      {
-        path: "/signin",
-        element: <SignIn></SignIn>
-      },
+      
       {
         path: "/updateprofile",
         element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
@@ -67,7 +60,14 @@ const router = createBrowserRouter([
       }
     ]
   },
-
+  {
+    path: "/signup",
+    element: <SignUp></SignUp>
+  },
+  {
+    path: "/signin",
+    element: <SignIn></SignIn>
+  },
   {
     path: '/dashboard',
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,

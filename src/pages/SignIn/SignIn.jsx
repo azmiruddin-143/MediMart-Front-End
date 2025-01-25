@@ -5,6 +5,8 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleAccount from '../../components/Shared/GoogleAccount';
+import signinImage from '../../assets/Sign in-pana.png';
+import { FaChevronLeft } from 'react-icons/fa';
 
 const SignIn = () => {
     const { loginUser } = useContext(AuthContext);
@@ -24,7 +26,7 @@ const SignIn = () => {
                     autoClose: 3000,
                 });
                 navigate(from, { replace: true });
-                reset()
+                reset();
             })
             .catch((error) => {
                 toast.error(`Login failed: ${error.message}`, {
@@ -35,16 +37,16 @@ const SignIn = () => {
 
     return (
         <div>
-            <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+            <Link to={'/'} ><h1 className='bg-primary text-black font-bold w-fit py-2 px-4 flex items-center gap-2 rounded-md my-3 mx-3'><FaChevronLeft /> Home Page</h1></Link>
+            <div className="min-h-screen flex items-center justify-center ">
+                <div className="flex flex-col md:flex-row items-center gap-10 md:gap-4 max-w-4xl w-full">
+                    {/* Left Side Image */}
+                    <div className="w-full md:w-1/2 flex justify-center">
+                        <img className="w-2/3 md:w-full object-cover" src={signinImage} alt="Sign In" />
                     </div>
-                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+
+                    {/* Right Side Form */}
+                    <div className="card w-full md:w-1/2 flex-col bg-base-100 max-w-xl shrink-0 shadow-2xl p-6">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -71,12 +73,12 @@ const SignIn = () => {
                                 {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="bg-primary py-3 text-black font-bold rounded-md">SignIn</button>
                             </div>
                         </form>
-                        <GoogleAccount></GoogleAccount>
-                        <Link to={'/signup'}>
-                            <h1>SignUp</h1>
+                        <GoogleAccount />
+                        <Link className='text-center py-5' to={'/signup'}>
+                            <h1>Need an account? <span className='text-primary font-bold'>SignUp</span></h1>
                         </Link>
                     </div>
                 </div>
