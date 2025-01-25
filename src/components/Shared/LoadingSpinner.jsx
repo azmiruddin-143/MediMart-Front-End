@@ -6,10 +6,10 @@ const LoadingSpinner = () => {
         <div
           aria-label='Loading...'
           role='status'
-          className='flex items-center space-x-2'
+          className='flex text-primary items-center space-x-2'
         >
           <svg
-            className='h-20 w-20 animate-spin stroke-gray-500'
+            className='h-20 w-20 animate-spin stroke-black'
             viewBox='0 0 256 256'
           >
             <line
@@ -85,7 +85,7 @@ const LoadingSpinner = () => {
               strokeWidth='24'
             ></line>
           </svg>
-          <span className='text-4xl font-medium text-gray-500'>Loading...</span>
+          <span className='text-4xl font-medium text-black'>Loading...</span>
         </div>
       </div>
     );

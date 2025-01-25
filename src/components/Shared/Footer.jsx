@@ -1,22 +1,28 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaYoutube } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
+import sitelogo from '../../assets/medicine-logo.png'
 const Footer = () => {
   return (
-    <footer className="bg-gray-200  text-gray-400">
+    <footer className="bg-gray-300  text-gray-400">
       <div className="container mx-auto py-10 grid xl:grid-cols-5 lg:grid-cols-4 place-items-center lg:mx-8 xl:mx-auto gap-y-8  justify-center ">
         {/* Left Section */}
         <div className="mb-6 md:mb-0">
-          <h3 className="text-2xl text-white font-semibold mb-4">Vicodin</h3>
-          <p className="text-sm mb-4">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          <div className='flex items-center gap-0 sm:gap-3 mb-5'>
+            <img className={"sm:w-[60px] w-[40px] rounded-full"} src={sitelogo} alt="" />
+            <h1 className={`sm:text-3xl text-[16px] pl-2 lg:pl-0 lg:text-2xl xl:text-3xl text-primary font-bold`}> Medi
+              <span className={`text-[black] relative sm:right-2 lg:right-1 xl:right-2 right-1 font-bold`}> Mart</span>
+            </h1>
+          </div>
+          <p className="text-md mb-4 text-gray-600 text-md ">
+            We provide quality medicine products for your health and well-being
           </p>
-          <ul className="text-sm space-y-1">
-            <li>Brooklyn, New York, United States</li>
-            <li>+0123-456789</li>
-            <li>example@example.com</li>
+          <ul className="text-md space-y-1 text-gray-600 text-md">
+            <li>Bangladesh, Dhaka, Sonargaon</li>
+            <li>+8801933946077</li>
+            <li>azmiruddin05@gmail.com</li>
           </ul>
-          <div className="flex space-x-4 mt-4">
+          <div className="flex text-xl space-x-4 mt-4 text-black">
             <FaFacebookF className="hover:text-white cursor-pointer" />
             <FaTwitter className="hover:text-white cursor-pointer" />
             <FaLinkedinIn className="hover:text-white cursor-pointer" />
@@ -25,69 +31,78 @@ const Footer = () => {
         </div>
 
         {/* Links Section */}
-          <div>
-            <h4 className="text-white font-semibold mb-2">Company</h4>
-            <ul className="space-y-1 text-sm">
-              <li>About</li>
-              <li>Blog</li>
-              <li>All Products</li>
-              <li>Locations Map</li>
-              <li>FAQ</li>
-              <li>Contact us</li>
-            </ul>
+        <div>
+          <h4 className="text-black text-2xl font-semibold mb-2">Company</h4>
+          <ul className="text-md text-gray-600">
+            <li className="mb-2"><Link to={'/shop'}>Shop</Link></li>
+            <li className="mb-2"><Link to={'/about'}>About</Link></li>
+            <li className="mb-2"><Link to={'/shop'}>All Products</Link></li>
+            <li className="mb-2"><Link to={'/'}>Locations Map</Link></li>
+            <li className="mb-2"><Link to={'/'}>FAQ</Link></li>
+            <li className="mb-2"><Link to={'/'}>Contact us</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-2xl text-black font-semibold mb-2">Services</h4>
+          <ul className="text-md text-gray-600">
+            <li className="mb-2">Order tracking</li>
+            <li className="mb-2">
+              <Link to={'/cart'}>Wish List</Link>
+            </li>
+            <li className="mb-2">
+              <Link to={'/signin'}>Login</Link>
+            </li>
+            <li className="mb-2">
+              <Link to={'/updateprofile'}>My Profile</Link>
+            </li>
+            <li className="mb-2">Terms & Conditions</li>
+            <li className="mb-2">Promotional Offers</li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-2xl text-black font-semibold mb-2">Customer Care</h4>
+          <ul className="text-md text-gray-600">
+            <li className="mb-2">
+              <Link to={'/signin'}>Login</Link>
+            </li>
+            <li className="mb-2">
+              <Link to={'/updateprofile'}>My Profile</Link>
+            </li>
+            <li className="mb-2">
+              <Link to={'/cart'}>Wish List</Link>
+            </li>
+            <li className="mb-2">Order tracking</li>
+            <li className="mb-2">FAQ</li>
+            <li className="mb-2">Contact us</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-2xl text-black font-semibold mb-2">Newsletter</h4>
+          <p className=" mb-4 text-md text-gray-600">Subscribe to our weekly Newsletter and receive updates via email.</p>
+          <div className="flex">
+            <input
+              type="email"
+              placeholder="Email*"
+              className="p-2 rounded-l-md focus:outline-none"
+            />
+            <button className="bg-primary  px-4 rounded-r-md ">
+              ➔
+            </button>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-2">Services</h4>
-            <ul className="space-y-1 text-sm">
-              <li>Order tracking</li>
-              <li>Wish List</li>
-              <li>Login</li>
-              <li>My account</li>
-              <li>Terms & Conditions</li>
-              <li>Promotional Offers</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-2">Customer Care</h4>
-            <ul className="space-y-1 text-sm">
-              <li>Login</li>
-              <li>My account</li>
-              <li>Wish List</li>
-              <li>Order tracking</li>
-              <li>FAQ</li>
-              <li>Contact us</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-2">Newsletter</h4>
-            <p className="text-sm mb-4">Subscribe to our weekly Newsletter and receive updates via email.</p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Email*"
-                className="p-2 rounded-l-md focus:outline-none"
-              />
-              <button className="bg-green-500 text-white px-4 rounded-r-md hover:bg-green-600">
-                ➔
-              </button>
-            </div>
-            <div className="mt-4">
-              <h5 className="text-white font-semibold mb-2">We Accept</h5>
-              <img
-                src="/path-to-payment-icons.png"
-                alt="Payment Methods"
-                className="w-full h-auto"
-              />
-            </div>
+          <div className="mt-4">
+            <h5 className="text-md text-gray-600 font-semibold mb-2">We Accept</h5>
+            <h1 className="bg-primary py-2 px-4 rounded-md w-fit text-black">Stripe</h1>
           </div>
         </div>
+      </div>
 
 
       {/* Bottom Section */}
       <div className="bg-primary py-4">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-black">All Rights Reserved © Company 2025</p>
-          <ul className="flex space-x-4 text-sm text-black">
+          <p className="text-md text-black">© Copyright © 2025 MediMart. All Right Reserved</p>
+          <ul className="flex space-x-4 text-md text-black">
             <li className="hover:underline cursor-pointer">Terms & Conditions</li>
             <li className="hover:underline cursor-pointer">Claim</li>
             <li className="hover:underline cursor-pointer">Privacy & Policy</li>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 const DashboardLayout = () => {
@@ -20,6 +20,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
+      <ScrollRestoration/>
     </div>
   );
 };

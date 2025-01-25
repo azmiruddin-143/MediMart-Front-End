@@ -4,15 +4,11 @@ import { Autoplay, Navigation, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import "swiper/css/pagination"; // পেজিনেশন স্টাইল ইমপোর্ট
-import slider from '../../../src/assets/Medicine-banner-1.jpg';
-import slider2 from '../../../src/assets/Medicine-banner-2.jpg';
-import slider3 from '../../../src/assets/Medicine-banner-3.jpg';
+import "swiper/css/pagination";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { useQuery } from '@tanstack/react-query';
-// import { Fade, Slide } from "react-awesome-reveal";
 
 const Banner = () => {
 
