@@ -105,27 +105,27 @@ const SalesReportRow = ({ data }) => {
                     <thead>
                         <tr className="bg-primary text-left">
                             <th
-                                className="border border-gray-400 px-4 py-2 cursor-pointer"
+                                className="border border-gray-400 px-4 text-black py-2 cursor-pointer"
                                 onClick={() => handleSort("sellerEmail")}
                             >
                                 Seller Email
                             </th>
                             <th
-                                className="border border-gray-400 px-4 py-2 cursor-pointer"
+                                className="border border-gray-400 px-4 text-black py-2 cursor-pointer"
                                 onClick={() => handleSort("email")}
                             >
                                 Buyer Email
                             </th>
 
                             <th
-                                className="border border-gray-400 px-4 py-2 cursor-pointer"
+                                className="border border-gray-400 px-4 text-black py-2 cursor-pointer"
                                 onClick={() => handleSort("name")}
                             >
                                 Name
                             </th>
 
                             <th
-                                className="border border-gray-400 px-4 py-2 cursor-pointer"
+                                className="border border-gray-400 px-4 text-black py-2 cursor-pointer"
                                 onClick={() => handleSort("price")}
                             >
                                 Price

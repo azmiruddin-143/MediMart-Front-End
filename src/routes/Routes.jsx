@@ -101,97 +101,99 @@ const router = createBrowserRouter([
       },
       {
         path: "managecategory",
-        element: <PrivateRoute>
-          <AdminRoute>
-            <ManageCategory></ManageCategory>,
-          </AdminRoute>
-        </PrivateRoute>
-      },
-      {
-        path: "paymentmanagement",
         element:
           <PrivateRoute>
             <AdminRoute>
-              <PaymentManagement></PaymentManagement>
-            </AdminRoute>
-          </PrivateRoute>
-
-        ,
-      },
-      {
-        path: "salesreport",
-        element:
-          <PrivateRoute>
-            <AdminRoute>
-              <SalesReport></SalesReport>
+              <ManageCategory></ManageCategory>
             </AdminRoute>
           </PrivateRoute>
       },
-      {
-        path: "managebanner",
-        element:
-          <PrivateRoute>
-            <AdminRoute>
-              <ManageBanner></ManageBanner>
-            </AdminRoute>
-          </PrivateRoute>
-        ,
-      },
+     
+  {
+    path: "paymentmanagement",
+    element:
+      <PrivateRoute>
+        <AdminRoute>
+          <PaymentManagement></PaymentManagement>
+        </AdminRoute>
+      </PrivateRoute>
 
-      // seller//
-
-      {
-        path: "askforadvertisement",
-        element:
-          <PrivateRoute>
-            <SellerRoute>
-              <AskForAdvertisement></AskForAdvertisement>
-            </SellerRoute>
-          </PrivateRoute>
-      },
-      {
-        path: "managemedicines",
-        element:
-          <PrivateRoute>
-            <SellerRoute>
-              <ManageMedicines></ManageMedicines>
-            </SellerRoute>
-          </PrivateRoute>
-
-
-      },
-      {
-        path: "sellerhomepage",
-        element:
-          <PrivateRoute>
-            <SellerRoute>
-              <SellerHomepage></SellerHomepage>
-            </SellerRoute>
-          </PrivateRoute>
-
-      },
-      {
-        path: "paymenthistory",
-        element:
-          <PrivateRoute>
-            <SellerRoute>
-              <PaymentHistory></PaymentHistory>
-            </SellerRoute>
-          </PrivateRoute>
-
-      },
-      // user//
-      {
-        path: "userpaymenthistory",
-        element: <PrivateRoute><UserPaymentHistory></UserPaymentHistory></PrivateRoute>
-      },
-    ]
+    ,
   },
+  {
+    path: "salesreport",
+    element:
+      <PrivateRoute>
+        <AdminRoute>
+          <SalesReport></SalesReport>
+        </AdminRoute>
+      </PrivateRoute>
+  },
+  {
+    path: "managebanner",
+    element:
+      <PrivateRoute>
+        <AdminRoute>
+          <ManageBanner></ManageBanner>
+        </AdminRoute>
+      </PrivateRoute>
+    ,
+  },
+
+  // seller//
 
   {
-    path: "/invoice/:transactionId",
-    element: <PrivateRoute><Invoice></Invoice></PrivateRoute>
+    path: "askforadvertisement",
+    element:
+      <PrivateRoute>
+        <SellerRoute>
+          <AskForAdvertisement></AskForAdvertisement>
+        </SellerRoute>
+      </PrivateRoute>
   },
+  {
+    path: "managemedicines",
+    element:
+      <PrivateRoute>
+        <SellerRoute>
+          <ManageMedicines></ManageMedicines>
+        </SellerRoute>
+      </PrivateRoute>
+
+
+  },
+  {
+    path: "sellerhomepage",
+    element:
+      <PrivateRoute>
+        <SellerRoute>
+          <SellerHomepage></SellerHomepage>
+        </SellerRoute>
+      </PrivateRoute>
+
+  },
+  {
+    path: "paymenthistory",
+    element:
+      <PrivateRoute>
+        <SellerRoute>
+          <PaymentHistory></PaymentHistory>
+        </SellerRoute>
+      </PrivateRoute>
+
+  },
+  // user//
+  {
+    path: "userpaymenthistory",
+    element: <PrivateRoute><UserPaymentHistory></UserPaymentHistory></PrivateRoute>
+  },
+]
+  },
+
+{
+  path: "/invoice/:transactionId",
+    element: <PrivateRoute><Invoice></Invoice></PrivateRoute>
+},
 
 ]);
 

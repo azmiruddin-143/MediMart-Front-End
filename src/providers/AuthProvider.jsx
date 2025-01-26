@@ -32,16 +32,20 @@ const AuthProvider = ({ children }) => {
 
     }
 
-    const myProfileUpdate = (profileUpdate) => {
+    const myProfileUpdate = (updatedData) => {
         setLoader(true)
-        return updateProfile(auth.currentUser, profileUpdate)
+        return updateProfile(auth.currentUser,updatedData)
     }
 
 
     useEffect(() => {
+        setLoader(true)
         const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
-            setuser(currentUser)
+            
             if (currentUser) {
+                setuser(currentUser)
+                setLoader(false)
+
                 const userInfo = {
                     email: currentUser?.email
                 }
@@ -53,23 +57,20 @@ const AuthProvider = ({ children }) => {
                     })
 
             } else {
-                
+                setLoader(false)
                 localStorage.removeItem("access-token")
+                setuser(null)
             }
-            setLoader(false)
+           
 
         })
         return () => {
             return unsubscibe()
         }
-    }, [])
+    }, [user?.displayName,user?.photoURL])
 
-    useEffect(() => {
-        if (user) {
-            setLoader(false)
-        }
-
-    }, [user])
+   
+    console.log(user);
 
     const authObjct = {
         registerUser,

@@ -30,7 +30,7 @@ const Sidebar = () => {
                 toast.success('Logout successful!!', {
                     duration: 3000, 
                 });
-                navigate("/");
+                navigate("/signin");
             })
             .catch((error) => {
                 toast.error(`Logout failed: ${error.message}`, {

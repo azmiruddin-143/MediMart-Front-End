@@ -28,26 +28,28 @@ const SignUp = () => {
 
             registerUser(email, password)
                 .then((result) => {
-                    myProfileUpdate({ displayName: name, photoURL: image })
+                    myProfileUpdate({displayName:name, photoURL:image})
                         .then(() => {
                             const userInfo = {
                                 userName: name,
                                 userEmail: email,
-                                userphoto: photoURL,
+                                userphoto: image,
                                 userRole: role
                             };
-
                             axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)
                                 .then(res => {
                                     setuser(res.data);
+                                    console.log(res.data,"hvbhvbhbh");
                                 })
                                 .catch((error) => {
                                     toast.error(`error ${error.message}`, {
                                         autoClose: 3000,
                                     });
                                 });
+                              
 
-                            setuser({ ...result.user, displayName: name, photoURL: image });
+                            // setuser({ ...result.user, displayName: name, photoURL: image });
+                            setuser(result?.user);
 
                             toast.success('Registration successful!', {
                                 duration: 3000,

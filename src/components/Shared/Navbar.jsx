@@ -16,18 +16,19 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
     const [cart, isLoading] = useCart()
+    
 
     // Logout Handler
     const userLogoutHandler = () => {
         userLogout()
             .then(() => {
                 toast.success('Logout successful!!', {
-                    duration: 3000, 
+                    duration: 3000,
                 });
-                navigate("/");
+                navigate("/signin");
             })
             .catch((error) => {
-                
+
                 toast.error("Logout failed", (error.message), {
                     duration: 3000,
                 })
@@ -185,7 +186,7 @@ const Navbar = () => {
                                 Shop
                             </NavLink>
 
-                           
+
                             <NavLink
                                 to="/contactus"
                                 className={({ isActive }) =>
@@ -260,7 +261,7 @@ const Navbar = () => {
                                                     <div className="w-96 rounded-full">
                                                         <img
                                                             referrerPolicy="no-referrer"
-                                                            src={user?.photoURL}
+                                                            src={`${user?.photoURL}`}
                                                             alt="User Avatar"
                                                         />
                                                     </div>

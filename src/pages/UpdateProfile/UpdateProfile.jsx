@@ -1,81 +1,71 @@
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+import { useContext } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-
-import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../components/Shared/LoadingSpinner";
-import axios from 'axios';
-import { useContext } from 'react';
-import { AuthContext } from '../../providers/AuthProvider';
-import { imageUpload } from '../../api/utilis';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { Helmet } from 'react-helmet-async';
+import { AuthContext } from "../../providers/AuthProvider";
+import { imageUpload } from "../../api/utilis";
+import useRole from "../../hooks/useRole";
+import toast from "react-hot-toast";
+import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateProfile = () => {
-    const { user } = useContext(AuthContext)
+    const { user, myProfileUpdate, setuser } = useContext(AuthContext);
+    const { role } = useRole()
     const axiosSecure = useAxiosSecure()
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const { data: myprofile = [], isLoading, refetch } = useQuery({
-        queryKey: ['myprofile'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/myprofile/${user?.email}`);
-            return data;
-        }
-    });
-
-    const { userName, userEmail, userRole, userphoto, _id } = myprofile
 
     const onSubmit = async (data) => {
         const { name, image } = data;
+
         let updateData = {};
 
         if (name) {
-            updateData.userName = name;
+            updateData.displayName = name;
+        } else {
+            updateData.displayName = user.displayName; 
         }
 
         if (image && image.length > 0) {
-            try {
-                const photoURL = await imageUpload(image[0]);
-                updateData.userphoto = photoURL;
-            } catch (err) {
-                toast.error("Image upload failed. Please try again.");
-                return;
-            }
+            const photoURL = await imageUpload(image[0]);
+            updateData.photoURL = photoURL;
+        } else {
+            updateData.photoURL = user.photoURL; 
         }
 
-        // MongoDB তে PUT কল
+        const profileUpdate = {
+            userName: updateData.displayName,
+            userphoto: updateData.photoURL,
+        };
+
         if (Object.keys(updateData).length > 0) {
-            try {
-                const response = await axiosSecure.put(`/myprofile/${_id}`, updateData);
-                if (response.data.modifiedCount > 0) {
-                    toast.success("Profile updated successfully!");
-                    refetch()
+            myProfileUpdate(updateData)
+                .then(() => {
+                    setuser({ ...user, ...updateData });
+
+                    axiosSecure.put(`/myprofile/${user?.email}`, profileUpdate)
+                        .then((res) => {
+                            if (res.data.modifiedCount > 0) {
+                                toast.success("Update successful!", { autoClose: 3000 });
+                            }
+
+                        });
+
                     reset();
-                } else {
-                    toast.warning("No changes made to the profile.");
-                }
-            } catch (error) {
-                toast.error("Failed to update profile: " + error.message);
-            }
+                })
+                .catch((error) => {
+                    toast.error(`Update failed: ${error.message}`, { autoClose: 3000 });
+                });
         } else {
-            toast.warning("No changes to update.");
+            toast.warning("No changes made!", { autoClose: 3000 });
         }
     };
-
-
-
-    if (isLoading) return <LoadingSpinner />;
 
 
 
 
     return (
         <div>
-            <Helmet>
-                <title>MediMart | UpdateProfile </title>
-            </Helmet>
             <div className="my-24">
                 <div className="hero-content p-2 sm flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
@@ -83,13 +73,13 @@ const UpdateProfile = () => {
                             <div className="sm:flex gap-5 items-center">
                                 <div className="avatar flex justify-center sm:block">
                                     <div className="ring-[#e09d15] ring-offset-base-100 w-16 sm:w-24 lg:w-32 rounded-full ring ring-offset-2">
-                                        <img src={userphoto} alt="Profile" />
+                                        <img src={user?.photoURL} alt="Profile" />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <h1 className="text-center pt-4 sm:pt-0 sm:text-start">Name: {userName}</h1>
-                                    <h1 className="text-center sm:text-start">Email: {userEmail}</h1>
-                                    <h1 className="text-center sm:text-start">Role: {userRole}</h1>
+                                    <h1 className="text-center pt-4 sm:pt-0 sm:text-start">Name: {user?.displayName}</h1>
+                                    <h1 className="text-center sm:text-start">Email: {user?.email}</h1>
+                                    <h1 className="text-center sm:text-start">Role: {role}</h1>
                                 </div>
                             </div>
 
