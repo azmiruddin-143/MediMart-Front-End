@@ -15,8 +15,6 @@ import toast from 'react-hot-toast';
 const Sidebar = () => {
     const { role, isLoading } = useRole()
     const { user, userLogout } = useContext(AuthContext);
-
-    console.log(role);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const location = useLocation();
     useEffect(() => {

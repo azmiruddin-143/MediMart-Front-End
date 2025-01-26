@@ -12,14 +12,13 @@ const SellerHomepage = () => {
     useEffect(() => {
         axiosSecure.get(`/payment/pending-paid/${user?.email}`)
             .then(res => {
-                console.log(res.data);
                 setStatusCounts({
                     pending: res.data.pendingCount,
                     paid: res.data.paidCount
                 });
             })
             .catch((error) => {
-                console.log(error.message);
+                
             });
     }, [])
 
@@ -32,7 +31,9 @@ const SellerHomepage = () => {
                 });
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error(`error ${error.message}`, {
+                    autoClose: 3000,
+                });
             });
     }, [])
 

@@ -13,7 +13,6 @@ const LatestProduct = () => {
         },
     });
 
-    console.log(medicine);
 
     if (isLoading) return <LoadingSpinner />;
     return (

@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>
       },
-      
+
       {
         path: "/updateprofile",
         element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         path: "/contactus",
         element: <ContactUs></ContactUs>
       },
-      
+
       {
         path: "/category/:categoryName",
         element: <CategoryDetails></CategoryDetails>
@@ -101,7 +101,11 @@ const router = createBrowserRouter([
       },
       {
         path: "managecategory",
-        element: <ManageCategory></ManageCategory>,
+        element: <PrivateRoute>
+          <AdminRoute>
+            <ManageCategory></ManageCategory>,
+          </AdminRoute>
+        </PrivateRoute>
       },
       {
         path: "paymentmanagement",
@@ -179,7 +183,7 @@ const router = createBrowserRouter([
       // user//
       {
         path: "userpaymenthistory",
-        element: <UserPaymentHistory></UserPaymentHistory>
+        element: <PrivateRoute><UserPaymentHistory></UserPaymentHistory></PrivateRoute>
       },
     ]
   },

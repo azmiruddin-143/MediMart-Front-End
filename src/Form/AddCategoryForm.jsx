@@ -29,7 +29,9 @@ const AddCategoryForm = ({ setIsEditModalOpen, refetch }) => {
                 refetch()
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             })
 
 

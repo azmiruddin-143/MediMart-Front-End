@@ -18,7 +18,7 @@ const UserPaymentHistory = () => {
             return data;
         }
     });
-    console.log(payment);
+    // console.log(payment);
 
     if (isLoading) return <LoadingSpinner />;
 

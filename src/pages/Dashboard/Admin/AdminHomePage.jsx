@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaWallet, FaUsers, FaBox, FaTruck, FaMoneyBillWave, FaHourglassHalf, FaTruckLoading, FaCheckCircle, FaShoppingCart } from 'react-icons/fa';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 const AdminHomePage = () => {
     const [statusCounts, setStatusCounts] = useState({ pending: 0, paid: 0 });
     const [priceCounts, setPriceCounts] = useState({ pending: 0, paid: 0 })
@@ -11,14 +12,15 @@ const AdminHomePage = () => {
     useEffect(() => {
         axiosSecure.get('/payment/pending-paid')
             .then(res => {
-                console.log(res.data);
                 setStatusCounts({
                     pending: res.data.pendingCount,
                     paid: res.data.paidCount
                 });
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             });
     }, [])
 
@@ -31,7 +33,9 @@ const AdminHomePage = () => {
                 });
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             });
     }, [])
 
@@ -42,8 +46,10 @@ const AdminHomePage = () => {
             .then(res => {
                 setTotalOrder(res.data.totalOrder);
             })
-            .catch(err => {
-                console.error("Error fetching total payments:", err.message);
+            .catch(error => {
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             });
     }, []);
 

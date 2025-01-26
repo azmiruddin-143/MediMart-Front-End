@@ -21,12 +21,13 @@ const CartRow = ({ cart, index, cartRefetch, }) => {
     }
 
     axiosSecure.put(`/carts/${_id}`, updateCart)
-        .then(res => {
-            console.log(res.data);
+        .then(() => {
             cartRefetch()
         })
         .catch((error) => {
-            console.log(error);
+            toast.error("error!", (error.message), {
+                duration: 3000,
+            })
         })
 
 

@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 
 const SignIn = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser,setuser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
@@ -20,7 +20,7 @@ const SignIn = () => {
         loginUser(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                setuser(user);
                 toast.success('Login successful!!', {
                     duration: 3000, 
                 });

@@ -19,8 +19,7 @@ const Banner = () => {
             return data;
         }
     });
-    console.log(banner);
-
+  
     if (isLoading) return <LoadingSpinner />;
     return (
         <div className="w-full relative">

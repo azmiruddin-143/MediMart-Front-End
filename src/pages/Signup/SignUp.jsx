@@ -39,10 +39,12 @@ const SignUp = () => {
 
                             axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)
                                 .then(res => {
-                                    console.log(res.data);
+                                    setuser(res.data);
                                 })
                                 .catch((error) => {
-                                    console.log(error.message);
+                                    toast.error(`error ${error.message}`, {
+                                        autoClose: 3000,
+                                    });
                                 });
 
                             setuser({ ...result.user, displayName: name, photoURL: image });
@@ -60,10 +62,14 @@ const SignUp = () => {
                         });
                 })
                 .catch((error) => {
-                    console.log('error kahico', error.message);
+                    toast.error("Error!", (error.message), {
+                        duration: 3000,
+                    })
                 });
         } catch (error) {
-            console.error("Image upload failed:", error);
+            toast.error("Image upload failed!", (error.message), {
+                duration: 3000,
+            })
         }
     };
 

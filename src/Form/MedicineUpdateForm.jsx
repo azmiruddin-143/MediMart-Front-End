@@ -40,7 +40,6 @@ const MedicineUpdateForm = ({ setIsEditModalOpen, refetch, medicine }) => {
         refetch();
         axiosSecure.put(`/medicine/${_id}`, medicineUpdate)
             .then(res => {
-                   console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     toast.success('Medicine modified !', {
                         duration: 3000, 

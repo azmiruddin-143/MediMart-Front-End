@@ -9,7 +9,6 @@ const ChekOutRow = ({ cart, index, cartRefetch, }) => {
      
     const axiosSecure = useAxiosSecure();
     const { image, name, company, perUnitPrice, quantity: buyQuantity, _id } = cart
-    console.log(name);
     const [quantity, Setquantity] = useState(buyQuantity)
 
 
@@ -21,12 +20,13 @@ const ChekOutRow = ({ cart, index, cartRefetch, }) => {
     }
 
     axiosSecure.put(`/carts/${_id}`, updateCart)
-        .then(res => {
-            console.log(res.data);
+        .then(() => {
             cartRefetch()
         })
         .catch((error) => {
-            console.log(error);
+            toast.error(`error ${error.message}`, {
+                autoClose: 3000,
+            });
         })
 
 

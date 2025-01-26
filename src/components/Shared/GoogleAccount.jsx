@@ -6,13 +6,13 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 
 const GoogleAccount = () => {
-    const { googleRegister } = useContext(AuthContext)
+    const { googleRegister,setuser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const googleSignin = () => {
         googleRegister()
             .then((result) => {
-                console.log(result.user);
+                setuser(result.user);
                 const userInfo = {
                     userName: result.user?.displayName,
                     userEmail: result.user?.email,
@@ -21,7 +21,7 @@ const GoogleAccount = () => {
                 }
                 axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)
                     .then(result => {
-                        console.log(result.data);
+                        setuser(result.data);
                         navigate('/')
                     })
             })
