@@ -28,7 +28,7 @@ const Sidebar = () => {
         userLogout()
             .then(() => {
                 toast.success('Logout successful!!', {
-                    duration: 3000, 
+                    duration: 3000,
                 });
                 navigate("/signin");
             })
@@ -53,8 +53,8 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-80 transition-transform transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
-                    } lg:translate-x-0 lg:static`}
+                className={`fixed top-0 left-0 min-h-screen h-auto z-20 bg-gray-100 w-80 transition-transform transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
+                    } lg:translate-x-0 lg:static '`}
             >
                 {/* Logo Section */}
                 <Link to={'/'}>
@@ -235,27 +235,29 @@ const Sidebar = () => {
 
 
                 {/* Divider */}
-                <div className="divider mb-14"></div>
+                <div className="divider mb-2 xl:mb-14"></div>
 
                 {/* Profile and Logout */}
-                <NavLink
-                    to="/updateprofile"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-black  flex items-center pl-3 font-bold rounded-md mx-5 py-2 justify-start mb-5 gap-3 bg-primary border-secondary"
-                            : "flex items-center justify-start py-2 hover:bg-primary hover:font-bold duration-300 rounded-md mx-5 border border-gray-300 pl-3 gap-3 mb-5"
-                    }
-                >
-                    <IoSettingsSharp className="text-xl" />
-                    Profile
-                </NavLink>
-                <button
-                    onClick={userLogoutHandler}
-                    className={"flex items-center w-[87%]  justify-start hover:bg-primary hover:font-bold duration-300 rounded-md mx-5 border border-gray-300 pl-3 py-2 gap-3 mb-5"}
-                >
-                    <MdLogout className="text-xl" />
-                    Logout
-                </button>
+                
+                    <NavLink
+                        to="/updateprofile"
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-black  flex items-center pl-3 font-bold rounded-md mx-5 py-2 justify-start mb-5 gap-3 bg-primary border-secondary"
+                                : "flex items-center justify-start py-2 hover:bg-primary hover:font-bold duration-300 rounded-md mx-5 border border-gray-300 pl-3 gap-3 mb-5"
+                        }
+                    >
+                        <IoSettingsSharp className="text-xl" />
+                        Profile
+                    </NavLink>
+                    <button
+                        onClick={userLogoutHandler}
+                        className={"flex items-center w-[87%]  justify-start hover:bg-primary hover:font-bold duration-300 rounded-md mx-5 border border-gray-300 pl-3 py-2 gap-3 mb-5"}
+                    >
+                        <MdLogout className="text-xl" />
+                        Logout
+                    </button>
+                
             </div>
         </div>
     );

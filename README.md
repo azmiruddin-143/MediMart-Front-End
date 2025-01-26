@@ -4,6 +4,13 @@
 # Website Name : MediMart
 # Website Link : https://medimart-bd.web.app/
 # Features of MediMart Website
+## Admin
+### Email : freelancerazmir143@gmail.com
+### Password : 111111Aa@
+
+# Seller
+### Email : medimart@gmail.com
+### Password : 111111Aa@
 
 - Responsive and Intuitive DesignA clean, modern, and user-friendly interface that adapts seamlessly to all devices for a smooth browsing experience.
 

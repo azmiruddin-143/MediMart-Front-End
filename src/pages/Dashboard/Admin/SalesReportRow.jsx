@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
 import { Helmet } from "react-helmet-async";
+import NoResultFound from "../../../components/Shared/NoResultFound";
 
 const SalesReportRow = ({ data }) => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -151,6 +152,11 @@ const SalesReportRow = ({ data }) => {
                         ))}
                     </tbody>
                 </table>
+
+                {sortedData.length === 0 &&
+                    <NoResultFound></NoResultFound>
+                }
+
             </div>
         </div>
     );

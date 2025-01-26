@@ -79,7 +79,7 @@ const CartRow = ({ cart, index, cartRefetch, }) => {
                     </div>
 
                 </td>
-                <td className='text-neutral text-end'>{subTotal}</td>
+                <td className='text-neutral text-end'>{subTotal}$</td>
 
             </tr>
         </tbody>

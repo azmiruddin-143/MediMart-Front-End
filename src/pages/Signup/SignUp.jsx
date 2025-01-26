@@ -39,7 +39,6 @@ const SignUp = () => {
                             axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)
                                 .then(res => {
                                     setuser(res.data);
-                                    console.log(res.data,"hvbhvbhbh");
                                 })
                                 .catch((error) => {
                                     toast.error(`error ${error.message}`, {

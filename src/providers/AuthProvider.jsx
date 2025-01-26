@@ -69,9 +69,6 @@ const AuthProvider = ({ children }) => {
         }
     }, [user?.displayName,user?.photoURL])
 
-   
-    console.log(user);
-
     const authObjct = {
         registerUser,
         googleRegister,
