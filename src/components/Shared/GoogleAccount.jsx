@@ -16,7 +16,7 @@ const GoogleAccount = () => {
                 const userInfo = {
                     userName: result.user?.displayName,
                     userEmail: result.user?.email,
-                    userPhoto: result.user?.photoURL,
+                    userphoto: result.user?.photoURL,
                     userRole: "User"
                 }
                 axios.post('https://medi-mart-server-opal.vercel.app/users', userInfo)

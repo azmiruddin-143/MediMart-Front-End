@@ -56,7 +56,7 @@ const UserDataRow = ({ user, index, refetch }) => {
 
 
     const UsersDelete = () => {
-        axios.delete(`http://localhost:5000/users/${_id}`)
+        axiosSecure.delete(`/users/${_id}`)
             .then(res => {
                 if (res.data.deletedCount > 0) {
                     toast.success('User deleted successfully!', {
@@ -80,10 +80,13 @@ const UserDataRow = ({ user, index, refetch }) => {
                 <th className='flex  text-neutral items-center gap-5'>{index + 1}
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
+
                             <img
                                 referrerPolicy='no-referrer'
                                 src={
                                     userphoto} />
+
+
 
                         </div>
                     </div>
@@ -92,10 +95,10 @@ const UserDataRow = ({ user, index, refetch }) => {
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{userName}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{userEmail} </td>
                 <td className={`${userRole === "Admin"
-                        ? "text-yellow-600 font-bold"
-                        : userRole === "Seller"
-                            ? "text-blue-500 font-bold"
-                            : "text-black font-bold"
+                    ? "text-yellow-600 font-bold"
+                    : userRole === "Seller"
+                        ? "text-blue-500 font-bold"
+                        : "text-black font-bold"
                     } border border-gray-300 px-4 py-2`}
                 >{userRole}</td>
                 <td className='px-2 text-end py-5 border-b border-gray-200 bg-white text-sm'>

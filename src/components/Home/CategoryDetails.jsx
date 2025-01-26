@@ -4,19 +4,23 @@ import useCategory from '../../hooks/useCategory';
 import CategoryDetailsRow from '../Dashboard/TableRows/CategoryDetailsRow';
 import { FaSearchengin } from 'react-icons/fa';
 import NoResultFound from '../Shared/NoResultFound';
+import { Helmet } from 'react-helmet-async';
 
 
 const CategoryDetails = () => {
-    const [categoryName, isLoading, refetch, CategoryMedicine, setSearch, setSort,sort] = useCategory();
+    const [categoryName, isLoading, refetch, CategoryMedicine, setSearch, setSort, sort] = useCategory();
     if (isLoading) return <LoadingSpinner />;
 
     const handleSearchChange = (e) => {
-        setSearch(e.target.value); 
+        setSearch(e.target.value);
 
     };
 
     return (
         <div className=" overflow-x-auto h-screen  xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
+            <Helmet>
+                <title>MediMart | Category </title>
+            </Helmet>
             <div className='sm:flex space-y-5 sm:space-y-0 items-center justify-between mb-8'>
                 <h1 className='text-xl' >( Category:  <span className='text-primary font-bold' >
                     {categoryName}</span> )</h1>
@@ -39,7 +43,7 @@ const CategoryDetails = () => {
                         name='search'
                         placeholder='Search Medicine'
                         onBlur={handleSearchChange}
-                        // onChange={handleSearchChange}
+                    // onChange={handleSearchChange}
                     />
                     <button className="px-1 md:px-4 py-3 text-sm text-neutral">
                         <FaSearchengin size={25} />

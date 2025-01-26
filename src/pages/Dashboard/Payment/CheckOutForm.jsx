@@ -7,6 +7,7 @@ import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
+
 const CheckoutForm = () => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
@@ -98,16 +99,17 @@ const CheckoutForm = () => {
                 console.log('payment saved', res.data);
                 cartRefetch();
                 if (res.data?.paymentResult?.insertedId) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Thank you for the taka paisa",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    // Swal.fire({
+                    //     position: "top-end",
+                    //     icon: "success",
+                    //     title: "Thank you for the taka paisa",
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // });
                     const transactionId = paymentIntent.id;
                     navigate(`/invoice/${transactionId}`);
                 }
+             
             }
         }
 

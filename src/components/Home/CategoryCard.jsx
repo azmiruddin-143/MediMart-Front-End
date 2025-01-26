@@ -18,16 +18,16 @@ const CategoryCard = () => {
 
    return (
       <div>
-         <h1 className='text-center pt-6 text-4xl'>Shop By Category</h1>
-         <div className='grid max-w-7xl mx-auto my-12 lg:grid-cols-4 grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 place-items-center gap-4'>
+         <h1 className='text-center font-bold pt-6 text-2xl sm:text-4xl'>Shop By Category </h1>
+         <div className='grid  max-w-7xl  mx-auto my-12 lg:grid-cols-4 grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 place-items-center gap-4'>
             {
                category.slice(0, 6).map((category, index) =>
                   <div
                      key={index}
                      onClick={() => navigate(`/category/${category.categoryName}`)}
-                     className="flex justify-center items-center my-10 bg-gray-100"
+                     className="flex  justify-center items-center sm:my-10 bg-gray-100"
                   >
-                     <div className="w-52 h-52 bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                     <div className=" w-80 sm:w-52 h-52  shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
                         <div className="h-[85%]">
                            <img
                               src={category.categoryImage}

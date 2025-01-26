@@ -1,20 +1,23 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import Advertisementrow from '../../../components/Dashboard/TableRows/advertisementrow';
 import AdvertisementModal from '../../../Modal/AdvertisementModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import NoResultFound from '../../../components/Shared/NoResultFound';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 const AskForAdvertisement = () => {
+    const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const { data: advertisement = [], isLoading, refetch } = useQuery({
-        queryKey: ['advertisement'],
+        queryKey: ['advertisement', user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure.get('/advertisement');
+            const { data } = await axiosSecure.get(`/seller-advertisement/${user?.email}`);
             return data;
         }
     });
@@ -22,6 +25,9 @@ const AskForAdvertisement = () => {
     if (isLoading) return <LoadingSpinner />;
     return (
         <div className=" overflow-x-auto container mx-auto my-5 ">
+            <Helmet>
+                <title>MediMart | Advertisement </title>
+            </Helmet>
             <div className='sm:flex  justify-between mb-8'>
                 <h1 className='text-xl mb-4 sm:mb-0'>(All Advertisement <span className='text-primary font-bold'>{advertisement.length}</span>)</h1>
                 <div>

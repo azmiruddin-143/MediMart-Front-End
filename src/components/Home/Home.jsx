@@ -7,10 +7,14 @@ import LatestProduct from './LatestProduct';
 import HealthcarePartner from './HealthcarePartner';
 import FeaturesSection from './FeaturesSection';
 import Faq from './Faq';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>MediMart | Home </title>
+            </Helmet>
             <Banner></Banner>
             <TextSlider></TextSlider>
             <CategoryCard></CategoryCard>
@@ -19,7 +23,6 @@ const Home = () => {
             <HealthcarePartner></HealthcarePartner>
             <FeaturesSection></FeaturesSection>
             <Faq></Faq>
-         
         </div>
     );
 };

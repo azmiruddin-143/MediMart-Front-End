@@ -8,6 +8,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import NoResultFound from '../../../components/Shared/NoResultFound';
 import { FaSearchengin } from 'react-icons/fa';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import { Helmet } from 'react-helmet-async';
 
 const ManageMedicines = () => {
     const [search, setSearch] = useState('');
@@ -17,7 +18,7 @@ const ManageMedicines = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-    
+
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine', currentPage],
         queryFn: async () => {
@@ -62,6 +63,9 @@ const ManageMedicines = () => {
 
     return (
         <div className=" overflow-x-auto container mx-auto my-10 ">
+            <Helmet>
+                <title>MediMart | Manage Medicine </title>
+            </Helmet>
             <div className='md:flex space-y-4 md:space-y-0 items-center justify-between mb-8'>
                 <h1 className='text-xl'>(All Medicine <span className='text-primary font-bold'>{medicine.length}</span>)</h1>
                 <div>
@@ -123,12 +127,12 @@ const ManageMedicines = () => {
                 {
                     filteredMedicines.length > 0 && filteredMedicines.map((medicine) =>
                         <ManageMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} />
-                    ) 
+                    )
                 }
             </table>
 
             {
-                filteredMedicines.length === 0 && 
+                filteredMedicines.length === 0 &&
                 <NoResultFound></NoResultFound>
             }
 
@@ -136,30 +140,30 @@ const ManageMedicines = () => {
             {
                 filteredMedicines.length > 0 &&
                 <div className='sm:flex justify-center items-center mt-8'>
-                <button
-                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === 1 ? 'bg-gray-200' : 'bg-primary'}`}
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                >
-                    <SlArrowLeft />
-                </button>
-                {[...Array(totalPages)].map((_, i) => (
                     <button
-                        key={i}
-                        className={`px-4 py-2 mx-1 rounded-md ${currentPage === i + 1 ? 'bg-primary text-black' : 'bg-gray-200'}`}
-                        onClick={() => handlePageChange(i + 1)}
+                        className={`px-2 py-3 mx-1 rounded-md ${currentPage === 1 ? 'bg-gray-200' : 'bg-primary'}`}
+                        disabled={currentPage === 1}
+                        onClick={() => handlePageChange(currentPage - 1)}
                     >
-                        {i + 1}
+                        <SlArrowLeft />
                     </button>
-                ))}
-                <button
-                    className={`px-2 py-3 mx-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-primary'}`}
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                >
-                    <SlArrowRight />
-                </button>
-            </div>
+                    {[...Array(totalPages)].map((_, i) => (
+                        <button
+                            key={i}
+                            className={`px-4 py-2 mx-1 rounded-md ${currentPage === i + 1 ? 'bg-primary text-black' : 'bg-gray-200'}`}
+                            onClick={() => handlePageChange(i + 1)}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+                    <button
+                        className={`px-2 py-3 mx-1 rounded-md ${currentPage === totalPages ? 'bg-gray-300' : 'bg-primary'}`}
+                        disabled={currentPage === totalPages}
+                        onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                        <SlArrowRight />
+                    </button>
+                </div>
             }
         </div>
     );

@@ -116,7 +116,7 @@ const UpdateUserModal = ({ setIsOpen, isOpen, closeUpdateModal,updateRole,userRo
                   </button>
                   <button
                     type='button'
-                    className='inline-flex justify-center rounded-md border border-transparent bg-red-700 px-4 py-2 text-sm font-medium text-white'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white'
                     onClick={() => closeUpdateModal(false)}
                   >
                     Cancel

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaWallet, FaUsers, FaBox, FaTruck, FaMoneyBillWave, FaHourglassHalf, FaTruckLoading, FaCheckCircle, FaShoppingCart } from 'react-icons/fa';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 const AdminHomePage = () => {
     const [statusCounts, setStatusCounts] = useState({ pending: 0, paid: 0 });
     const [priceCounts, setPriceCounts] = useState({ pending: 0, paid: 0 })
@@ -50,6 +51,9 @@ const AdminHomePage = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 p-6">
+            <Helmet>
+                <title>MediMart | Admin Home </title>
+            </Helmet>
             {/* Revenue Card */}
             <div className="flex items-center justify-center p-6 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-lg shadow-md">
                 <div className="  gap-4">

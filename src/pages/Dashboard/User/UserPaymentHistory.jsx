@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import UserPaymentHistoryRow from '../../../components/Dashboard/TableRows/UserPaymentHistoryRow';
 import NoResultFound from '../../../components/Shared/NoResultFound';
+import { Helmet } from 'react-helmet-async';
 
 const UserPaymentHistory = () => {
     const { user } = useContext(AuthContext)
@@ -23,6 +24,9 @@ const UserPaymentHistory = () => {
 
     return (
         <div className=" overflow-x-auto container mx-auto my-10 ">
+            <Helmet>
+                <title>MediMart | PaymentHistory </title>
+            </Helmet>
             <div className='flex justify-between mb-8'>
                 <h1 className='text-xl'>( All Order <span className='text-primary font-bold'>{payment.length}</span> )</h1>
 

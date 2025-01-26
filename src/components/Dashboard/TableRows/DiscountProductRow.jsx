@@ -7,6 +7,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import useCart from '../../../hooks/useCart';
 import axios from 'axios';
 import useRole from '../../../hooks/useRole';
+import toast from 'react-hot-toast';
 const DiscountProductRow = ({ medicine }) => {
     const { _id, medicineImage, discountPercentage,company,sellerEmail, medicineName, perUnitPrice } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -31,12 +32,18 @@ const DiscountProductRow = ({ medicine }) => {
 
             axios.post('https://medi-mart-server-opal.vercel.app/carts', cartsInfo)
                 .then(res => {
-                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        toast.success(' Medicine added cart', {
+                          duration: 3000, 
+                        });
+                      }
                     cartRefetch()
                     setIsEditModalOpen(false)
                 })
                 .catch((error) => {
-                    console.log(error.data);
+                    toast.error("Error!", (error.message), {
+                        duration: 3000,
+                    })
                 })
         }
 
@@ -85,8 +92,6 @@ const DiscountProductRow = ({ medicine }) => {
                                 setIsEditModalOpen={setIsEditModalOpen}
                                 medicine={medicine}
                                 cartDiscount ={cartDiscount}
-
-
                             />
                         </div>
                         <div className='flex justify-end items-center' >

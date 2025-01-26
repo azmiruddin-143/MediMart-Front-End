@@ -6,15 +6,17 @@ import { FaEye } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 import useCart from '../../hooks/useCart';
 import useRole from '../../hooks/useRole';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const LatestProductCard = ({ medicine }) => {
     const { medicineName, genericName, shortDescription,
         sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
-        const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
-     const [,,cartRefetch] = useCart()
-     const {role} = useRole()
+    const [, , cartRefetch] = useCart()
+    const { role } = useRole()
     const cartDiscount = () => {
 
         if (user && user?.email) {
@@ -23,7 +25,7 @@ const LatestProductCard = ({ medicine }) => {
                 email: user?.email,
                 name: medicineName,
                 image: medicineImage,
-                sellerEmail:sellerEmail,
+                sellerEmail: sellerEmail,
                 company: company,
                 perUnitPrice: perUnitPrice,
                 quantity: 1
@@ -32,12 +34,18 @@ const LatestProductCard = ({ medicine }) => {
 
             axios.post('https://medi-mart-server-opal.vercel.app/carts', cartsInfo)
                 .then(res => {
-                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        toast.success(' Medicine added cart', {
+                          duration: 3000, 
+                        });
+                      }
                     cartRefetch()
                     setIsEditModalOpen(false)
                 })
                 .catch((error) => {
-                    console.log(error.data);
+                    toast.error("Error!", (error.message), {
+                        duration: 3000,
+                    })
                 })
         }
 
@@ -62,9 +70,14 @@ const LatestProductCard = ({ medicine }) => {
                     <h1 class="text-2xl font-semibold pb-1 text-neutral">{medicineName}</h1>
                     <p class="text-md text-neutral">{medicineCategory}</p>
                     {/* <p class="text-md text-neutral py-1"> Total Purchase: <span className='font-bold text-neutral'>{purchaseCount}</span> </p> */}
-                    <div class="flex items-center mt-1">
-                        <span class="text-xl font-bold text-neutral"> ${perUnitPrice}</span>
-                    </div>
+
+
+                    {
+                        discountPercentage === 0 ? <h1 className='text-sm line-through'>No Discount</h1> :
+                            <h1 className='line-through'>{discountPercentage}%</h1>
+                    }
+                    <span class="text-xl font-bold text-neutral"> ${perUnitPrice}</span>
+
 
 
                     <div className='flex justify-between' >

@@ -2,8 +2,12 @@ import { useForm } from "react-hook-form";
 import { FaDownload } from "react-icons/fa";
 import { imageUpload } from "../api/utilis";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
+  const{user} = useContext(AuthContext)
   const axiosSecure = useAxiosSecure()
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -16,17 +20,24 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
       advertisementImage,
       advertisementDescription,
       advertisementStatus: "Pending",
+      requestEmail : user?.email
     };
 
     reset();
     setIsEditModalOpen(false);
     axiosSecure.post("/advertisement", advertisementData)
       .then((res) => {
-        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success(' Banner added successfully', {
+            duration: 3000, 
+          });
+        }
         refetch();
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error("Error!", (error.message), {
+          duration: 3000,
+      })
       });
   };
 

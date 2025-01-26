@@ -4,8 +4,8 @@ import { FaSquareCheck } from 'react-icons/fa6';
 import doctor from '../../assets/doctor.jpg'
 const HealthcarePartner = () => {
     return (
-        <div className=' py-28 '>
-            <section className=" lg:mx-5 2xl:mx-36 xl:mx-52 shadow-md px-4 py-16 flex flex-col md:flex-row items-center ">
+        <div className='py-5 sm:py-14 xl:py-28 '>
+            <section className=" lg:mx-8 mx-5 xl:mx-32 2xl:mx-36 shadow-md px-4 py-16 flex flex-col md:flex-row items-center ">
                 {/* Left Image */}
                 <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
                     <img src={healdImage} alt="" />
@@ -34,17 +34,19 @@ const HealthcarePartner = () => {
                             <span className="text-gray-700">Seamless eCommerce integration for customers.</span>
                         </li>
                     </ul>
-                    <div className="mt-8 flex items-center">
-                        <img
-                            src={doctor}
-                            alt="Profile"
-                            className="w-12 h-12 rounded-full"
-                        />
-                        <div className="ml-4">
-                            <p className="text-gray-700 font-semibold">Jerry Henson</p>
-                            <p className="text-gray-500 text-sm">Medical Specialist</p>
+                    <div className="mt-8 sm:flex justify-between items-center">
+                        <div className='flex gap-2 mb-5 items-center'>
+                            <img
+                                src={doctor}
+                                alt="Profile"
+                                className="w-12 h-12 rounded-full"
+                            />
+                            <div className="ml-4">
+                                <p className="text-gray-700 font-semibold">Jerry Henson</p>
+                                <p className="text-gray-500 text-sm">Medical Specialist</p>
+                            </div>
                         </div>
-                        <div className="ml-auto bg-[black] p-4 rounded-lg">
+                        <div className=" w-fit bg-[black] p-4 rounded-lg">
                             <p className="text-primary font-semibold">Get Support</p>
                             <p className="text-white text-sm">123-456-789-10</p>
                         </div>

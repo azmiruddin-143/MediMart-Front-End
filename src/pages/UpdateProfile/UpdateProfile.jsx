@@ -9,20 +9,23 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { imageUpload } from '../../api/utilis';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateProfile = () => {
     const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-   
-    const { data: myprofile = [], isLoading , refetch} = useQuery({
+
+    const { data: myprofile = [], isLoading, refetch } = useQuery({
         queryKey: ['myprofile'],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/myprofile/${user?.email}`);
+            const { data } = await axiosSecure.get(`/myprofile/${user?.email}`);
             return data;
         }
     });
-    
-    const { userName, userEmail, userRole, userphoto,_id } = myprofile
+
+    const { userName, userEmail, userRole, userphoto, _id } = myprofile
 
     const onSubmit = async (data) => {
         const { name, image } = data;
@@ -45,7 +48,7 @@ const UpdateProfile = () => {
         // MongoDB তে PUT কল
         if (Object.keys(updateData).length > 0) {
             try {
-                const response = await axios.put(`http://localhost:5000/myprofile/${_id}`, updateData);
+                const response = await axiosSecure.put(`/myprofile/${_id}`, updateData);
                 if (response.data.modifiedCount > 0) {
                     toast.success("Profile updated successfully!");
                     refetch()
@@ -62,7 +65,7 @@ const UpdateProfile = () => {
     };
 
 
-  
+
     if (isLoading) return <LoadingSpinner />;
 
 
@@ -70,6 +73,9 @@ const UpdateProfile = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>MediMart | UpdateProfile </title>
+            </Helmet>
             <div className="my-24">
                 <div className="hero-content p-2 sm flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">

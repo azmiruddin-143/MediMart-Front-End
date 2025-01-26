@@ -3,9 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { jsPDF } from "jspdf";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
-import invoiceLogo from "../../../src/assets/foods-logo.png";
+import invoiceLogo from "../../assets/medicine-logo.png";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaChevronLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Invoice = () => {
     const { user } = useContext(AuthContext);
@@ -105,6 +106,9 @@ const Invoice = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>MediMart | Invoice </title>
+            </Helmet>
             <Link to={'/'} ><h1 className='bg-primary text-black font-bold w-fit py-2 px-4 flex items-center gap-2 rounded-md my-3 mx-3'><FaChevronLeft /> Home Page</h1></Link>
             <div className="max-w-7xl px-10 mx-auto">
                 <div className="flex justify-center mt-6">
@@ -118,7 +122,7 @@ const Invoice = () => {
 
                 <div>
                     <div className="sm:flex my-14 justify-between items-center">
-                        <img className="w-[150px] mb-8 sm:mb-0" src={invoiceLogo} alt="" />
+                        <img className="w-[150px] mb-8 sm:mb-0 bg-[#00000044] rounded-full" src={invoiceLogo} alt="" />
                         <div className="space-y-3 text-center">
                             <h1 className="text-5xl font-bold">Invoice</h1>
                             <h1>MediMArt</h1>

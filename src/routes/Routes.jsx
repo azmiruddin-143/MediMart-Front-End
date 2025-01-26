@@ -22,15 +22,16 @@ import PaymentHistory from "../pages/Dashboard/Seller/PaymentHistory";
 import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
-import Checkout from "../pages/Checkout/Checkout";
 import ChekOut from "../pages/Checkout/Checkout";
 import Invoice from "../pages/Invoice/Invoice";
 import RoleBasedRedirect from "../components/Shared/RoleBasedRedirect";
+import ContactUs from "../pages/Checkout/Contact/ContactUs";
+import ErrorPage from "../components/Shared/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <h1 className="text-red-700 text-4xl">Error page</h1>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/chekout",
         element: <ChekOut></ChekOut>
+      },
+      {
+        path: "/contactus",
+        element: <ContactUs></ContactUs>
       },
       
       {

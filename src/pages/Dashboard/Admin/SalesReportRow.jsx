@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
+import { Helmet } from "react-helmet-async";
 
 const SalesReportRow = ({ data }) => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +31,7 @@ const SalesReportRow = ({ data }) => {
     const handleSort = (key) => {
         setSortConfig((prev) => ({
             key,
-            direction: prev.key === key && prev.direction === "asc" ? "desc":"",
+            direction: prev.key === key && prev.direction === "asc" ? "desc" : "",
         }));
     };
 
@@ -67,6 +68,9 @@ const SalesReportRow = ({ data }) => {
 
     return (
         <div className="container mx-auto p-5">
+            <Helmet>
+                <title>MediMart | Sales Report </title>
+            </Helmet>
             <div className="md:flex justify-between items-center mb-5">
                 {/* Search Bar */}
                 <input

@@ -1,6 +1,4 @@
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import MedicineDetailsModal from '../../Modal/MedicineDetailsModal';
 import { useContext, useState } from 'react';
 import { FaEye } from 'react-icons/fa';
@@ -10,6 +8,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useRole from '../../hooks/useRole';
+import toast from 'react-hot-toast';
 const AllMedicineRow = ({ medicine, index, refetch }) => {
     const { medicineName, genericName, shortDescription,
         sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice,  discountPercentage, _id } = medicine
@@ -35,11 +34,19 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
 
             axios.post('https://medi-mart-server-opal.vercel.app/carts', cartsInfo)
                 .then(res => {
-                    console.log(res.data);
+                   
+                    if (res.data.insertedId) {
+                        toast.success(' Medicine added cart', {
+                          duration: 3000, 
+                        });
+                      }
                     cartRefetch()
+                    setIsEditModalOpen(false)
                 })
                 .catch((error) => {
-                    console.log(error.data);
+                    toast.error("Error!", (error.message), {
+                        duration: 3000,
+                    })
                 })
         }
 

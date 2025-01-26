@@ -1,12 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 import { RxCross2 } from "react-icons/rx";
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 const ChekOutRow = ({ cart, index, cartRefetch, }) => {
      
     const axiosSecure = useAxiosSecure();
@@ -34,12 +32,19 @@ const ChekOutRow = ({ cart, index, cartRefetch, }) => {
 
     const clearCart = (id) => {
         axiosSecure.delete(`/carts/${id}`)
+        
             .then(res => {
-                console.log(res.data);
+                if (res.data.deletedCount > 0) {
+                    toast.success('OneCart deleted successfully!', {
+                        duration: 3000,
+                    });
+                }
                 cartRefetch()
             })
             .catch((error) => {
-                console.log(error);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             })
     }
 

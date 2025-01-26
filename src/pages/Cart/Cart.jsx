@@ -6,6 +6,8 @@ import CartRow from '../../components/Dashboard/TableRows/CartRow';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../providers/AuthProvider';
 import NoResultFound from '../../components/Shared/NoResultFound';
+import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 const Cart = () => {
     const { user } = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
@@ -25,11 +27,17 @@ const Cart = () => {
     const clearAllCarts = () => {
         axiosSecure.delete("/cartsClear")
             .then(res => {
-                console.log(res.data);
+                if (res.data.deletedCount > 0) {
+                    toast.success('AllCart deleted successfully!', {
+                        duration: 3000,
+                    });
+                }
                 cartRefetch();
             })
             .catch((error) => {
-                console.log(error);
+                toast.error("Error!", (error.message), {
+                    duration: 3000,
+                })
             });
     };
 
@@ -38,6 +46,9 @@ const Cart = () => {
 
     return (
         <div className="overflow-x-auto h-screen max-w-7xl mx-auto  my-10">
+            <Helmet>
+                <title>MediMart | Cart </title>
+            </Helmet>
             {
                 cart.length > 0 &&
                 <div className='flex justify-end mb-8'>

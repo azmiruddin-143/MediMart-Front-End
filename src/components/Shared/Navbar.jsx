@@ -123,17 +123,6 @@ const Navbar = () => {
                                     </NavLink>
 
                                     <NavLink
-                                        to="/chekout"
-                                        onClick={() => setIsDropdownOpen(false)}
-                                        className={({ isActive }) =>
-                                            isActive
-                                                ? `${isBlurred ? "text-primary font-bold border-b border-primary" : "text-white border-b border-white"}`
-                                                : ""
-                                        }
-                                    >
-                                        About Us
-                                    </NavLink>
-                                    <NavLink
                                         onClick={() => setIsDropdownOpen(false)}
                                         to="/contactus"
                                         className={({ isActive }) =>
@@ -196,16 +185,7 @@ const Navbar = () => {
                                 Shop
                             </NavLink>
 
-                            <NavLink
-                                to="/chekout"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? `${isBlurred ? "text-primary font-bold border-b border-primary" : "text-white border-b border-white"}`
-                                        : ""
-                                }
-                            >
-                                About Us
-                            </NavLink>
+                           
                             <NavLink
                                 to="/contactus"
                                 className={({ isActive }) =>

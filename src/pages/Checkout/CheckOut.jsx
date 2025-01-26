@@ -8,6 +8,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import ChekOutRow from '../../components/Dashboard/TableRows/ChekOutRow';
 import Payment from '../Dashboard/Payment/Payment';
 import NoResultFound from '../../components/Shared/NoResultFound';
+import { Helmet } from 'react-helmet-async';
 const ChekOut = () => {
     const { user } = useContext(AuthContext)
     const [cart, isLoading, cartRefetch] = useCart()
@@ -24,21 +25,12 @@ const ChekOut = () => {
 
     if (isLoading) return <LoadingSpinner />;
 
-    // const handleCheckout = () => {
-    //     const selectedCartData = cart.map(item => ({
-    //         image: item.image,
-    //         name: item.name,
-    //         company: item.company,
-    //         perUnitPrice: item.perUnitPrice,
-    //         quantity: item.quantity,
-    //         subTotal: item.subTotal,
-    //         totalPrice: totalPrice,
-    //         _id: item._id
-    //     }));
-    //     console.log(selectedCartData);
-    // }
+  
     return (
         <div className="overflow-x-auto h-screen max-w-7xl mx-auto  my-10">
+            <Helmet>
+                <title>MediMart | ChekOut </title>
+            </Helmet>
             <div className='text-center mb-8'>
 
                 <h1 className='xl:text-5xl  sm:text-3xl md:text-4xl text-xl text-primary font-bold' >ChekOut</h1>

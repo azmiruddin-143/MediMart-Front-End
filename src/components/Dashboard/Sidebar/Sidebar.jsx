@@ -10,6 +10,7 @@ import { BsEnvelopeOpenHeart } from 'react-icons/bs';
 import LoadingSpinner from '../../Shared/LoadingSpinner';
 import useRole from '../../../hooks/useRole';
 import { AuthContext } from '../../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Sidebar = () => {
     const { role, isLoading } = useRole()
@@ -28,7 +29,9 @@ const Sidebar = () => {
     const userLogoutHandler = () => {
         userLogout()
             .then(() => {
-                toast.success("Logout successful!", { autoClose: 3000 });
+                toast.success('Logout successful!!', {
+                    duration: 3000, 
+                });
                 navigate("/");
             })
             .catch((error) => {
@@ -52,7 +55,7 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-74 transition-transform transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
+                className={`fixed top-0 left-0 h-screen z-20 bg-gray-100 w-80 transition-transform transform ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
                     } lg:translate-x-0 lg:static`}
             >
                 {/* Logo Section */}

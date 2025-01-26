@@ -5,6 +5,7 @@ import ManageCategoryRow from '../../../components/Dashboard/TableRows/ManageCat
 import AddCategoryModal from '../../../Modal/AddCategoryModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import NoResultFound from '../../../components/Shared/NoResultFound';
+import { Helmet } from 'react-helmet-async';
 
 const ManageCategory = () => {
     const axiosSecure = useAxiosSecure()
@@ -20,6 +21,9 @@ const ManageCategory = () => {
     if (isLoading) return <LoadingSpinner />;
     return (
         <div className=" overflow-x-auto container mx-auto my-5 ">
+            <Helmet>
+                <title>MediMart | Manage Category </title>
+            </Helmet>
             <div className='flex justify-between items-center  mb-8'>
                 <h1 className='text-xl'>(All Category <span className='text-primary font-bold' >{category.length}</span> )</h1>
                 <div>
@@ -42,18 +46,18 @@ const ManageCategory = () => {
                 </div>
             </div>
             <table className="table border-collapse border border-gray-300">
-                
-                    <thead className='bg-primary'>
-                        <tr className='text-lg text-neutral'>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Image</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Name</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black'>Category Modified</th>
-                            <th className='border border-gray-300 px-4 py-2 text-black text-end'>Category Action</th>
 
-                        </tr>
-                    </thead>
+                <thead className='bg-primary'>
+                    <tr className='text-lg text-neutral'>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Category Image</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Category Name</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Category Modified</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black text-end'>Category Action</th>
 
-            
+                    </tr>
+                </thead>
+
+
 
 
                 {
