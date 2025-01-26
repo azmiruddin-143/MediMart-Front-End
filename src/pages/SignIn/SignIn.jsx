@@ -33,7 +33,7 @@ const SignIn = () => {
                 })
             });
     };
-
+// ..............//
     return (
         <div>
             <Link to={'/'} ><h1 className='bg-primary text-black font-bold w-fit py-2 px-4 flex items-center gap-2 rounded-md my-3 mx-3'><FaChevronLeft /> Home Page</h1></Link>
