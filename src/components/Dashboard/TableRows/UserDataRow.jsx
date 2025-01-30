@@ -77,20 +77,23 @@ const UserDataRow = ({ user, index, refetch }) => {
     return (
         <tbody>
             <tr className='text-neutral'>
-                <th className='flex  text-neutral items-center gap-5'>{index + 1}
-                    <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
+                <td className='border-gray-300 px-4 py-2'>
+                    <div className='flex text-neutral items-center gap-5'>
+                        {index + 1}
+                        <div className="avatar">
+                            <div className="mask mask-squircle h-12 w-12">
 
-                            <img
-                                referrerPolicy='no-referrer'
-                                src={
-                                    userphoto} />
+                                <img
+                                    referrerPolicy='no-referrer'
+                                    src={
+                                        userphoto} />
 
 
 
+                            </div>
                         </div>
                     </div>
-                </th>
+                </td>
 
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{userName}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{userEmail} </td>
