@@ -1,0 +1,34 @@
+[
+    {
+        "_id": "6795ec6069f35607de684c13",
+        "image": "https://i.ibb.co.com/F4Vy8cKR/High-Blood.jpg",
+        "title": "Did You Know High Blood Pressure Can Be Prevented?",
+        "description": "High blood pressure, also known as hypertension, is a major health risk, but the good news is that it can be prevented! Simple lifestyle changes like maintaining a healthy diet, exercising regularly, managing stress, and reducing salt intake can help keep your blood pressure in check. Early awareness and proactive steps can make a big difference in maintaining a healthy heart. Stay informed and take control of your health today!"
+    },
+    {
+        "_id": "6795ec6069f35607de684c14",
+        "image": "https://i.ibb.co.com/DHjtk1b6/Kidney-Disease.jpg",
+        "title": "What is Chronic Kidney Disease?",
+        "description": "Chronic Kidney Disease (CKD) is a long-term condition where the kidneys gradually lose their ability to function properly. The kidneys play a crucial role in filtering waste and excess fluids from the blood. When CKD progresses, harmful toxins accumulate in the body, leading to complications like high blood pressure, anemia, weak bones, and heart disease. Early detection and lifestyle changes, such as a healthy diet and proper medical care, can help slow its progression and improve quality of life."
+    },
+   
+    {
+        "_id": "6795ec6069f35607de684c15",
+        "image": "https://i.ibb.co.com/HpYFvnq9/eat-dinner.jpg",
+        "title": "When do you eat dinner?",
+        "description": "Dinner is typically the last meal of the day, enjoyed in the evening. The exact time varies by culture and personal routine, but most people eat dinner between 6 PM and 9 PM. A well-balanced dinner includes proteins, vegetables, and healthy carbohydrates to provide energy and support overall health. Eating dinner too late may affect digestion and sleep quality, so it's recommended to have it at least 2–3 hours before bedtime."
+    },
+
+    {
+        "_id": "6795ec6069f35607de684c16",
+        "image": "https://i.ibb.co.com/5hJ0Ht61/heart-patients.jpg",
+        "title": "The number of young heart patients is increasing in the country",
+        "description": "The number of young heart patients is rising in the country, raising concerns among health experts. Poor lifestyle choices, including unhealthy diets, lack of physical activity, stress, and excessive consumption of fast food, are contributing to this alarming trend. Many young individuals are being diagnosed with heart conditions such as high blood pressure, arrhythmia, and even heart attacks. Early prevention through regular exercise, a balanced diet, and medical check-ups is crucial to reducing the risk of heart disease among the younger population."
+    },
+    {
+        "_id": "6795ec6069f35607de684c17",
+        "image": "https://i.ibb.co.com/V07G00HW/insulin.jpg",
+        "title": "Misconceptions about insulin",
+        "description": "Insulin is a vital hormone that helps regulate blood sugar levels, especially for people with diabetes. However, there are many misconceptions about its use. Some believe that taking insulin means their diabetes has worsened, but in reality, it is a necessary treatment for many to maintain stable blood sugar levels. Others fear insulin injections are painful or addictive, but modern insulin pens make administration nearly painless. Another myth is that insulin causes severe weight gain, but with proper diet and lifestyle adjustments, weight can be managed. Understanding the truth about insulin can help individuals make informed health decisions."
+    }
+]

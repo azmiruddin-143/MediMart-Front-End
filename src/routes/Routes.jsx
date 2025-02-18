@@ -27,6 +27,7 @@ import Invoice from "../pages/Invoice/Invoice";
 import RoleBasedRedirect from "../components/Shared/RoleBasedRedirect";
 import ContactUs from "../pages/Checkout/Contact/ContactUs";
 import ErrorPage from "../components/Shared/ErrorPage";
+import ArticleDetails from "../components/Home/ArticleDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
       {
         path: "/category/:categoryName",
         element: <CategoryDetails></CategoryDetails>
+      },
+      {
+        path: "/health-article/:id",
+        element: <ArticleDetails></ArticleDetails>,
+        loader : async ({params}) => await fetch(`http://localhost:5000/articles/${params.id}`)
       }
     ]
   },

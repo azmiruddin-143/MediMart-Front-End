@@ -17,11 +17,11 @@ const Home = () => {
                 <title>MediMart | Home </title>
             </Helmet>
             <Banner></Banner>
-            <Articles></Articles>
             <TextSlider></TextSlider>
             <CategoryCard></CategoryCard>
             <DiscountProducts></DiscountProducts>
             <LatestProduct></LatestProduct>
+            <Articles></Articles>
             <HealthcarePartner></HealthcarePartner>
             <FeaturesSection></FeaturesSection>
             <Faq></Faq>
