@@ -12,6 +12,7 @@ import slider4 from '../../assets/medicine-banner-4.jpg';
 import slider5 from '../../assets/medicine-banner-5 .jpg';
 import { Link } from "react-router-dom";
 import { Fade, Slide } from "react-awesome-reveal";
+import { BorderBeam } from "@stianlarsen/border-beam";
 
 const Sliders = () => {
     return (
@@ -50,14 +51,30 @@ const Sliders = () => {
                                     Trusted Medicine, Quality Assured
                                 </h1>
                             </Fade>
-                            <p className="lg:w-7/12  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
+                            <p className="lg:w-7/12 sm:pb-6 pb-4 text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
                                 We provide high-quality medicines at affordable prices. Safe, reliable, and fast delivery to your doorstep. Your health is our priority.
                             </p>
-                            <Slide direction="up" duration={2000} triggerOnce>
-                                <Link to={"/shop"} className="">
-                                    <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6 sm:mt-6 mt-4 ">Purchase medicine</button>
-                                </Link>
+                            <Slide  className="" direction="up" duration={2000} triggerOnce>
+                                <div className="relative  border-2 border-transparent rounded-md inline-block">
+                                    {/* Border Animation */}
+                                    <BorderBeam
+                                        borderWidth={3}
+                                        colorFrom="white"
+                                        colorTo="#ad7925"
+                                        size={50}
+                                        duration={4}
+                                        delay={0}
+                                    />
+
+                                    {/* Button */}
+                                    <Link to={"/shop"}>
+                                        <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6  w-full">
+                                            Purchase medicine
+                                        </button>
+                                    </Link>
+                                </div>
                             </Slide>
+
                         </div>
                     </div>
                 </SwiperSlide>
@@ -77,13 +94,28 @@ const Sliders = () => {
                                     Fast & Reliable Online Pharmacy
                                 </h1>
                             </Fade>
-                            <p className="lg:w-7/12  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
+                            <p className="lg:w-7/12 sm:pb-6 pb-4  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
                                 Order quality medicines online with ease. Hassle-free service, fast delivery, and trusted products for your health and well-being.
                             </p>
-                            <Slide direction="up" duration={2000} triggerOnce>
-                                <Link to={"/shop"} className="">
-                                    <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6 sm:mt-6 mt-4 ">Purchase menu</button>
-                                </Link>
+                            <Slide  className="" direction="up" duration={2000} triggerOnce>
+                                <div className="relative  border-2 border-transparent rounded-md inline-block">
+                                    {/* Border Animation */}
+                                    <BorderBeam
+                                        borderWidth={3}
+                                        colorFrom="white"
+                                        colorTo="#ad7925"
+                                        size={50}
+                                        duration={4}
+                                        delay={0}
+                                    />
+
+                                    {/* Button */}
+                                    <Link to={"/shop"}>
+                                        <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6  w-full">
+                                            Purchase medicine
+                                        </button>
+                                    </Link>
+                                </div>
                             </Slide>
                         </div>
                     </div>
@@ -102,13 +134,28 @@ const Sliders = () => {
                                     Reliable Medicine Supply Online
                                 </h1>
                             </Fade>
-                            <p className="lg:w-7/12  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
+                            <p className="lg:w-7/12 sm:pb-6 pb-4 text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
                                 Order genuine medicines easily from our trusted online store. Fast delivery, expert pharmacists, and quality healthcare at your fingertips.
                             </p>
-                            <Slide direction="up" duration={2000} triggerOnce>
-                                <Link to={"/shop"} className="">
-                                    <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6 sm:mt-6 mt-4 ">Purchase menu</button>
-                                </Link>
+                            <Slide  className="" direction="up" duration={2000} triggerOnce>
+                                <div className="relative  border-2 border-transparent rounded-md inline-block">
+                                    {/* Border Animation */}
+                                    <BorderBeam
+                                        borderWidth={3}
+                                        colorFrom="white"
+                                        colorTo="#ad7925"
+                                        size={50}
+                                        duration={4}
+                                        delay={0}
+                                    />
+
+                                    {/* Button */}
+                                    <Link to={"/shop"}>
+                                        <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6  w-full">
+                                            Purchase medicine
+                                        </button>
+                                    </Link>
+                                </div>
                             </Slide>
                         </div>
                     </div>
@@ -128,13 +175,28 @@ const Sliders = () => {
                                     Trusted Medicine for Every Need
                                 </h1>
                             </Fade>
-                            <p className="lg:w-7/12  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
+                            <p className="lg:w-7/12 sm:pb-6 pb-4 text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
                                 Providing high-quality medicines with reliable service. Shop a wide range of healthcare products with guaranteed safety and authenticity for your well-being.
                             </p>
-                            <Slide direction="up" duration={2000} triggerOnce>
-                                <Link to={"/shop"} className="">
-                                    <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6 sm:mt-6 mt-4 ">Purchase menu</button>
-                                </Link>
+                            <Slide  className="" direction="up" duration={2000} triggerOnce>
+                                <div className="relative  border-2 border-transparent rounded-md inline-block">
+                                    {/* Border Animation */}
+                                    <BorderBeam
+                                        borderWidth={3}
+                                        colorFrom="white"
+                                        colorTo="#ad7925"
+                                        size={50}
+                                        duration={4}
+                                        delay={0}
+                                    />
+
+                                    {/* Button */}
+                                    <Link to={"/shop"}>
+                                        <button className="bg-black rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6  w-full">
+                                            Purchase medicine
+                                        </button>
+                                    </Link>
+                                </div>
                             </Slide>
                         </div>
                     </div>
@@ -156,13 +218,28 @@ const Sliders = () => {
                                     Your Trusted Online Pharmacy
                                 </h1>
                             </Fade>
-                            <p className="lg:w-7/12  text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
+                            <p className="lg:w-7/12 sm:pb-6 pb-4 text-sm sm:text-md lg:text-lg sm:w-8/12 text-white font-bold">
                                 Buy genuine medicines and healthcare products online. Easy ordering, fast delivery, and expert guidance for your health and wellness needs.
                             </p>
-                            <Slide direction="up" duration={2000} triggerOnce>
-                                <Link to={"/shop"} className="">
-                                    <button className="bg-primary rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6 sm:mt-6 mt-4 ">Purchase menu</button>
-                                </Link>
+                            <Slide  className="" direction="up" duration={2000} triggerOnce>
+                                <div className="relative  border-2 border-transparent rounded-md inline-block">
+                                    {/* Border Animation */}
+                                    <BorderBeam
+                                        borderWidth={3}
+                                        colorFrom="white"
+                                        colorTo="blue"
+                                        size={50}
+                                        duration={4}
+                                        delay={0}
+                                    />
+
+                                    {/* Button */}
+                                    <Link to={"/shop"}>
+                                        <button className="bg-primary rounded-md text-white text-sm sm:text-md lg:text-xl font-bold py-1 px-4 sm:py-2 sm:px-6  w-full">
+                                            Purchase medicine
+                                        </button>
+                                    </Link>
+                                </div>
                             </Slide>
                         </div>
                     </div>
