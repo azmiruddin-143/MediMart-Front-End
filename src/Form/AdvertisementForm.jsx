@@ -7,20 +7,22 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
-  const{user} = useContext(AuthContext)
-  const axiosSecure = useAxiosSecure()
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const addAdvertisement = async (data) => {
+    const advertisementTitle = data.title; 
     const advertisementDescription = data.description;
     const image = data.image[0];
     const advertisementImage = await imageUpload(image);
 
     const advertisementData = {
+      advertisementTitle, 
       advertisementImage,
       advertisementDescription,
       advertisementStatus: "Pending",
-      requestEmail : user?.email
+      requestEmail: user?.email
     };
 
     reset();
@@ -28,7 +30,7 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
     axiosSecure.post("/advertisement", advertisementData)
       .then((res) => {
         if (res.data.insertedId) {
-          toast.success(' Banner added successfully', {
+          toast.success('Banner added successfully', {
             duration: 3000, 
           });
         }
@@ -46,7 +48,10 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
       <form onSubmit={handleSubmit(addAdvertisement)}>
         <div className="grid grid-cols-1 gap-2">
           <div className="space-y-3 flex flex-col">
-            {/* Image */}
+            
+            
+
+            {/* Image Upload */}
             <div className="p-4 w-full m-auto rounded-lg flex-grow">
               <div>
                 <label htmlFor="image" className="flex items-center gap-2 mb-2 text-sm">
@@ -66,11 +71,26 @@ const AdvertisementForm = ({ setIsEditModalOpen, refetch }) => {
               </div>
             </div>
 
+            {/* Title Input */}
+            <input
+              type="text"
+              {...register("title", { required: "Title is required" })}
+              className="input input-bordered"
+              placeholder="Banner Title"
+            />
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title.message}</p>
+            )}
+
+            {/* Description Input */}
             <textarea
               {...register("description", { required: "Description is required" })}
               className="textarea textarea-bordered"
               placeholder="Banner Description"
             ></textarea>
+            {errors.description && (
+              <p className="text-red-500 text-sm">{errors.description.message}</p>
+            )}
 
             {/* Submit Button */}
             <button

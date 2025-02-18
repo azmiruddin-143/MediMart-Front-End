@@ -9,6 +9,7 @@ import FeaturesSection from './FeaturesSection';
 import Faq from './Faq';
 import { Helmet } from 'react-helmet-async';
 import Articles from './Articles';
+import Sliders from './Sliders';
 
 const Home = () => {
     return (
@@ -16,7 +17,8 @@ const Home = () => {
             <Helmet>
                 <title>MediMart | Home </title>
             </Helmet>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
+            <Sliders></Sliders>
             <TextSlider></TextSlider>
             <CategoryCard></CategoryCard>
             <DiscountProducts></DiscountProducts>

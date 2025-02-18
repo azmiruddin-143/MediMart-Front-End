@@ -6,7 +6,8 @@ import { GiClick } from 'react-icons/gi';
 
 const Advertisementrow = ({ advertisement, index, refetch }) => {
     const axiosSecure = useAxiosSecure()
-    const { advertisementImage, advertisementDescription, advertisementStatus, _id } = advertisement
+    const { advertisementImage, advertisementDescription, advertisementStatus, _id, 
+        advertisementTitle } = advertisement
     let [isOpen, setIsOpen] = useState(false)
     function openModal() {
         setIsOpen(true)
@@ -45,6 +46,7 @@ const Advertisementrow = ({ advertisement, index, refetch }) => {
                     </div>
                 </th>
 
+                <td className='text-neutral border border-gray-300 px-4 py-2'>{advertisementTitle ? advertisementTitle : "Not Fount"}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{advertisementDescription}</td>
                 <td className='text-neutral border border-gray-300 px-4 py-2'>{advertisementStatus}</td>
                 <td className='border  border-gray-300 px-4 py-2'>

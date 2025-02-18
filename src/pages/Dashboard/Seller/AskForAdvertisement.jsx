@@ -54,6 +54,7 @@ const AskForAdvertisement = () => {
                 <thead className='bg-primary'>
                     <tr className='text-lg text-neutral'>
                         <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
+                        <th className='border border-gray-300 px-4 py-2 text-black'>Title</th>
                         <th className='border border-gray-300 px-4 py-2 text-black'>Descrption</th>
                         <th className='border border-gray-300 px-4 py-2 text-black'>Status</th>
                         <th className='border border-gray-300 px-4 py-2 text-black text-end'>Action</th>
