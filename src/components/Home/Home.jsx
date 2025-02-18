@@ -8,6 +8,7 @@ import HealthcarePartner from './HealthcarePartner';
 import FeaturesSection from './FeaturesSection';
 import Faq from './Faq';
 import { Helmet } from 'react-helmet-async';
+import Articles from './Articles';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
                 <title>MediMart | Home </title>
             </Helmet>
             <Banner></Banner>
+            <Articles></Articles>
             <TextSlider></TextSlider>
             <CategoryCard></CategoryCard>
             <DiscountProducts></DiscountProducts>
