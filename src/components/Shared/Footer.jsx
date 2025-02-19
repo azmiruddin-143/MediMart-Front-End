@@ -24,10 +24,9 @@ const Footer = () => {
             <li>azmiruddin05@gmail.com</li>
           </ul>
           <div className="flex space-x-4 mt-4 text-xl text-white">
-            <FaFacebookF className="hover:text-primary cursor-pointer" />
-            <FaTwitter className="hover:text-primary cursor-pointer" />
-            <FaLinkedinIn className="hover:text-primary cursor-pointer" />
-            <FaYoutube className="hover:text-primary cursor-pointer" />
+            <Link to={'https://www.facebook.com/azmiruddin143/'}><FaFacebookF className="hover:text-primary cursor-pointer" /></Link>
+            <Link to={'https://www.linkedin.com/in/azmiruddin05/'}> <FaLinkedinIn className="hover:text-primary cursor-pointer" /></Link>
+            <Link to={'https://x.com/azmiruddin143_'}><FaTwitter className="hover:text-primary cursor-pointer" /></Link>
           </div>
         </div>
 

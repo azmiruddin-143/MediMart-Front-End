@@ -65,7 +65,7 @@ const UpdateProfile = () => {
 
 
     return (
-        <div>
+        <div className="h-screen">
             <div className="my-24">
                 <div className="hero-content p-2 sm flex-col mx-auto lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">

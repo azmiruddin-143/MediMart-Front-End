@@ -27,10 +27,10 @@ const Banner = () => {
             <Swiper
                 modules={[Navigation, Autoplay, EffectFade, Pagination]}
                 navigation={false}
-                // autoplay={{
-                //     delay: 3000,
-                //     disableOnInteraction: false,
-                // }}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
                 effect="fade"
                 slidesPerView={1}
                 loop={true}

@@ -19,7 +19,7 @@ const CategoryCard = () => {
    return (
       <div>
          <h1 className='text-center font-bold pt-6 text-black text-2xl sm:text-4xl'>Shop By Category </h1>
-         <div className='grid  max-w-7xl  mx-auto my-8 lg:grid-cols-4 grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 place-items-center gap-4'>
+         <div className='grid 2xl:mx-32 xl:mx-24 lg:mx-5 mx-auto my-8 lg:grid-cols-4 grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 place-items-center gap-4'>
             {
                category.slice(0, 6).map((category, index) =>
                   <div

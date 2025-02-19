@@ -67,7 +67,7 @@ const DiscountProductRow = ({ medicine }) => {
                         </div>
                     </div>
 
-                    <h3 className="text-lg font-semibold">{medicineName}</h3>
+                    <h3 className="text-lg text-black font-semibold">{medicineName}</h3>
                     <h3 className="text-lg font-semibold">{perUnitPrice}$</h3>
 
                     <div className='flex justify-between' >

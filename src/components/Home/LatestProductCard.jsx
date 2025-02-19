@@ -67,7 +67,7 @@ const LatestProductCard = ({ medicine }) => {
                 <img class="w-[400px] h-64 object-cover rounded-md" src={medicineImage} alt="Chek Trouser" />
 
                 <div class="p-2">
-                    <h1 class="text-2xl font-semibold pb-1 text-neutral">{medicineName}</h1>
+                    <h1 class="text-2xl font-semibold text-black pb-1 ">{medicineName}</h1>
                     <p class="text-md text-neutral">{medicineCategory}</p>
                     {/* <p class="text-md text-neutral py-1"> Total Purchase: <span className='font-bold text-neutral'>{purchaseCount}</span> </p> */}
 

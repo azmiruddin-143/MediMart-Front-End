@@ -5,7 +5,7 @@ import doctor from '../../assets/doctor.jpg'
 const HealthcarePartner = () => {
     return (
         <div className='py-5 sm:py-14 xl:py-28 '>
-            <section className=" lg:mx-8 mx-5 xl:mx-32 2xl:mx-36 shadow-md px-4 py-16 flex flex-col md:flex-row items-center ">
+            <section className=" lg:mx-8 mx-5 xl:mx-28 2xl:mx-36 shadow-md px-4 py-16 flex flex-col md:flex-row items-center ">
                 {/* Left Image */}
                 <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
                     <img src={healdImage} alt="" />

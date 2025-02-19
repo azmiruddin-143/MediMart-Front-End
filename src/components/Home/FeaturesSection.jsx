@@ -3,8 +3,8 @@ import { FaShippingFast, FaUndo, FaLock, FaGift } from "react-icons/fa";
 
 const FeaturesSection = () => {
   return (
-    <section className="bg-black py-8 xl:my-28 sm:my-14 my-8">
-      <div className=" mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section className="bg-black py-8 xl:my-10 sm:my-14 my-8">
+      <div className=" mx-auto xl:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
         {/* Feature 1 */}
         <div className="flex flex-col items-center">
           <FaShippingFast className="text-primary text-4xl mb-4" />

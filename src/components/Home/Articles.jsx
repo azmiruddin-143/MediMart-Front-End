@@ -11,7 +11,7 @@ const Articles = () => {
     }, [])
     // const shortDescription = articel.description.split(' ').slice(0, 20).join(' ') + "..."
     return (
-        <div className='2xl:mx-36 xl:mx-28 mx-5 lg:mx-10'>
+        <div className='2xl:mx-36 xl:mx-28 mx-5 lg:mx-8'>
             <h1 className='text-4xl font-semibold text-black py-8 '>Health Artices</h1>
             <div className='grid 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-5 gap-5'>
                 {
