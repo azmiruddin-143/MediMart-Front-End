@@ -51,29 +51,7 @@ const CategoryDetails = () => {
                 </div>
             </div>
 
-            {/* <table className="table">
-
-                <thead className='bg-primary'>
-                    <tr className='text-lg  text-neutral'>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Image</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Name</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Generic</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Category</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Company</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black' >Details</th>
-                        <th className='text-end border border-gray-300 px-4 py-2 text-black'>Cart</th>
-
-
-                    </tr>
-                </thead>
-
-
-                {
-                    CategoryMedicine.map((medicine, index) =>
-                        <CategoryDetailsRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} ></CategoryDetailsRow>
-                    )
-                }
-            </table> */}
+         
 
             <div className="mx-2 sm:mx-0 sm:grid-cols-2 gap-y-20 gap-8 my-16 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1">
                 {CategoryMedicine.map((medicine, index) => (
