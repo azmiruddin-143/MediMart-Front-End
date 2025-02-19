@@ -61,9 +61,9 @@ const AdminHomePage = () => {
                 setMonthlyOrders(res.data.monthlyOrders);
             })
             .catch(error => {
-                toast.error("Error!", (error.message), {
-                    duration: 3000,
-                });
+                // toast.error("Error!", (error.message), {
+                //     duration: 3000,
+                // });
             });
     }, []);
 
