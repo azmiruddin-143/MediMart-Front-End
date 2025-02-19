@@ -57,7 +57,7 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
     }
 
     return (
-       
+
         <div class="max-w-sm mx-auto h-[420px] bg-gray-50 border p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
 
             <div class="relative -mt-14">

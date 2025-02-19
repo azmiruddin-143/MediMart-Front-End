@@ -50,11 +50,8 @@ const CategoryDetails = () => {
                     </button>
                 </div>
             </div>
-            {/* <div className='flex justify-between mb-8'>
-                <h1 className='text-xl' >( Category:  <span className='text-primary font-bold' >
-                    {categoryName}</span> )</h1>
-            </div> */}
-            <table className="table">
+
+            {/* <table className="table">
 
                 <thead className='bg-primary'>
                     <tr className='text-lg  text-neutral'>
@@ -76,7 +73,15 @@ const CategoryDetails = () => {
                         <CategoryDetailsRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} ></CategoryDetailsRow>
                     )
                 }
-            </table>
+            </table> */}
+
+            <div className="mx-2 sm:mx-0 sm:grid-cols-2 gap-y-20 gap-8 my-16 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1">
+                {CategoryMedicine.map((medicine, index) => (
+                    <CategoryDetailsRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} ></CategoryDetailsRow>
+                ))}
+            </div>
+
+            {/* ... */}
 
             {
                 CategoryMedicine.length === 0 &&
