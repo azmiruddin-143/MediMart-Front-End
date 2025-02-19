@@ -5,13 +5,13 @@ import { FaEye } from 'react-icons/fa';
 import { IoMdCart } from "react-icons/io";
 import axios from 'axios';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useRole from '../../hooks/useRole';
 import toast from 'react-hot-toast';
 const AllMedicineRow = ({ medicine, index, refetch }) => {
     const { medicineName, genericName, shortDescription,
-        sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice,  discountPercentage, _id } = medicine
+        sellerEmail, medicineImage, medicineCategory, company, medicineMassUnit, perUnitPrice, discountPercentage, _id } = medicine
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
@@ -34,12 +34,12 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
 
             axios.post('https://medi-mart-server-opal.vercel.app/carts', cartsInfo)
                 .then(res => {
-                   
+
                     if (res.data.insertedId) {
                         toast.success(' Medicine added cart', {
-                          duration: 3000, 
+                            duration: 3000,
                         });
-                      }
+                    }
                     cartRefetch()
                     setIsEditModalOpen(false)
                 })
@@ -57,61 +57,68 @@ const AllMedicineRow = ({ medicine, index, refetch }) => {
     }
 
     return (
-        <tbody>
-            <tr className='text-neutral '>
-                <td className=' border border-gray-300 px-4 py-2 cursor-pointer  '>
-                    <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                            <img
-                                src={
-                                    medicineImage} />
-                        </div>
-                    </div>
-                </td>
+       
+        <div class="max-w-sm mx-auto h-[420px] bg-gray-50 border p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
 
-                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'>{medicineName}</td>
-                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'>{genericName} </td>
-                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {medicineCategory}</td>
-                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {company}</td>
-                <td className='text-neutral border border-gray-300 px-4 py-2 cursor-pointer'> {perUnitPrice}$</td>
+            <div class="relative -mt-14">
+                <img
+                    src={medicineImage}
+                    class=" mx-auto shadow-lg w-[400px] h-64 object-cover rounded-md"
+                />
+            </div>
 
-                <td className='px-5 py-5 border-b border-gray-300  text-sm border   cursor-pointer '>
-                    <span
-                        onClick={() => { setIsEditModalOpen(true) }}
-                        className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
-                    >
+            <div class="py-4">
 
+                <h2 class="text-xl text-black font-semibold ">{medicineName}</h2>
+
+
+                <div class="flex space-x-2 my-3">
+                    <span class="bg-black text-white  px-2 py-1 text-sm rounded-full">{medicineCategory}</span>
+                </div>
+
+                <span class="text-lg font-bold text-neutral">{perUnitPrice}$</span>
+                <div class="flex justify-between items-center mt-5">
+                    <div className='text-sm cursor-pointer '>
                         <span
-                            aria-hidden='true'
-                            className='absolute inset-0  bg-primary  rounded-full'
-                        ></span>
-                        <div className='flex items-center gap-2'>
-                            <span className='relative '>Details</span>
-                            <FaEye className=' relative text-lg' />
-                        </div>
+                            onClick={() => { setIsEditModalOpen(true) }}
+                            className='relative cursor-pointer inline-block px-3 py-2 font-semibold text-black leading-tight'
+                        >
 
-                    </span>
-                    <MedicineDetailsModal
-                        isOpen={isEditModalOpen}
-                        setIsEditModalOpen={setIsEditModalOpen}
-                        medicine={medicine}
-                        refetch={refetch}
-                        cartMedicine={cartMedicine}
-                    />
-                </td>
-                <td className=' border border-gray-300 px-4 py-2 cursor-pointer' >
-                    <div className='flex justify-end'>
-                        <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-2 font-semibold text-black text-end flex items-center justify-center'>
-                            Select <IoMdCart className='text-lg' />
-                        </button>
+                            <span
+                                aria-hidden='true'
+                                className='absolute inset-0  bg-primary  rounded-full'
+                            ></span>
+                            <div className='flex items-center gap-2'>
+                                <span className='relative '>Details</span>
+                                <FaEye className=' relative text-lg' />
+                            </div>
+
+                        </span>
+                        <MedicineDetailsModal
+                            isOpen={isEditModalOpen}
+                            setIsEditModalOpen={setIsEditModalOpen}
+                            medicine={medicine}
+                            refetch={refetch}
+                            cartMedicine={cartMedicine}
+                        />
                     </div>
+                    {/* .. */}
 
-                </td>
 
-
-            </tr>
-        </tbody>
+                    <div className='cursor-pointer' >
+                        <div className=''>
+                            <button disabled={role === "Admin" || role === "Seller"} onClick={cartMedicine} className='rounded-full bg-primary px-3 py-[5px] font-semibold text-black text-end flex items-center justify-center'>
+                                Select <IoMdCart className='text-lg' />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
 export default AllMedicineRow;
+
+
+

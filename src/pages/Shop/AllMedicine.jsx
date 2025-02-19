@@ -11,7 +11,7 @@ const AllMedicine = () => {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6; // Number of items per page
+    const itemsPerPage = 8; // Number of items per page
 
     const { data: medicine = [], isLoading, refetch } = useQuery({
         queryKey: ['medicine', search, sort, currentPage],
@@ -37,7 +37,7 @@ const AllMedicine = () => {
     };
 
     return (
-        <div className="overflow-x-auto h-screen xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
+        <div className=" xl:mx-28 2xl:mx-36 lg:mx-10 sm:mx-5 mx-2 my-10">
             <div className='sm:flex space-y-5 sm:space-y-0 items-center justify-between mb-8'>
                 <h1 className='text-xl'>( All Medicine <span className='text-primary font-bold'>{medicine.length}</span> )</h1>
 
@@ -66,29 +66,16 @@ const AllMedicine = () => {
                 </div>
             </div>
 
-            <table className="table border-collapse border border-gray-300">
+       
+            {/* copy */}
 
-                <thead className='bg-primary'>
-                    <tr className='text-lg text-neutral'>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Image</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Name</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Generic</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Category</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Company</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Price</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black'>Details</th>
-                        <th className='border border-gray-300 px-4 py-2 text-black text-end'>Cart</th>
-                    </tr>
-                </thead>
-
-
-
-
+            <div className="mx-2 sm:mx-0 sm:grid-cols-2 gap-y-20 gap-8 my-16 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 grid-cols-1">
                 {paginatedData.map((medicine, index) => (
                     <AllMedicineRow medicine={medicine} key={medicine?._id} refetch={refetch} index={index} />
                 ))}
-            </table>
+            </div>
 
+            {/* copyend */}
             {
                 paginatedData.length === 0 &&
                 <NoResultFound></NoResultFound>
